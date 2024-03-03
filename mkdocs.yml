@@ -1,0 +1,18 @@
+site_name: Code Club Adventures
+site_url: http://codeclubadventures.com
+site_author: Daniel Bloy
+site_description: Advice, guides and materials for running code clubs.
+
+nav:
+  - Home: index.md
+  - Blocks: blocks.md
+  - Python: python.md
+  - Replit: replit.md
+  - Links: links.md
+  - Errata: errata.md
+  - License: license.md
+  - Contact: contact.md
+  
+# Theme: https://github.com/squidfunk/mkdocs-material
+# Setup: pip install mkdocs-material
+theme: material
