@@ -1,0 +1,658 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/python/">
+      
+      
+        <link rel="prev" href="../blocks/">
+      
+      
+        <link rel="next" href="../replit/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>Python - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-club-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Club Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Club Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-games-with-pygame-zero-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Games with Pygame Zero &amp; Python
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-club-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Club Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Club Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-games-with-pygame-zero-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Games with Pygame Zero &amp; Python
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="python">Python</h1>
+<p>To avoid having to setup a local Python development environment, a good way to
+get started with Python is to use an online IDE. These can be used from pretty
+much any device including Windows PCs, Macs, Linux, Raspberry Pi, Android tablets
+or iPads. At my Code Club I use <a href="https://replit.com/">replit</a> which has a free tier.
+See the <a href="../replit/">replit</a> guide to get started.</p>
+<h2 id="books">Books</h2>
+<p>There are a huge range of resources out there for Learning Python and it can be daunting
+for beginners to identify which are worth their investment in time or money. I recommend
+the following resources:</p>
+<p><a href="https://www.amazon.co.uk/Python-easy-steps-2nd-covers/dp/1840788127">Python in easy steps</a> is a concise and low cost overview of the language and the book
+I use with my learners during Python sessions. The Python challenges I have written contain 
+references to the relevant sections in this book.</p>
+<p>The following books are all written by Al Sweigart and available free on his website https://inventwithpython.com.
+Print versions are available direct from the publisher or Amazon for a fee. There are a range of books covering
+several topics and 4 that I recommend for Python are:</p>
+<p><a href="https://inventwithpython.com/invent4thed/">Invent Your Own Computer Games with Python</a></p>
+<p><a href="https://inventwithpython.com/pythongently/">Python Programming Exercises, Gently Explained</a></p>
+<p><a href="https://inventwithpython.com/pygame/">Making Games with Python &amp; Pygame</a></p>
+<p><a href="https://inventwithpython.com/bigbookpython/">The Big Book of Small Python Projects</a></p>
+<h2 id="code-club-python">Code Club Python</h2>
+<h3 id="module-1">Module 1</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/about-me">About Me</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/rock-paper-scissors">Rock, Paper, Scissors</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/turtle-race">Turtle race</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/team-chooser">Team Chooser</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/colourful-creations">Colourful Creations</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/secret-messages">Secret Messages</a></p>
+<h3 id="module-2">Module 2</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/modern-art">Modern Art</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/popular-pets">Popular pets</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/rpg">RPG</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/where-is-the-space-station">Where is the Space Station</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/robo-trumps">Robo-Trumps</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/codecraft">CodeCraft</a></p>
+<h2 id="challenges">Challenges</h2>
+<p>The following materials are designed for self-directed learning once comfortable with writing Python
+scripts. I recommend only starting the challenges once you have completed Modules 1 and 2 above. Each
+of the challenges contain references to the book <a href="https://www.amazon.co.uk/Python-easy-steps-2nd-covers/dp/1840788127">Python in easy steps</a> and I recommend purchasing a copy (though it is not essential).</p>
+<p>1 - <a href="challenges/guess_the_number/">Guess the number</a></p>
+<p>2 - <a href="challenges/higher_or_lower/">Higher or lower</a></p>
+<h2 id="coding-games-with-pygame-zero-python">Coding Games with Pygame Zero &amp; Python</h2>
+<p>Sample PyGame</p>
+<p>4: <a href="https://electronstudio.github.io/pygame-zero-book/chapters/graphics.html">Drawing graphics</a></p>
+<p>5: <a href="https://electronstudio.github.io/pygame-zero-book/chapters/simple_games.html">Arcade games</a></p>
+<p>6 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/more_graphics.html">Improving your games</a></p>
+<p>7 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/more_games.html">More advanced games</a></p>
+<p>8 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/chase.html">Tutorial: Chase game</a></p>
+<p>9 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/maze.html">Tutorial: Maze game</a></p>
+<p>10 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/shooter.html">Tutorial: Shooting game</a></p>
+<p>11 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/race.html">Tutorial: Race game</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+    
+  </body>
+</html>
