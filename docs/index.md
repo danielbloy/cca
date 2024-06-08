@@ -26,4 +26,13 @@ As your programs become more advanced, blocks based programming can become more 
 
 ## Advanced (CircuitPython)
 
-Now is time to move onto the Raspberry Pi Pico with CircuitPython...
+Now is time to move onto the Raspberry Pi Pico with CircuitPython! This takes you on a journey
+of physical computing where you write Python code to control microprocessors. To give you a
+flavour of what can be done with CircuitPython (or its cousin MicroPython) take a look at this
+short YouTube video of the [Halloween 2023 project](https://youtu.be/a0I0U5x334Y) my Daughter
+and I worked on. You can read more about that adventure and see some other projects that we've worked on at Coding Clubs by heading over to my GitHub project page
+[pico-interactive](https://github.com/danielbloy/pico-interactive).
+
+Don't be scared by any complex looking electronics. Getting started with CircuitPython or
+MicroPython is super easy and there are plenty of guides available. For some great palces
+to start, take a look at the my [CircuitPython links](links.md#circuitpython).
