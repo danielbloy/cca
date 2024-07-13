@@ -49,7 +49,10 @@ The following are a collection of my favourite tools/sites:
 * [CircuitPython](https://circuitpython.org/) which is a fork of [MicroPython](https://micropython.org/) by AdaFruit and aimed as a beginner friendly version. See below for more links.
 * [MakeCode Maker](https://maker.makecode.com/) which offers blocks, JavaScript and Python based coding of microcontrollers.
 * [Python micro:bit](https://python.microbit.org/v/3).
-* [PyGame Zero](https://pygame-zero.readthedocs.io/en/stable/index.html) is a framework for creating games without boilerplate.
+* [Pygame Zero](https://pygame-zero.readthedocs.io/en/stable/index.html) is a framework for creating games without boilerplate.
+* [Pygame Zero Helper](https://github.com/QuirkyCort/pgzhelper) is a Python module that provides
+a range of functions to make it easier to write Pygame Zero games. It has a particularly rich
+set of collision detection helper functions.
 * [GuiZero](https://lawsie.github.io/guizero/) is designed to allow learners to quickly and easily create Graphical User Interfaces for their programs.
 
 ## CircuitPython

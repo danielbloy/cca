@@ -2,10 +2,10 @@
 
 ## Challenge
 
-Your aim is to follow the steps and use the hints to create a text-based game where the computer 
-generates 10 random numbers between 1 and 50. The player is shown the first number and must 
-then guess if the next number is higher or lower. If the player guesses correctly, they then try to 
-guess if the next number is higher or lower. This continues until the player guesses correctly 9 times 
+Your aim is to follow the steps and use the hints to create a text-based game where the computer
+generates 10 random numbers between 1 and 50. The player is shown the first number and must
+then guess if the next number is higher or lower. If the player guesses correctly, they then try to
+guess if the next number is higher or lower. This continues until the player guesses correctly 9 times
 or guesses incorrectly. Test your game each time you make a change by running it.
 
 Page numbers are provided for the book [Python in easy steps](https://www.amazon.co.uk/Python-easy-steps-2nd-covers/dp/1840788127) (PIES) by Mike McGrath

@@ -70,6 +70,8 @@ the tested materials.
 
 3 - [Smash](img/arcade/blocks/stage-1/3-smash-blocks.pdf), alpha
 
+4 - Jump, coming
+
 ### Stage 2 - Advanced Blocks
 
 1 - [Blaster](img/arcade/blocks/stage-2/1-blaster-blocks.pdf), alpha
@@ -83,6 +85,8 @@ the tested materials.
 5 - Treasure, coming
 
 6 - [Memory](img/arcade/blocks/stage-2/6-memory-blocks.pdf), alpha
+
+7 - Mouse, coming
 
 ### Stage 3 - Self Directed Learning
 

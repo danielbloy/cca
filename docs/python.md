@@ -6,7 +6,11 @@ much any device including Windows PCs, Macs, Linux, Raspberry Pi, Android tablet
 or iPads. At my Code Club I use [replit](https://replit.com/) which has a free tier.
 See the [replit](replit.md) guide to get started.
 
+[MakeCode Arcade](https://arcade.makecode.com/) also allows you to write your games
+in Python.
+
 ## Books
+
 There are a huge range of resources out there for Learning Python and it can be daunting
 for beginners to identify which are worth their investment in time or money. I recommend
 the following resources:
@@ -26,7 +30,6 @@ several topics and 4 that I recommend for Python are:
 [Making Games with Python & Pygame](https://inventwithpython.com/pygame/)
 
 [The Big Book of Small Python Projects](https://inventwithpython.com/bigbookpython/)
-
 
 ## Code Club Python
 
@@ -70,11 +73,13 @@ of the challenges contain references to the book [Python in easy steps](https://
 
 ## Coding Games with Pygame Zero & Python
 
-Sample PyGame
+The following materials are provided freely online by Richard Smith and take the reader
+from the fundamentals of Python to writing games using Pygame Zero. The website is
+available [here](https://electronstudio.github.io/pygame-zero-book/README.html).
 
-4: [Drawing graphics](https://electronstudio.github.io/pygame-zero-book/chapters/graphics.html)
+4 - [Drawing graphics](https://electronstudio.github.io/pygame-zero-book/chapters/graphics.html)
 
-5: [Arcade games](https://electronstudio.github.io/pygame-zero-book/chapters/simple_games.html)
+5 - [Arcade games](https://electronstudio.github.io/pygame-zero-book/chapters/simple_games.html)
 
 6 - [Improving your games](https://electronstudio.github.io/pygame-zero-book/chapters/more_graphics.html)
 
@@ -87,3 +92,48 @@ Sample PyGame
 10 - [Tutorial: Shooting game](https://electronstudio.github.io/pygame-zero-book/chapters/shooter.html)
 
 11 - [Tutorial: Race game](https://electronstudio.github.io/pygame-zero-book/chapters/race.html)
+
+## More Games with Pygame Zero
+
+I have written the following Pygame materials which are designed to be followed after
+working through the Code Club Python materials. The reader should have a moderate grasp
+of Python. All of these materials have been designed to work with the online programming
+IDE [replit](https://replit.com/).
+
+1 - [Muncher](python/pygame/muncher.md)
+
+2 - Bugs, coming
+
+3 - Paint, coming
+
+4 - Pairs, coming
+
+5 - Smash, coming
+
+6 - Memory, coming
+
+7 - Stack, coming
+
+8 - Attack, coming
+
+## MakeCode Arcade Python
+
+[MakeCode Arcade](https://arcade.makecode.com/) also allows you to write your games
+in Python (though it is more limited than Replit and not as mature as the MakeCode
+Arcade TypeScript tooling). The materials that I initially produced highlighted some
+issues with the early access Python tooling so we stopped using it. In time, I'm sure
+the tooling will mature enough for us to use it again. The materials are marked as
+alpha, beta or final based on the quality/stage of development of the material. The
+alpha materials will be first stage PDFs, beta are updated web based materials but not
+neccessarily battle tested in the Coding Club yet so may contain errors and final will
+be the tested materials.
+
+1 - [OXO](img/arcade/python/1-oxo-python.pdf), alpha
+
+2 - [Invaders](img/arcade/python/2-invaders-python.pdf), alpha
+
+3 - [Smash](img/arcade/python/3-smash-python.pdf), alpha
+
+4 - Frog, coming
+
+5 - Muncher, coming
