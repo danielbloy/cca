@@ -19,7 +19,7 @@ Navigate to [replit](https://replit.com/) and login.
 Create a new project using the Pygame template and give it the title "Muncher" as illustrated
 by the screenshot below.
 
-![screen shot](img/python/pygame/muncher/create-project.png)
+![screen shot](../../img/python/pygame/muncher/create-project.png)
 
 In the `main.py` file, replace the code provided with the template with this and run the program
 to make sure it can download the packages and runs. You should be presented with a black screen
@@ -54,9 +54,9 @@ supports transparency (all the images provided here were created using [PixilArt
 The two images should be called `muncher.png` and `muncher2.png`. Create a `images` folder in
 your project and place your files in there as illustrated in the screenshot below.
 
-![screen shot](img/python/pygame/muncher/muncher.png) ![screen shot](img/python/pygame/muncher/muncher2.png)
+![screen shot](../../img/python/pygame/muncher/muncher.png) ![screen shot](../../img/python/pygame/muncher/muncher2.png)
 
-![screen shot](img/python/pygame/muncher/create-images-folder.png)
+![screen shot](../../img/python/pygame/muncher/create-images-folder.png)
 
 Then add the following code before the `draw()` function:
 
@@ -269,14 +269,14 @@ supports transparency (all the images provided here were created using [PixilArt
 
 The two images should be placed in the `images` folder you already created and be called:
 
-* `ghost-blue.png` ![screen shot](img/python/pygame/muncher/ghost-blue.png)
-* `ghost-blue2.png` ![screen shot](img/python/pygame/muncher/ghost-blue2.png)
-* `ghost-orange.png` ![screen shot](img/python/pygame/muncher/ghost-orange.png)
-* `ghost-orange2.png` ![screen shot](img/python/pygame/muncher/ghost-orange2.png)
-* `ghost-red.png` ![screen shot](img/python/pygame/muncher/ghost-red.png)
-* `ghost-red2.png` ![screen shot](img/python/pygame/muncher/ghost-red2.png)
-* `ghost-pink.png` ![screen shot](img/python/pygame/muncher/ghost-pink.png)
-* `ghost-pink2.png` ![screen shot](img/python/pygame/muncher/ghost-pink2.png)
+* `ghost-blue.png` ![screen shot](../..//python/pygame/muncher/ghost-blue.png)
+* `ghost-blue2.png` ![screen shot](../../img/python/pygame/muncher/ghost-blue2.png)
+* `ghost-orange.png` ![screen shot](../../img/python/pygame/muncher/ghost-orange.png)
+* `ghost-orange2.png` ![screen shot](../../img/python/pygame/muncher/ghost-orange2.png)
+* `ghost-red.png` ![screen shot](../../img/python/pygame/muncher/ghost-red.png)
+* `ghost-red2.png` ![screen shot](../../img/python/pygame/muncher/ghost-red2.png)
+* `ghost-pink.png` ![screen shot](../../img/python/pygame/muncher/ghost-pink.png)
+* `ghost-pink2.png` ![screen shot](../../img/python/pygame/muncher/ghost-pink2.png)
 
 Add the following code before the `draw()` function which will create the ghosts
 and give each one an individual speed and direction to start with but all will have
@@ -568,9 +568,9 @@ provided here were created using [PixilArt](https://www.pixilart.com/draw)) or y
 
 The two images should be called `wall.png` and `wall2.png` and placed in the `images` folder.
 
-`wall.png` should be 128 x 32 pixels ![screen shot](img/python/pygame/muncher/wall.png)
+`wall.png` should be 128 x 32 pixels ![screen shot](../../img/python/pygame/muncher/wall.png)
 
-`wall2.png` should be 32 x 128 pixels ![screen shot](img/python/pygame/muncher/wall2.png)
+`wall2.png` should be 32 x 128 pixels ![screen shot](../../img/python/pygame/muncher/wall2.png)
 
 All wall elements will be created as `Actors`. Add the following code before your `draw()`
 function:
@@ -689,7 +689,7 @@ The pellets that Muncher likes to eat are small 8 x 8 pixel dots that are spread
 the play area but not where there are walls. Either create your own image or use mine
 below, ensuring you copy it into the `images` folder.
 
-![screen shot](img/python/pygame/muncher/pellet.png)
+![screen shot](../../img/python/pygame/muncher/pellet.png)
 
 Add the following pellet creation function before your `draw()` function:
 
