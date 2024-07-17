@@ -6,7 +6,7 @@ by walls so can float through them.
 
 You will control Muncher, moving him around the screen to collect all the pellets whilst avoiding being caught by the ghosts.
 
-Each a power pellet to supercharges Muncher and allows him to eat the ghosts.
+Eat a power pellet to supercharge Muncher and allow him to eat the ghosts.
 
 When fruit appears, munch them for a big bonus.
 
@@ -30,7 +30,7 @@ import time
 import pgzrun
 
 WIDTH = 640
-HEIGHT = 800
+HEIGHT = 700
 
 score = 0
 lives = 3
@@ -267,9 +267,9 @@ be animated so will require at least 2 images. Just like Muncher, all of the gho
 should be 32 x 32 pixels in size. You can create your own images using a paint program that
 supports transparency (all the images provided here were created using [PixilArt](https://www.pixilart.com/draw)) or you can use my images that are provided below.
 
-The two images should be placed in the `images` folder you already created and be called:
+The images for each ghost should be placed in the `images` folder you already created and be called:
 
-* `ghost-blue.png` ![screen shot](../..//python/pygame/muncher/ghost-blue.png)
+* `ghost-blue.png` ![screen shot](../../img/python/pygame/muncher/ghost-blue.png)
 * `ghost-blue2.png` ![screen shot](../../img/python/pygame/muncher/ghost-blue2.png)
 * `ghost-orange.png` ![screen shot](../../img/python/pygame/muncher/ghost-orange.png)
 * `ghost-orange2.png` ![screen shot](../../img/python/pygame/muncher/ghost-orange2.png)
@@ -358,7 +358,8 @@ def ghost_move(ghost, dt):
     ghost.y += ghost.vy * dt
 
 
-Actor.move = ghost_move
+for ghost in ghosts:
+    ghost.move = types.MethodType(ghost_move, ghost)
 ```
 
 Then modify the `update` function so that it calls the `move()` method for each of the
@@ -697,7 +698,7 @@ Add the following pellet creation function before your `draw()` function:
 def create_pellets():
     global pellets
     pellets = []
-    for y in range(14):
+    for y in range(12):
         for x in range(12):
             pos = (50 + (50 * x), 100 + (50 * y))
             collide = False
@@ -859,26 +860,525 @@ def update(dt):
 ## Ghosts with personality
 
 Currently, the ghosts race around the screen in a fixed way which can make the
-game just a little bit predictable. We are now going to program each of the
-four ghosts with some additional intelligence to make them behave in more unique
-ways
+game just a little bit predictable and easy. We are now going to program one of
+ghosts ghosts with some additional intelligence to make them chase after
+Muncher, rather than just race around the screen randomly.
 
-TODO
+At the top of the file, add:
+
+```python
+import types
+```
+
+Now we will add in the specific code for the more advanced movement for the blue
+ghost. This code should be added above your `draw()` function. This will make blue
+ghost move directly towards Muncher. This gives a simple chase type behaviour to
+the blue ghost, rather than just bouncing around the screen.
+
+```python
+def chase(ghost, dt):
+    if ghost.vx < 0:
+        ghost.vx *= -1
+
+    if ghost.vy < 0:
+        ghost.vy *= -1
+
+    if ghost.x < muncher.x:
+        ghost.x += ghost.vx * dt
+    else:
+        ghost.x -= ghost.vx * dt
+
+    if ghost.y < muncher.y:
+        ghost.y += ghost.vy * dt
+    else:
+        ghost.y -= ghost.vy * dt
+        
+blue.move = types.MethodType(chase, blue)
+```
+
+Run your game to make sure the ghost exhibits the new behaviour. Does the blue ghost
+now catch you really fast and is impossible to evade? Why do you think this is? Try
+changing the values that `blue.vx` and `blue.vy` are initialised to? What are good
+values?
+
+### Extension: Create your own AI
+
+Try to give some of your ghosts unique movement behaviours; some ghosts can keep using the
+default `ghost_move()` function. You can add the `chase()` move behaviour to other slower
+moving ghosts too.
+
+Create your own special move function for that can be attached to some of your ghosts. If
+you are stuck for ideas as to what to write as your algorithm, try this:
+
+* Pick random `vx` and `vy` values for -40 to 40.
+* Pick move in that direction for a random amount of time, ensuring to bounce off walls.
+* Repeat
 
 ## Bonus fruit
 
-When fruit appears, munch them for a big bonus.
+A diet of just chomping on pellets can get a little boring so Muncher like to also
+eat fruit when it is available. In our game, we want to occasionally make fruit
+available on the screen so that Muncher can get a big bonus for eating it. Only
+one fruit will be available at a time.
 
-TODO
+We are going to start with three different types of fruit, each with a 32 x 32 pixel
+image. The three images should be placed in the `images` folder you already created
+and be called:
 
-## Power pelltets
+* `apple.png` ![screen shot](../../img/python/pygame/muncher/apple.png)
+* `lemon.png` ![screen shot](../../img/python/pygame/muncher/lemon.png)
+* `strawberry.png` ![screen shot](../../img/python/pygame/muncher/strawberry.png)
 
-Each a power pellet to supercharges Muncher and allows him to eat the ghosts.
+Then add the following code before the `draw()` function which creates a list that
+contains an  `Actor` for each of the possible fruits we will display:
 
-TODO
+```python
+fruits = [
+    Actor('apple', (WIDTH / 2, HEIGHT / 2)),
+    Actor('lemon', (WIDTH / 2, HEIGHT / 2)),
+    Actor('strawberry', (WIDTH / 2, HEIGHT / 2)),
+]
+
+fruit = None
+```
+
+The `fruit` variable which is currently set to the special value `None` is used to
+indicate which fruit we are currently displaying. When `fruit` is `None` it means
+that no fruit is to be displayed. When `fruit` is an `Actor` then it is to be
+displayed. Change the `draw()` function to read as follows to ensure `fruit` gets
+drawn each frame when it is a value other than `None`:
+
+```python
+def draw():
+    screen.clear()
+    screen.draw.text(f"{score}", (WIDTH / 2, 15), color="red", fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+
+    for ghost in ghosts:
+        ghost.animate()
+        ghost.draw()
+
+    for wall in walls:
+        wall.draw()
+
+    for pellet in pellets:
+        pellet.draw()
+
+    if fruit is not None:
+        fruit.draw()
+```
+
+Now run your game to check it out. Does the fruit get displayed? Why do you think this is?
+
+### Extension: More fruits please
+
+Having 3 different fruits adds some variety but Muncher likes a whole lot of different types
+of fruit. Use your artistic talent to create more fruits. Don't forget to add them to the
+`fruits` list. Some examples of fruits to draw are:
+
+* Banana
+* Pineapple
+* Cherries
+* Kiwi
+* Peach
+* Grapes
+
+## Showing and hiding the fruit
+
+Presently, when the game is running, the fruits do not appear. This is because there is no
+code that currently changes the `fruit` variable from the value `None`. What we want is for
+a fruit to appear every five second and be displayed for 3 seconds. This should make it
+challenging for Muncher to get the fruit whilst also avoiding the ghosts. To achieve this we
+are going to use the `clock.schedule()` method that we used earlier. The method
+`clock.schedule()` is used to schedule a function to be called a number of seconds in the
+future. We will schedule a call pick a random fruit from the list to show and then schedule
+another different call to hide that fruit.
+
+Add the following code before the `draw()` function:
+
+```python
+def show_fruit():
+    import random
+    global fruit
+    fruit = fruits[random.randint(0, len(fruits) - 1)]
+    clock.schedule(hide_fruit, 3)
+
+
+def hide_fruit():
+    global fruit
+    fruit = None
+    clock.schedule(show_fruit, 5)
+
+
+clock.schedule(show_fruit, 5)
+```
+
+Run your program. Now your fruits will show and hide. What happens when Muncher touches the fruit?
+Why do you think that is?
+
+### Experiment: Changing how often the fruits are visible
+
+Try adjusting the specified number of seconds that the three calls to `clock.schedule()` to see how
+this affects the game. The three values represent:
+
+* The time to wait for the first fruit being shown.
+* The time that each fruit is displayed for.
+* The time between each fruit being displayed.
+
+Which value is which? Select some values that you feel are best for your game.
+
+## Eating the fruits
+
+At present, when Muncher overlaps with the fruit, nothing happens. This is because we
+have not added the collision detection code like has been done for the pellets, ghosts
+and walls.
+
+Modify the `update` function so that it checks for the collision between Muncher and the
+fruit and awards points based on the index of the fruit in the list. The first item will
+be worth 1,000 points, the second item 2,000, the third item 3,000 points and so on.
+
+```python
+    global fruit
+    if fruit is not None:
+        if fruit.colliderect(muncher):
+            index = fruits.index(fruit) + 1
+            score += (1000 * index)
+            fruit = None
+```
+
+Run your game and try it out.
+
+### Experiment: Fruits in different places
+
+All of the fruits currently appear in the same location no the screen. Why do you think this is?
+Try changing your code so that different fruits appear in different locations.
 
 ## Getting additional lives
 
 An additional life should be awarded for each 10,000 points the player scores.
 
-TODO
+Add the following code above your `draw()` function:
+
+```python
+next_life = 10000
+```
+
+Modify the `update` function by adding the code below that checks to see when the next
+life should be awarded.
+
+```python
+    global next_life
+    if score >= next_life:
+        lives += 1
+        next_life += 10000
+```
+
+### Experiment: Changing the way extra lives are awarded
+
+The code currently awards a new life every 10,000 points. Try changing it so that a
+life is awarded after the first 1,000 points and then every 2,000 points thereafter.
+
+What happens when you get lots and lots of lives?
+
+Try modifying the code so that you award lives in the following pattern:
+
+* 1st new life awarded after 10,000 points (10,000)
+* 2nd new life awarded after 30,000 points (10,000 + 20,000)
+* 3rd new life awarded after 60,000 points (10,000 + 20,000 + 30,000)
+* 4th new life awarded after 100,000 points (10,000 + 20,000 + 30,000 + 40,000)
+* ... and so on ...
+
+## Power pellets
+
+Each time Muncher eats a power pellet, it supercharges Muncher and allows him to eat
+the ghosts for a few seconds. The power pellet is a larger 16 x 16 pixel pellet. You
+can create your own using whatever colour you like, or use mine.
+
+The image for the power pellet should be placed in the `images` folder you already
+created and be called:
+
+* `power-pellet.png` ![screen shot](../../img/python/pygame/muncher/power-pellet.png)
+
+We will use the same pattern for creating the power pellets, drawing them and
+performing collision detection as has been used for the smaller pellets. You should
+be familiar with these patterns by now.
+
+Add the following code before the `create_pellets()` function which will create the
+list to hold the power pellets and add a property to Muncher to indicate how long he
+has left (in seconds) in power mode:
+
+```python
+power_pellets = []
+muncher.power = 0
+```
+
+Add the following code to the `create_pellets()` function which will create the power
+pellets for each new level:
+
+```python
+    global power_pellets
+    power_pellets = [
+        Actor('power-pellet', (WIDTH / 5, HEIGHT / 6)),
+        Actor('power-pellet', ((WIDTH / 5) * 4, HEIGHT / 6)),
+    ]
+```
+
+Add the following code to the `draw()` function to display the power pellets
+each frame:
+
+```python
+    for pellet in power_pellets:
+        pellet.draw()
+```
+
+Add the following code to the `update()` function. This code first decreases how much
+time Muncher has left in power mode and then detects for collision between Muncher and
+the power pellets, granting Muncher a 500 point bonus and more time in power mode if
+one or more power pellets were eaten:
+
+```python
+    muncher.power -= dt
+    if muncher.power < 0:
+        muncher.power = 0
+
+    global power_pellets
+    before = len(power_pellets)
+    power_pellets = [pellet for pellet in power_pellets if not pellet.colliderect(muncher)]
+    after = len(power_pellets)
+    score += (before - after) * 500
+    if after < before:
+        muncher.power = 5
+```
+
+### Experiment: Changing the number of power pellets
+
+Currently the game has two power pellets. Why not add some more power pellets to the
+game. You could go for four with one in each corner or perhaps place then extra ones
+in random positions. Experiment with different placings to get something you like.
+
+## Power mode and frightened ghosts
+
+When you run your game, there is no indication that Muncher is in power mode. In fact
+even in power mode, Muncher will still lose a life if he touches the ghosts. We need
+to do the following things:
+
+1. Make the ghosts change their look so it is clear that power mode is activated
+2. Stop Muncher losing a life when colliding with a ghost in power mode.
+3. Award Muncher 500 bonus points when colliding with a ghost in power mode and
+move the ghost back to its starting position.
+
+Either draw your own 32 x 32 pixel scared ghost images using your favourite paint
+program or use my images below. The two scared ghost images should be placed in
+the `images` folder you already created and be called:
+
+* `ghost-scared.png` ![screen shot](../../img/python/pygame/muncher/ghost-scared.png)
+* `ghost-scared2.png` ![screen shot](../../img/python/pygame/muncher/ghost-scared2.png)
+
+Add the following code before the `draw()` function which will create a list for
+the scared ghost images:
+
+```python
+scared_images = ['ghost-scared', 'ghost-scared2']
+```
+
+Add the following code to the end of your `update()` function. This will swap the
+images used for each ghost `Actor` based on whether Muncher is in power mode or note:
+
+```python
+    global scared_images
+    if muncher.power > 0:
+        for ghost in ghosts:
+            if ghost.images != scared_images:
+                ghost.original_images = ghost.images
+                ghost.images = scared_images
+                ghost.frame = 0
+    else:
+        for ghost in ghosts:
+            if ghost.images == scared_images:
+                ghost.images = ghost.original_images
+                ghost.frame = 0
+```
+
+If you run your program now you will find the ghosts change their look when you eat a
+power pellet. The only item remaining is to modify the collision detection code.
+
+In your `update()` function, locate the code that checks the collision between Muncher
+and the ghosts. It will look like this:
+
+```python
+    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+```
+
+Change it to this which will stop this collision detection happening if Muncher is
+in power mode:
+
+```python
+    if muncher.power <= 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                lives -= 1
+                paused = True
+                clock.schedule(reset_actors, 2)
+```
+
+Now to add the code that allows Muncher to each the ghosts. Add this code to the end
+of your `update()` function:
+
+```python
+    if muncher.power > 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                score += 500
+                ghost.pos = GHOST_START
+```
+
+### Extension: Frightened ghosts should run away
+
+Presently, when Muncher has eaten a power pellet, the ghosts do not change their behaviour.
+The ghosts moving randomly continue to do so and the ghosts chasing also continue to do so.
+Change your chase code so that you rather than chase towards Muncher a chasing ghost runs
+away when Muncher is in power mode.
+
+## Adding sounds
+
+You game is fun, but it is lacking something. Sound! You can create your own sound
+effects or use some free online resources. All of the sound effects listed here came
+from [MixKit](https://mixkit.co/free-sound-effects/game/). Other sites are available
+such as [pixabay](https://pixabay.com/sound-effects/search/game/).
+
+Create a `sounds` folder in your project to place your sound files. You will need
+6 sounds:
+
+* [eat_ghost.wav](../../img/python/pygame/muncher/eat_ghost.wav)
+* [eat_fruit.wav](../../img/python/pygame/muncher/eat_fruit.wav)
+* [eat_pellet.wav](../../img/python/pygame/muncher/eat_pellet.wav)
+* [lose_life.wav](../../img/python/pygame/muncher/lose_life.wav)
+* [new_level.wav](../../img/python/pygame/muncher/enew_level.wav)
+* [new_life.wav](../../img/python/pygame/muncher/new_life.wav)
+
+Playing a sound is super easy using the `sounds` object. To play the `lose_life.wav`
+sound, just use this code.
+
+```python
+sounds.lose_life.play()
+```
+
+All of the sounds need adding to the `update()` function which should now look
+like this:
+
+```python
+def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    if muncher.power <= 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                lives -= 1
+                sounds.lose_life.play()
+                paused = True
+                clock.schedule(reset_actors, 2)
+
+    check_for_wall_collisions(muncher)
+
+    global score, pellets
+    before = len(pellets)
+    pellets = [pellet for pellet in pellets if not pellet.colliderect(muncher)]
+    after = len(pellets)
+    score += (before - after) * 100
+    if after < before:
+        sounds.eat_pellet.play()
+
+    if len(pellets) <= 0:
+        paused = True
+        sounds.new_level.play()
+        create_pellets()
+        reset_actors()
+
+    global fruit
+    if fruit is not None:
+        if fruit.colliderect(muncher):
+            sounds.eat_fruit.play()
+            index = fruits.index(fruit) + 1
+            score += (1000 * index)
+            fruit = None
+
+    global next_life
+    if score >= next_life:
+        sounds.new_life.play()
+        lives += 1
+        next_life += 10000
+
+    muncher.power -= dt
+    if muncher.power < 0:
+        muncher.power = 0
+
+    global power_pellets
+    before = len(power_pellets)
+    power_pellets = [pellet for pellet in power_pellets if not pellet.colliderect(muncher)]
+    after = len(power_pellets)
+    score += (before - after) * 500
+    if after < before:
+        muncher.power = 5
+
+    global scared_images
+    if muncher.power > 0:
+        for ghost in ghosts:
+            if ghost.images != scared_images:
+                ghost.original_images = ghost.images
+                ghost.images = scared_images
+                ghost.frame = 0
+    else:
+        for ghost in ghosts:
+            if ghost.images == scared_images:
+                ghost.images = ghost.original_images
+                ghost.frame = 0
+
+    if muncher.power > 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                sounds.eat_ghost.play()
+                score += 500
+                ghost.pos = GHOST_START
+```
+
+### Extension: Add a special sound when a power pellet is eaten
+
+There is currently no special sound played when a power pellet is eaten. Create or
+choose a sound, add it to your `sounds` directory, then add the code to play the
+sound when a power pellet is eaten.
+
+### Extension: Frightened ghosts sound
+
+Extend your game to play a background melody when the ghosts are frightened.
+
+## Finished code
+
+Here is a version of the finished code with some of the extensions completed:
+[main.py](../../img/python/pygame/muncher/main.py)

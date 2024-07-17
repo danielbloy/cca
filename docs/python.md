@@ -116,6 +116,10 @@ IDE [replit](https://replit.com/).
 
 8 - Attack, coming
 
+9 - Fireworks, coming
+
+10 - Jumper, coming
+
 ## MakeCode Arcade Python
 
 [MakeCode Arcade](https://arcade.makecode.com/) also allows you to write your games
