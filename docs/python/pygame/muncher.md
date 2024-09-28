@@ -28,6 +28,7 @@ with a red zero for the score at the top of the screen.
 ```python
 import time
 import pgzrun
+import types
 
 WIDTH = 640
 HEIGHT = 700
