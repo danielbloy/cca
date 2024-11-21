@@ -1,10 +1,36 @@
-# Summary
+# Website TODO
 
-The published mkdocs site can be found here: https://danielbloy.github.io/cca/.
+## Scratch
 
-Why does this GitHub project exist? Recent changes to the Internet screening in
-the Library where I run my Code Club has resulted in blocking my
-[Code Club Adventures](http://codeclubadventures.com/) website that contains
-this content. Annoyingly it has also blocked some functionality in the Replit
-IDE used for the PyGame activities. Thankfully, the GitHub documentation pages
-are not blocked so I'm using this as a stop gap until I can get a proper fix.
+* Add the CoderDojo scratch lessons.
+
+## MakeCode Arcade
+
+* MakeCode Arcade Hardware reviews (include information about Adafruit and circuitPython)
+* MakeCode Arcade links.
+* MakeCode Arcade outcomes + level descriptions
+
+## Python
+
+* Getting started with Replit
+* Add the coder DoJo Python activities
+* Upload some extra art for the PyGame games that can be used.
+
+## General
+
+* "For Educators" section.
+
+## Other
+
+* Other virtual consoles including:
+  * Pico-8
+  * Tic-80
+  * GDevelop
+  * 8-bit WorkShop
+  * Play-Date with its web based editor
+  * p5-js
+  * GitHub
+
+## Site
+
+* Add favicon, see: https://www.mkdocs.org/getting-started/#changing-the-favicon-icon

@@ -1,6 +1,21 @@
+import os
+
+# Setup screen position before importing PyGame Zero
+os.environ['SDL_VIDEO_WINDOW_POS'] = f'700,100'
+
 import pgzrun
 import time
 import types
+from pgzero.actor import Actor
+from pgzero.screen import Screen
+from pgzero.keyboard import Keyboard
+from pgzero.clock import Clock
+from pgzero.loaders import SoundLoader
+
+screen: Screen
+keyboard: Keyboard
+clock: Clock
+sounds: SoundLoader
 
 WIDTH = 640
 HEIGHT = 700

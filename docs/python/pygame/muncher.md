@@ -1,29 +1,48 @@
 # Muncher
 
 These instructions will take you through the steps of creating a game that uses the
-1980 game Pac-Man as its inspiration. In this version, the ghosts are not constrained
-by walls so can float through them.
+1980 game [Pac-Man](https://en.wikipedia.org/wiki/Pac-Man) as its inspiration. In
+this version, the ghosts are not constrained by walls so can float through them.
 
-You will control Muncher, moving him around the screen to collect all the pellets whilst avoiding being caught by the ghosts.
+You will control Muncher, moving him around the screen to collect all the pellets
+whilst avoiding being caught by the ghosts.
 
-Eat a power pellet to supercharge Muncher and allow him to eat the ghosts.
+Eat a power pellet to super charge Muncher and allow him to eat the ghosts.
 
 When fruit appears, munch them for a big bonus.
 
 Get a new life for each 10,000 points scored.
 
-## Create the project in Replit
+![screen shot](../../img/python/pygame/muncher/game.png)
+
+## Learning points
+
+These instructions will take you through the process of creating a game which uses
+the fundamental PyGame Zero classes with fundamental Python code concepts including:
+
+* variables
+* lists
+* functions
+* if/else conditions
+* loops
+
+Some techniques are introduced that demonstrate introspection of Python objects as
+well as how to *attach* additional functionality to existing Actors.
+
+These instructions are suitable for you if you are comfortable with basic Python coding.
+
+## Step 0: Create the project in Replit
 
 Navigate to [replit](https://replit.com/) and login.
 
-Create a new project using the Pygame template and give it the title "Muncher" as illustrated
-by the screenshot below.
+Create a new project using the Pygame template and give it the title "Muncher" as
+illustrated by the screenshot below.
 
 ![screen shot](../../img/python/pygame/muncher/create-project.png)
 
-In the `main.py` file, replace the code provided with the template with this and run the program
-to make sure it can download the packages and runs. You should be presented with a black screen
-with a red zero for the score at the top of the screen.
+In the `main.py` file, replace the code provided with the code below and run the
+program to make sure it can download the packages and runs. You should be presented
+with a black screen with a red zero for the score at the top of the screen.
 
 ```python
 import time
@@ -44,7 +63,7 @@ def draw():
 pgzrun.go()
 ```
 
-## Introducing Muncher
+## Step 1: Introducing Muncher
 
 Our protagonist is called Muncher and is a yellow round ball that likes to eat little yellow
 pellets. Muncher will be comtrolled by the player and can be moved around the screen using the
@@ -55,7 +74,8 @@ supports transparency (all the images provided here were created using [PixilArt
 The two images should be called `muncher.png` and `muncher2.png`. Create a `images` folder in
 your project and place your files in there as illustrated in the screenshot below.
 
-![screen shot](../../img/python/pygame/muncher/muncher.png) ![screen shot](../../img/python/pygame/muncher/muncher2.png)
+* `muncher.png` ![screen shot](../../img/python/pygame/muncher/muncher.png)
+* `muncher2.png` ![screen shot](../../img/python/pygame/muncher/muncher2.png)
 
 ![screen shot](../../img/python/pygame/muncher/create-images-folder.png)
 
@@ -112,13 +132,13 @@ values to try are:
 * 0
 * -150
 
-## Keeping Actors within the screen
+## Step 2: Keeping Actors within the screen
 
 What happens when Muncher gets close to the edges of the screen? Does he stop or keep going so
 he goes outside the bounds of the screen?
 
 During the game, we want Muncher to stay within the play area. We are therefore going to need to
-to set some boundaries that we want to keep all Actors (Ghosts and Muncher) within. This boundary
+to set some boundaries that we want to keep all Actors (ghosts and Muncher) within. This boundary
 will be set to a border of 50 pixels. We will add a `keep_in_bounds()` method to the `Actor`
 class which we can call in each `update()` call. Add the following code above your `draw()`
 function:
@@ -171,7 +191,20 @@ Try using diffent values and see how it changes the playing area. Example values
 * 250
 * -50
 
-## Animating Actors
+### Explanation: Why is Muncher faster when moving diagonally?
+
+Muncher has two properties that are used to determine his velocity: `vx` and `vy`. These represent the
+horizontal and vertical velocity that Muncher moves. If moving just left or right, the *speed* of
+Muncher is the value of the `vx` parameter, in this case 150 pixels per second. If moving just up or
+down, the *speed* of Muncher is the value of the `vx` parameter, again 150 pixels per second. However,
+if Muncher moves diagonally, he Moves 150 pixels left or right AND 150 pixels up or down. This is
+a right angled triangle and pythagoras theorem can be used to determine the distance actually moved
+which is about 212 pixels. A move consistent movement speed could be implemented by testing whether
+Muncher is moving diagonally or not but that would complicate the move calculation code. Besides,
+having a slightly faster diagonal move speed adds an additional strategy to the game and is a fun
+side effect.
+
+## Step 3: Animating Actors
 
 We want all of our Actors to be animated. At present, as Muncher runs around the screen he looks a
 little boring. In the code that creates the Muncher `Actor`, we set an `images` property that
@@ -243,7 +276,7 @@ Try experimenting with different values. Examples to try are:
 * 2
 * 15
 
-## Drawing lives
+## Step 4: Drawing lives
 
 In this game, Muncher will start with 3 lives. We should add an indicator to the top of
 the screen to indicate how many lives Muncher has. Modify your `draw()` function so that
@@ -261,7 +294,7 @@ def draw():
     muncher.draw()
 ```
 
-## Introducing the Ghosts
+## Step 5: Introducing the ghosts
 
 Muncher is antagonised by four ghosts, Blue, Orange, Red and Pink. Each of the ghosts will
 be animated so will require at least 2 images. Just like Muncher, all of the ghost images
@@ -311,7 +344,7 @@ pink.vy = 60
 ghosts = [blue, orange, red, pink]
 ```
 
-Then change the `draw()` function to read as follows to ensure the Ghosts all get
+Then change the `draw()` function to read as follows to ensure the ghosts all get
 animated and drawn each frame:
 
 ```python
@@ -332,7 +365,7 @@ def draw():
 
 Run your program and see what happens? do the ghosts move? Why do you think this is?
 
-### Extension: More complex Ghost animations
+### Extension: More complex ghost animations
 
 Just as you can for Muncher, you can make more elaborate or complex animations for the
 ghosts through using more animation frames by changing the `images` property of an Actor.
@@ -343,7 +376,7 @@ blue ghost, you can change the `images` property of blue to read as follows:
 blue.images = ['ghost-blue', 'ghost-blue2', 'ghost-blue3', 'ghost-blue4', 'ghost-blue5']
 ```
 
-## Moving the Ghosts
+## Step 6: Moving the ghosts
 
 It looks like there is only a single ghost on the screen because they are all on top
 of each other and there is no code that does movement for the ghosts yet. The technique
@@ -364,7 +397,7 @@ for ghost in ghosts:
 ```
 
 Then modify the `update` function so that it calls the `move()` method for each of the
-Ghosts in turn.
+ghosts in turn.
 
 ```python
 def update(dt):
@@ -386,14 +419,14 @@ def update(dt):
 Run your program and see what happens. Do the ghosts stay in the play area like Muncher does?
 Why do you think this is? Can you fix it?
 
-### Experiment: Changing the Ghosts speed and direction
+### Experiment: Changing the ghosts speed and direction
 
 Just as it is for Muncher, the speed of the ghosts is controlled by the `vx` and `vy` properties
 that represent the horizontal and vertical speed each ghost can move in pixels per second.
 Each ghost has a different set of values for the `vx` and `vy` properties. Experiment with changing
 the values to see what effect it has.
 
-## Keeping the Ghosts in bounds
+## Step 7: Keeping the ghosts in bounds
 
 The reason the ghosts all fly off the screen is because we do not perform the check to keep them
 within the play area bounds like we do for Muncher. The code in the `update()` function is missing
@@ -422,7 +455,7 @@ def update(dt):
 What happens why you run your game now? Why do you think this is? How do you think you could
 go about fixing it?
 
-### Experiment: Adding more Ghosts
+### Experiment: Adding more ghosts
 
 The game uses an Python list to store all of the ghosts in the game. This means that we do
 not need to do the movement and bounds checking for each ghost individually by their
@@ -446,7 +479,7 @@ ghosts = [blue, orange, red, pink, blue2]
 Create some more ghosts called `yellow`, `mango`, `barry` and `dingo`. Create some super cool
 images and animations for them.
 
-## Bouncing the Ghosts
+## Step 8: Bouncing the ghosts
 
 When the game runs, the ghosts all wizz away and stay within the play area but they eventually
 all end up stuck in one of the corners. This is because the ghosts never change their direction.
@@ -476,7 +509,7 @@ def ghost_move(ghost, dt):
 
 Run your game and you should now see your ghosts bouncing furiously around the screen.
 
-## Muncher and Ghost collisions
+## Step 9: Muncher and ghost collisions
 
 At present, when a ghost collides with Muncher, nothing happens. What we want is for the
 collision to result in Muncher losing a life. Once a life is lost, we want a short pause,
@@ -560,7 +593,18 @@ def update(dt):
             clock.schedule(reset_actors, 2)
 ```
 
-## Walls to negotiate
+### Explanation: Why is a collision detected between Muncher and the ghosts when they don't touch?
+
+The collision detection algorithm that is used in this game is a relatively simple one.
+The code is checking whether the images of the `Actors` overlap each other. Those images
+are square 32 x 32 pixels but the image of Muncher does not use the entire square because
+Muncher is a circle. This means there are "blank" areas that surround Muncher in each corner.
+Our collision detection algorithm does not distinguish between the coloured in parts of the
+image and the blank areas, considering them all as Muncher. Therefore, it a ghost overlaps
+with one of these blank areas, it still registers as a collision. Later projects will look
+at implementing more advanced collision detection algorithms that offer higher fidelity.
+
+## Step 10: Walls to negotiate
 
 The play area needs some walls to make it more difficult for Muncher to avoid the ghosts.
 Two different images will be required for the walls. One is 128 x 32 pixels (representing
@@ -570,9 +614,8 @@ provided here were created using [PixilArt](https://www.pixilart.com/draw)) or y
 
 The two images should be called `wall.png` and `wall2.png` and placed in the `images` folder.
 
-`wall.png` should be 128 x 32 pixels ![screen shot](../../img/python/pygame/muncher/wall.png)
-
-`wall2.png` should be 32 x 128 pixels ![screen shot](../../img/python/pygame/muncher/wall2.png)
+* `wall.png` should be 128 x 32 pixels ![screen shot](../../img/python/pygame/muncher/wall.png)
+* `wall2.png` should be 32 x 128 pixels ![screen shot](../../img/python/pygame/muncher/wall2.png)
 
 All wall elements will be created as `Actors`. Add the following code before your `draw()`
 function:
@@ -620,7 +663,7 @@ Try extending your game to add more wall elements to the play area. Experiment w
 images of different sizes to create interesting mazes and shapes. Just make sure to add
 all of your new wall elements to the `wall` list so that they will be displayed.
 
-## Colliding with walls
+## Step 11: Colliding with walls
 
 We want the ghosts to be able to go through the walls, they are ghosts after all. However,
 we do not want Muncher to be able to go through the walls. We therefore need to check for
@@ -685,13 +728,13 @@ def update(dt):
 
 Run your game and check that Muncher cannot now pass through walls but the ghosts can.
 
-## Pellets to eat
+## Step 12: Pellets to eat
 
 The pellets that Muncher likes to eat are small 8 x 8 pixel dots that are spread across
 the play area but not where there are walls. Either create your own image or use mine
 below, ensuring you copy it into the `images` folder.
 
-![screen shot](../../img/python/pygame/muncher/pellet.png)
+* `pellet.png` ![screen shot](../../img/python/pygame/muncher/pellet.png)
 
 Add the following pellet creation function before your `draw()` function:
 
@@ -741,7 +784,7 @@ def draw():
 
 Run your game and try to eat the pellets? What happens? Why do you think this is?
 
-## Eating the pellets
+## Step 13: Eating the pellets
 
 Muncher cannot eat the pellets because we have not done the collision detection code
 for it yet. Add the new code to the end of the `update()` function to perform the
@@ -798,7 +841,7 @@ def update(dt):
 
 What happens when you eat all of the pellets? How do you think you should fix this?
 
-## Eating all of the pellets
+## Step 14: Eating all of the pellets
 
 When Muncher eats all of the pellets the game should start another level. Instead it
 just carries on. This is because we do not check that all pellets have been eaten.
@@ -858,7 +901,7 @@ def update(dt):
         reset_actors()
 ```
 
-## Ghosts with personality
+## Step 15: Ghosts with personality
 
 Currently, the ghosts race around the screen in a fixed way which can make the
 game just a little bit predictable and easy. We are now going to program one of
@@ -915,7 +958,7 @@ you are stuck for ideas as to what to write as your algorithm, try this:
 * Pick move in that direction for a random amount of time, ensuring to bounce off walls.
 * Repeat
 
-## Bonus fruit
+## Step 15: Bonus fruit
 
 A diet of just chomping on pellets can get a little boring so Muncher like to also
 eat fruit when it is available. In our game, we want to occasionally make fruit
@@ -989,7 +1032,7 @@ of fruit. Use your artistic talent to create more fruits. Don't forget to add th
 * Peach
 * Grapes
 
-## Showing and hiding the fruit
+## Step 17: Showing and hiding the fruit
 
 Presently, when the game is running, the fruits do not appear. This is because there is no
 code that currently changes the `fruit` variable from the value `None`. What we want is for
@@ -1033,7 +1076,7 @@ this affects the game. The three values represent:
 
 Which value is which? Select some values that you feel are best for your game.
 
-## Eating the fruits
+## Step 18: Eating the fruits
 
 At present, when Muncher overlaps with the fruit, nothing happens. This is because we
 have not added the collision detection code like has been done for the pellets, ghosts
@@ -1059,7 +1102,7 @@ Run your game and try it out.
 All of the fruits currently appear in the same location no the screen. Why do you think this is?
 Try changing your code so that different fruits appear in different locations.
 
-## Getting additional lives
+## Step 19: Getting additional lives
 
 An additional life should be awarded for each 10,000 points the player scores.
 
@@ -1094,7 +1137,7 @@ Try modifying the code so that you award lives in the following pattern:
 * 4th new life awarded after 100,000 points (10,000 + 20,000 + 30,000 + 40,000)
 * ... and so on ...
 
-## Power pellets
+## Step 20: Power pellets
 
 Each time Muncher eats a power pellet, it supercharges Muncher and allows him to eat
 the ghosts for a few seconds. The power pellet is a larger 16 x 16 pixel pellet. You
@@ -1162,7 +1205,7 @@ Currently the game has two power pellets. Why not add some more power pellets to
 game. You could go for four with one in each corner or perhaps place then extra ones
 in random positions. Experiment with different placings to get something you like.
 
-## Power mode and frightened ghosts
+## Step 21: Power mode and frightened ghosts
 
 When you run your game, there is no indication that Muncher is in power mode. In fact
 even in power mode, Muncher will still lose a life if he touches the ghosts. We need
@@ -1249,7 +1292,7 @@ The ghosts moving randomly continue to do so and the ghosts chasing also continu
 Change your chase code so that you rather than chase towards Muncher a chasing ghost runs
 away when Muncher is in power mode.
 
-## Adding sounds
+## Step 22: Adding sounds
 
 You game is fun, but it is lacking something. Sound! You can create your own sound
 effects or use some free online resources. All of the sound effects listed here came
@@ -1379,7 +1422,9 @@ sound when a power pellet is eaten.
 
 Extend your game to play a background melody when the ghosts are frightened.
 
-## Finished code
+## Appendix A: Finished code
 
 Here is a version of the finished code with some of the extensions completed:
 [main.py](../../img/python/pygame/muncher/main.py)
+
+You can see the completed game on [Replit](https://replit.com/@danielbloy/Muncher?v=1).

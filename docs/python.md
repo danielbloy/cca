@@ -100,25 +100,49 @@ working through the Code Club Python materials. The reader should have a moderat
 of Python. All of these materials have been designed to work with the online programming
 IDE [replit](https://replit.com/).
 
-1 - [Muncher](python/pygame/muncher.md)
+1 - [Muncher](python/pygame/muncher.md) (Pac-Man)
 
-2 - Bugs, coming
+2 - [Smash](python/pygame/smash.md) (Breakout), coming
 
-3 - Paint, coming
+2a - Classes and inheritance, coming
 
-4 - Pairs, coming
+3 - Memory (Simon Says), coming
 
-5 - Smash, coming
+4 - [Pairs](python/pygame/pairs.md), coming
 
-6 - Memory, coming
+5 - [Bugs](python/pygame/bugs.md) (Whac-A-Mole), coming
 
-7 - Stack, coming
+5b - Improving collision detection, coming
 
-8 - Attack, coming
+6 - [Aliens](python/pygame/aliens.md) (Galaxian), coming
 
-9 - Fireworks, coming
+7 - Paint, coming
 
-10 - Jumper, coming
+8 - Stack (Tetris), coming
+
+9 - Rocks (Missile Command), coming
+
+10 - Fireworks, coming
+
+11 - Jumper (Mario Bros), coming
+
+12 - Toad (Frogger), coming
+
+13 - OXO, coming
+
+14 - Race (Pole Position), coming
+
+15 - Maze, coming
+
+16 - [Invaders](python/pygame/invaders.md) (Space Invaders), coming
+
+17 - Collision (Geometry Wars/Asteroids), coming
+
+18 - Concrete (Cement Factory), coming
+
+19 - Sandwiches (Burger Time), coming
+
+20 - Worm (Snake), coming
 
 ## MakeCode Arcade Python
 
