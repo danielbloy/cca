@@ -1114,7 +1114,7 @@ variables affect only one of them. Experiment with different values for the foll
 
 Try adding your own particle effect. Using the `ParticleScore` as your template, design
 a particle effect that writes a randomly selected word from a list. The following code
-snippet is one way to do this:
+snippet is one way to randomly select a word from a list:
 
 ```python
 word = random.choice(["boom", "bang", "crash", "wallop"])
@@ -1124,18 +1124,163 @@ word = random.choice(["boom", "bang", "crash", "wallop"])
 
 The completed code for this step is available [here](../../img/python/pygame/smash/main_step_10.py).
 
-* Extra lives
-* Larger paddle
-* Slower ball
+In this step, we will be adding bonuses that randomly get dropped when a block is destroyed. The
+steps to add bonuses to the game are very similar to those that were used to add particles. The
+primary difference between bonuses and particles is the bonuses float to the bottom of the screen
+where they can be collected by the paddle. If the bonuses are *dropped* then they are lost. There
+particle effects will be added:
+
+* `BonusLives`: If collected, the player will be awarded between 1 and 3 extra lives
+* `BonusPaddle`: If collected, the paddle will double in size for a short period.
+* `BonusSpeed`: If collected, the vertical speed of the ball will be reduced for a short period.
+
+As well as the usual `update()` and `draw()` methods, all bonuses need an `alive` property
+which will return `True` is the bonus has not been caught and is still on the screen or `False`
+otherwise. This property will be used by the game engine to remove caught or dropped bonuses.
+
+In addition, each bonus needs a `catch()` method which is called when the paddle makes contact
+with the bonus. The `catch()` method allows the bonus to perform the appropriate action such as
+give the player more lives, make the paddle bigger or slow the ball down.
+
+The first bonus effect is `BonusLives`. When created it will randomly choose how many lives to
+award the player if caught.
 
 Place the following code before the call to `pgzrun.go()`.
 
 ```python
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+BONUS_WIDTH = 60
+BONUS_HEIGHT = 40
+
+bonuses = []
+
+
+class BonusLives:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+        self.lives = randint(1, 3)
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y < HEIGHT
+
+    def draw(self, painter):
+        painter.filled_rect(self.bounding_box, WHITE)
+        painter.text(f"lives x{self.lives}",
+                     center=self.bounding_box.center,
+                     color=BLACK,
+                     fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        global lives
+        lives += self.lives
+        self.caught = True
 ```
 
-Update the `check_for_collisions()` function by adding code to the end of it that
-checks for collisions with the bonuses. You `check_for_collisions()` function should
-now look like the following.
+The second bonus effect is `BonusPaddle`. This will make the paddle twice as wide
+as usual for a short period of time. The duration the paddle is bigger is randomly
+selected between 5 and 10 seconds in the `catch()` method.
+
+Place the following code below `BonusLives`.
+
+```python
+def reset_paddle():
+    paddle.width = PADDLE_WIDTH
+
+
+class BonusPaddle:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y < HEIGHT
+
+    def draw(self, painter):
+        painter.filled_rect(self.bounding_box, WHITE)
+        painter.text(f"paddle",
+                     center=self.bounding_box.center,
+                     color=BLACK,
+                     fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        paddle.width = PADDLE_WIDTH * 2
+        clock.schedule_unique(reset_paddle, randint(5, 10))
+        self.caught = True
+```
+
+The third bonus effect is `BonusSpeed`. This will make the balls vertical speed slower
+for a short period of time. The duration the ball is slowwer is randomly selected between
+10 and 20 seconds in the `catch()` method.
+
+Place the following code below `BonusPaddle`.
+
+```python
+def reset_ball():
+    if ball.vy > 0:
+        ball.vy = BALL_SPEED_Y
+    else:
+        ball.vy = -BALL_SPEED_Y
+
+
+class BonusSpeed:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y < HEIGHT
+
+    def draw(self, painter):
+        painter.filled_rect(self.bounding_box, WHITE)
+        painter.text(f"speed",
+                     center=self.bounding_box.center,
+                     color=BLACK,
+                     fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        if ball.vy > 0:
+            ball.vy = BALL_SPEED_Y / 4
+        else:
+            ball.vy = -BALL_SPEED_Y / 4
+
+        clock.schedule_unique(reset_ball, randint(10, 20))
+        self.caught = True
+```
+
+Update the `check_for_collisions()` function by adding code to the end of it that both checks for
+collisions with the bonuses and decides if a new bonus should be dropped or not. Only one bonus is
+allowed to drop at any time and there is a 1 in 10 change of a bonus being granted. Your
+`check_for_collisions()` function should now look like the following.
 
 ```python
 def check_for_collisions():
@@ -1159,7 +1304,6 @@ def check_for_collisions():
 
         bounding_box = copy(blocks_to_destroy[0].bounding_box)
 
-        # TODO: This needs to move to the latter step.
         choice = randint(0, 2)
         if choice == 0:
             bonuses.append(BonusLives(bounding_box))
@@ -1169,11 +1313,95 @@ def check_for_collisions():
             bonuses.append(BonusSpeed(bounding_box))
 ```
 
+Modify the `update()` function to update the bonuses and remove any that have been caught
+or dropped. The `update()` function should look like the code below.
+
+```python
+def update(dt):
+    paddle.update(dt)
+    ball.update(dt)
+
+    if not playing and keyboard.space:
+        start_game()
+
+    if serving:
+        serve_ball()
+
+    if ball.vy > 0 and ball.collide(paddle.bounding_box):
+        ball.bounce()
+
+    check_for_dropping_the_ball()
+    check_for_collisions()
+    check_for_new_level()
+
+    global particles
+    for particle in particles:
+        particle.update(dt)
+
+    particles = [particle for particle in particles if particle.alive]
+
+    global bonuses
+    for bonus in bonuses:
+        bonus.update(dt)
+
+    bonuses = [bonus for bonus in bonuses if bonus.alive]
+```
+
+Finally, update the `draw()` function so that it draws the bonuses. The `draw()`
+function should now look like the code below.
+
+```python
+def draw():
+    screen.fill(BACKGROUND_COLOUR)
+
+    draw_score()
+    draw_level()
+    draw_border()
+    draw_lives()
+
+    paddle.draw(screen.draw)
+    ball.draw(screen.draw)
+
+    if serving:
+        screen.draw.text(f"Level {level}",
+                         center=(WIDTH / 2, HEIGHT / 2),
+                         color=SCORE_COLOUR,
+                         fontsize=72)
+        screen.draw.text("Press space to serve",
+                         center=(WIDTH / 2, HEIGHT * 3 / 4),
+                         color=SCORE_COLOUR,
+                         fontsize=36)
+
+    for block in blocks:
+        block.draw(screen.draw)
+
+    if game_over:
+        screen.draw.text("GAME OVER",
+                         center=(WIDTH / 2, HEIGHT * 5 / 8),
+                         color=SCORE_COLOUR,
+                         fontsize=72)
+
+    for particle in particles:
+        particle.draw(screen.draw)
+
+    for bonus in bonuses:
+        bonus.draw(screen.draw)
+```
+
 Run your game and make sure it works; it should look like the screen shot below.
 
 ![screen shot](../../img/python/pygame/smash/game_step_10.png)
 
 ### Experiment: Changing how often bonuses are dropped
+
+Increase the number on bonuses that can be dropped at any one time from 1 to 2.
+
+Increase how often bonuses get dropped from 1 in 10 to 1 in 5.
+
+Change the minimum and maximum number of lives that can be awarded by `BonusLives`.
+Set the minimum to 3 and maximum to 6.
+
+Change the duration that the `BonusPaddle` and `BonusBall` bonuses last.
 
 ## Step 11: Adding sound effects
 

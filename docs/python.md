@@ -102,7 +102,7 @@ IDE [replit](https://replit.com/).
 
 1 - [Muncher](python/pygame/muncher.md) (Pac-Man)
 
-2 - [Smash](python/pygame/smash.md) (Breakout), coming
+2 - [Smash](python/pygame/smash.md) (Breakout), beta
 
 2a - Classes and inheritance, coming
 
