@@ -1306,7 +1306,7 @@ Create a `sounds` folder in your project to place your sound files. You will nee
 * [eat_fruit.wav](../../img/python/pygame/muncher/eat_fruit.wav)
 * [eat_pellet.wav](../../img/python/pygame/muncher/eat_pellet.wav)
 * [lose_life.wav](../../img/python/pygame/muncher/lose_life.wav)
-* [new_level.wav](../../img/python/pygame/muncher/enew_level.wav)
+* [new_level.wav](../../img/python/pygame/muncher/new_level.wav)
 * [new_life.wav](../../img/python/pygame/muncher/new_life.wav)
 
 Playing a sound is super easy using the `sounds` object. To play the `lose_life.wav`
