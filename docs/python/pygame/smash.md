@@ -38,8 +38,11 @@ black screen. You can change the colour of the background by modifying the value
 `BACKGROUND_COLOUR` variable. Colours are specified with 3 values that represent the red,
 green and blue components of the colour. Each component value can be between 0 and 255.
 
-The screen area of the game can be adjusted by changing the
-values of the `WIDTH` and `HEIGHT` variables.
+The screen area of the game can be adjusted by changing the values of the `WIDTH` and
+`HEIGHT` variables. After clearing the screen, the `draw()` function loops over the list
+`draw_funcs`. In later steps we will be adding functions to this list to draw the elements
+on the screen. The advantage of this technique is that the `draw()` function will not need
+to modified in those later steps. We do a similar technique for the `update()` function.
 
 Experiment to find the colours and screen size that you like the most.
 
@@ -64,9 +67,19 @@ clock: Clock
 
 BACKGROUND_COLOUR = (5, 20, 0)
 
+draw_funcs = []
+
 def draw():
     screen.fill(BACKGROUND_COLOUR)
-    
+    for draw_func in draw_funcs:
+        draw_func(screen.draw)
+
+update_funcs = []
+
+def update(dt):
+    for update_func in update_funcs:
+        update_func(dt)
+
 pgzrun.go()
 ```
 
@@ -75,10 +88,12 @@ pgzrun.go()
 The completed code for this step is available [here](../../img/python/pygame/smash/main_step_1.py).
 
 Now we are going to draw the score, level, border and lives on the screen. We
-will create functions to draw each of the separate elements. Place the following
-code before the call to `pgzrun.go()`. Run your game, you should see the lives
-drawn in the top lef, the score in the top middle, the level in the top right
-as well as the border.
+will create functions to draw each of the separate elements. Each section of
+code can be added and tested individually. Place the following code before the
+call to `pgzrun.go()`. Run your game after you have added each section and you
+should see each section as it gets added.
+
+### Add the score
 
 ```python
 HEADER_HEIGHT = 40
@@ -86,66 +101,75 @@ FOOTER_HEIGHT = 20
 MARGIN_WIDTH = 20
 
 SCORE_COLOUR = (0, 255, 0)
+
+score = 0
+
+def draw_score(draw):
+    draw.text(f"{score}",
+              center=(WIDTH / 2, HEADER_HEIGHT / 2),
+              color=SCORE_COLOUR,
+              fontsize=36)
+
+draw_funcs.append(draw_score)
+```
+
+### Add the level
+
+```python
+LEVEL_COLOUR = (0, 255, 0)
+
+level = 1
+
+def draw_level(draw):
+    draw.text(f"Level: {level}",
+              right=(WIDTH - MARGIN_WIDTH),
+              centery=HEADER_HEIGHT / 2,
+              color=LEVEL_COLOUR,
+              fontsize=36)
+
+draw_funcs.append(draw_level)
+```
+
+### Add the border
+
+```python
 BORDER_COLOUR = (200, 0, 0)
 BORDER_WIDTH = 3
 
+def draw_border(draw):
+    left = MARGIN_WIDTH
+    top = HEADER_HEIGHT
+    width = WIDTH - (2 * MARGIN_WIDTH)
+    height = HEIGHT - HEADER_HEIGHT - FOOTER_HEIGHT
+    draw.filled_rect(Rect(left, top, width, height), BORDER_COLOUR)
+
+    left += BORDER_WIDTH
+    top += BORDER_WIDTH
+    width -= (2 * BORDER_WIDTH)
+    draw.filled_rect(Rect(left, top, width, height), BACKGROUND_COLOUR)
+
+draw_funcs.append(draw_border)
+```
+
+### Add the lives
+
+```python
 LIVES_COLOUR = (200, 200, 0)
 LIVES_RADIUS = 8
 LIVES_SPACING = 5
 
 STARTING_LIVES = 3
 
-score = 0
-level = 1
 lives = STARTING_LIVES
 
-def draw_score():
-    screen.draw.text(f"{score}",
-                     center=(WIDTH / 2, HEADER_HEIGHT / 2),
-                     color=SCORE_COLOUR,
-                     fontsize=36)
-
-
-def draw_level():
-    screen.draw.text(f"Level: {level}",
-                     right=(WIDTH - MARGIN_WIDTH),
-                     centery=HEADER_HEIGHT / 2,
-                     color=SCORE_COLOUR,
-                     fontsize=36)
-
-
-def draw_border():
-    left = MARGIN_WIDTH
-    top = HEADER_HEIGHT
-    width = WIDTH - (2 * MARGIN_WIDTH)
-    height = HEIGHT - HEADER_HEIGHT - FOOTER_HEIGHT
-    screen.draw.filled_rect(Rect(left, top, width, height), BORDER_COLOUR)
-
-    left += BORDER_WIDTH
-    top += BORDER_WIDTH
-    width -= (2 * BORDER_WIDTH)
-    screen.draw.filled_rect(Rect(left, top, width, height), BACKGROUND_COLOUR)
-
-
-def draw_lives():
+def draw_lives(draw):
     for i in range(lives):
         x = MARGIN_WIDTH + LIVES_RADIUS + (i * (
             (2 * LIVES_RADIUS) + LIVES_SPACING))
         y = HEADER_HEIGHT / 2
-        screen.draw.filled_circle((x, y), LIVES_RADIUS, LIVES_COLOUR)
-```
+        draw.filled_circle((x, y), LIVES_RADIUS, LIVES_COLOUR)
 
-Finally, change the `draw()` function so that it looks like the code below and
-calls your new functions.
-
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
+draw_funcs.append(draw_lives)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -184,7 +208,7 @@ control how the paddle is draw and controlled. The following *methods* of the `P
 
 * `bounding_box()` - This returns a `Rect` instance that represents the space occupied by the
   paddle. This is used later for collision detection.
-* `draw()` - This *draws* the paddle on the supplied `SurfacePainter` interance.
+* `draw()` - This *draws* the paddle on the supplied `SurfacePainter` object.
 * `update()` - This is called to update the position of the paddle. As well as moving the
   paddle in response to keypresses, it keeps the paddle in bounds.
 
@@ -224,8 +248,8 @@ class Paddle:
         self.x = pos[0]
         self.y = pos[1]
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, self.colour)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
 
     def update(self, dt):
         if keyboard.left:
@@ -249,22 +273,8 @@ loops to call the paddles `update()` and `draw()` *methods*. Add the following
 `update()` function.
 
 ```python
-def update(dt):
-    paddle.update(dt)
-```
-
-Finally, change the `draw()` function so that it looks like the code below and draws the paddle.
-
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
+draw_funcs.append(paddle.draw)
+update_funcs.append(paddle.update)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below. Pressing the
@@ -303,6 +313,7 @@ BALL_SPIN_X_MIN = 100
 BALL_SPIN_X_MAX = 200
 
 class Ball:
+
     def __init__(self, pos):
         self.position = pos
         self.vx = 0
@@ -332,8 +343,8 @@ class Ball:
         self.x = pos[0]
         self.y = pos[1]
 
-    def draw(self, painter):
-        painter.filled_circle(self.position, self.radius, self.colour)
+    def draw(self, draw):
+        draw.filled_circle(self.position, self.radius, self.colour)
 
     def update(self, dt):
         # Move the ball and keep it in bounds.
@@ -377,31 +388,9 @@ class Ball:
 
 
 ball = Ball(paddle.position)
-```
 
-If you run your game now, the ball will not be displayed and not move. As with the paddle,
-the ball needs to be hooked into the main game loops. Modify the `update()` function so
-that it looks like the code below and updates the position of the ball.
-
-```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-```
-
-Finally, change the `draw()` function so that it looks like the code below and draws the ball.
-
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
+draw_funcs.append(ball.draw)
+update_funcs.append(ball.update)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -433,68 +422,51 @@ playing = False
 serving = True
 game_over = False
 
-def start_game():
+def start_game(dt):
     global score, level, lives, playing, serving, game_over
-    score = 0
-    level = 1
-    lives = STARTING_LIVES
-    playing = True
-    serving = True
-    game_over = False
-    setup_blocks()
-
-
-def serve_ball():
-    global serving, ball
-
-    # If we are serving, keep the ball with the paddle.
-    ball.position = paddle.position
-
-    # If space is pressed, serve the ball
-    if keyboard.space:
-        serving = False
-        ball.serve()
-```
-
-Modify the `update()` function by adding the serving code to the end of the `update()` function.
-The `update()` function should look like the code below.
-
-```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
 
     if not playing and keyboard.space:
-        start_game()
+        score = 0
+        level = 1
+        lives = STARTING_LIVES
+        playing = True
+        serving = True
+        game_over = False
+        setup_blocks()
+
+
+def serve_ball(dt):
+    global serving, ball
 
     if serving:
-        serve_ball()
+        # If we are serving, keep the ball with the paddle.
+        ball.position = paddle.position
+
+        # If space is pressed, serve the ball
+        if keyboard.space:
+            serving = False
+            ball.serve()
+
+update_funcs.append(start_game)
+update_funcs.append(serve_ball)
 ```
 
-Finally, add the serving code to the end of the `draw()` function. The `draw()` function should
-look like the code below.
+Run your game and move the paddle. The ball should move with it. The final step is
+to add the serving `draw()` code as follows.
 
 ```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
+def draw_serving(draw):
     if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
+        draw.text(f"Level {level}",
+                  center=(WIDTH / 2, HEIGHT / 2),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+        draw.text("Press space to serve",
+                  center=(WIDTH / 2, HEIGHT * 3 / 4),
+                  color=SCORE_COLOUR,
+                  fontsize=36)
+
+draw_funcs.append(draw_serving)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -536,6 +508,7 @@ Place the following code before the call to `pgzrun.go()`.
 
 ```Python
 class Block:
+
     def __init__(self, rect, colour, value):
         self.rect = rect
         self.colour = colour
@@ -549,8 +522,8 @@ class Block:
     def bounce(self):
         return randint(0, 4) == 0
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, self.colour)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
 ```
 
 Because we will always create the blocks in the same positions, we can calculate
@@ -612,35 +585,12 @@ def setup_blocks():
 
 setup_block_rects()
 setup_blocks()
-```
 
-Finally, add the code to draw the blocks to the end of the `draw()` function. The
-`draw()` function should now look like the code below.
-
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
-    if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
-
+def draw_blocks(draw):
     for block in blocks:
-        block.draw(screen.draw)
+        block.draw(draw)
+
+draw_funcs.append(draw_blocks)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -668,58 +618,9 @@ Also, now the ball moves, experiment with changing the following variables:
 * `BALL_SPIN_X_MIN`: 0, 50, 100, 200
 * `BALL_SPIN_X_MAX`: 100, 200, 500, 1000
 
-## Step 6: Dropping the ball
+## Step 6: Destroying the blocks
 
 The completed code for this step is available [here](../../img/python/pygame/smash/main_step_6.py).
-
-In the previous step, the ball happily bounces around the screen for ever. The behaviour
-we want is for the ball the bounce along the bottom only if it makes contact with the
-paddle. If the ball does not make contact with the paddle, it should be considered *dropped*
-and the player loses a life.
-
-Place the following code before the call to `pgzrun.go()`.
-
-```python
-def check_for_dropping_the_ball():
-    global lives, playing, serving, game_over
-
-    if ball.y > (paddle.y + paddle.height + ball.radius):
-        ball.stop()
-        serving = True
-        lives -= 1
-        if lives <= 0:
-            game_over = True
-            playing = False
-```
-
-Modify the `update()` function to call your new function as well as checking to see if
-the ball has hit the paddle and so needs to bounce. The `update()` function should look
-like the code below.
-
-```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-
-    if not playing and keyboard.space:
-        start_game()
-
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-```
-
-Run your game and make sure it works; it should look like the screen shot below.
-
-![screen shot](../../img/python/pygame/smash/game_step_6.png)
-
-## Step 7: Destroying the blocks
-
-The completed code for this step is available [here](../../img/python/pygame/smash/main_step_7.py).
 
 In this step, we will get the ball to destroy the blocks. We will write a new function
 called `check_for_collisions()` that will do the checking for us as well as updating
@@ -736,8 +637,11 @@ block indicates it should bounce.
 Place the following code before the call to `pgzrun.go()`.
 
 ```python
-def check_for_collisions():
+def check_for_collisions(dt):
     global score, blocks
+
+    if ball.vy > 0 and ball.collide(paddle.bounding_box):
+        ball.bounce()
 
     blocks_to_destroy = [block for block in blocks if ball.collide(block.bounding_box)]
     if blocks_to_destroy:
@@ -746,27 +650,38 @@ def check_for_collisions():
             blocks.remove(block)
             if block.bounce:
                 ball.bounce()
+
+update_funcs.append(check_for_collisions)
 ```
 
-Modify the `update()` function to call your new function. The `update()` function
-should look like the code below.
+Run your game and make sure it works; it should look like the screen shot below.
+
+![screen shot](../../img/python/pygame/smash/game_step_6.png)
+
+## Step 7: Dropping the ball
+
+The completed code for this step is available [here](../../img/python/pygame/smash/main_step_7.py).
+
+In the previous step, the ball happily bounces around the screen for ever. The behaviour
+we want is for the ball the bounce along the bottom only if it makes contact with the
+paddle. If the ball does not make contact with the paddle, it should be considered *dropped*
+and the player loses a life.
+
+Place the following code before the call to `pgzrun.go()`.
 
 ```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
+def check_for_dropping_the_ball(dt):
+    global lives, playing, serving, game_over
 
-    if not playing and keyboard.space:
-        start_game()
+    if ball.y > (paddle.y + paddle.height + ball.radius):
+        ball.stop()
+        serving = True
+        lives -= 1
+        if lives <= 0:
+            game_over = True
+            playing = False
 
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-    check_for_collisions()
+update_funcs.append(check_for_dropping_the_ball)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -790,7 +705,7 @@ each level they clear. We will also add in a "GAME OVER" message.
 Place the following new function before the call to `pgzrun.go()`.
 
 ```python
-def check_for_new_level():
+def check_for_new_level(dt):
     global level, lives, playing, serving, blocks
 
     if playing and len(blocks) == 0:
@@ -798,63 +713,21 @@ def check_for_new_level():
         lives += 1
         serving = True
         setup_blocks()
+
+update_funcs.append(check_for_new_level)
 ```
 
-Modify the `update()` function to call your new function. The `update()` function
-should look like the code below.
+Finally, add the code to draw the "GAME OVER" text.
 
 ```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-
-    if not playing and keyboard.space:
-        start_game()
-
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-    check_for_collisions()
-    check_for_new_level()
-```
-
-Finally, add the code to draw the "GAME OVER" text to the end of the `draw()`
-function. The `draw()` function should now look like the code below.
-
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
-    if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
-
-    for block in blocks:
-        block.draw(screen.draw)
-
+def draw_game_over(draw):
     if game_over:
-        screen.draw.text("GAME OVER",
-                         center=(WIDTH / 2, HEIGHT * 5 / 8),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
+        draw.text("GAME OVER",
+                  center=(WIDTH / 2, HEIGHT * 5 / 8),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+
+draw_funcs.append(draw_game_over)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -883,6 +756,8 @@ the screen over time. Two particle effects will be added:
 As well as the usual `update()` and `draw()` methods, all particle effects need an `alive` property
 which will return `True` is the particle effect is still running or `False` is the particle effect
 has completed. This property will be used by the game engine to remove completed particle effects.
+
+### Score particle effect
 
 The first particle effect we will add is `ParticleScore`. We will also add the `GRAVITY` and
 `particles` variables. The `GRAVITY` variable represent the gravity which applies to the particles
@@ -926,8 +801,8 @@ class ParticleScore:
     def alive(self):
         return self.left > 0
 
-    def draw(self, painter):
-        painter.text(f"{self.value}",
+    def draw(self, draw):
+        draw.text(f"{self.value}",
                      center=self.position,
                      color=SCORE_COLOUR,
                      fontsize=24)
@@ -938,6 +813,8 @@ class ParticleScore:
         self.x += self.vx * dt
         self.y += self.vy * dt
 ```
+
+### Explosion partcile effect
 
 The second particle effect that is to be added is `PartcleExplosion`. Whereas `ParticleScore`
 displayed a single number, `ParticleExplosion` will display lots of pixels (configured by the
@@ -972,9 +849,9 @@ class ParticleExplosion:
     def alive(self):
         return self.left > 0
 
-    def draw(self, painter):
+    def draw(self, draw):
         for particle in self.particles:
-            painter.filled_circle((particle[0], particle[1]), 1, self.colour)
+            draw.filled_circle((particle[0], particle[1]), 1, self.colour)
 
     def update(self, dt):
         self.left -= dt
@@ -984,6 +861,8 @@ class ParticleExplosion:
                            particle[3] + (GRAVITY * dt))
                           for particle in self.particles]
 ```
+
+### Hooking the particle effects in
 
 For the particle effects to be added to the game engine, a small change needs to be made to the
 `check_for_collisions()` method to add the effects when a block is destroyed. The two lines of
@@ -999,7 +878,7 @@ Add those two lines of code to the `check_for_collisions()` function. The functi
 `check_for_collisions()` should now look like this:
 
 ```python
-def check_for_collisions():
+def check_for_collisions(dt):
     global score, blocks
 
     blocks_to_destroy = [
@@ -1016,70 +895,24 @@ def check_for_collisions():
             particles.append(ParticleExplosion(block.rect.center, 4, block.colour))                
 ```
 
-Modify the `update()` function to update the particles and remove any that have expired.
-The `update()` function should look like the code below.
+All that remains now is to update and draw the particles. Place the following code
+before the call to `pgzrun.go()`. 
 
 ```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-
-    if not playing and keyboard.space:
-        start_game()
-
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-    check_for_collisions()
-    check_for_new_level()
-
+def update_particles(dt):
     global particles
     for particle in particles:
         particle.update(dt)
 
     particles = [particle for particle in particles if particle.alive]
-```
 
-Finally, update the `draw()` function so that it draws the particles. The `draw()`
-function should now look like the code below.
+update_funcs.append(update_particles)
 
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
-    if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
-
-    for block in blocks:
-        block.draw(screen.draw)
-
-    if game_over:
-        screen.draw.text("GAME OVER",
-                         center=(WIDTH / 2, HEIGHT * 5 / 8),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-
+def draw_particles(draw):
     for particle in particles:
-        particle.draw(screen.draw)
+        particle.draw(draw)
+
+draw_funcs.append(draw_particles)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.
@@ -1142,6 +975,8 @@ In addition, each bonus needs a `catch()` method which is called when the paddle
 with the bonus. The `catch()` method allows the bonus to perform the appropriate action such as
 give the player more lives, make the paddle bigger or slow the ball down.
 
+### Extra lives bonus
+
 The first bonus effect is `BonusLives`. When created it will randomly choose how many lives to
 award the player if caught.
 
@@ -1172,12 +1007,12 @@ class BonusLives:
     def alive(self):
         return not self.caught and self.rect.y < HEIGHT
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, WHITE)
-        painter.text(f"lives x{self.lives}",
-                     center=self.bounding_box.center,
-                     color=BLACK,
-                     fontsize=20)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f"lives x{self.lives}",
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
 
     def update(self, dt):
         self.rect.y += GRAVITY * 4 * dt
@@ -1187,6 +1022,8 @@ class BonusLives:
         lives += self.lives
         self.caught = True
 ```
+
+### Larger paddle bonus
 
 The second bonus effect is `BonusPaddle`. This will make the paddle twice as wide
 as usual for a short period of time. The duration the paddle is bigger is randomly
@@ -1213,12 +1050,12 @@ class BonusPaddle:
     def alive(self):
         return not self.caught and self.rect.y < HEIGHT
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, WHITE)
-        painter.text(f"paddle",
-                     center=self.bounding_box.center,
-                     color=BLACK,
-                     fontsize=20)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f"paddle",
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
 
     def update(self, dt):
         self.rect.y += GRAVITY * 4 * dt
@@ -1228,6 +1065,8 @@ class BonusPaddle:
         clock.schedule_unique(reset_paddle, randint(5, 10))
         self.caught = True
 ```
+
+### Slower ball bonus
 
 The third bonus effect is `BonusSpeed`. This will make the balls vertical speed slower
 for a short period of time. The duration the ball is slowwer is randomly selected between
@@ -1257,12 +1096,12 @@ class BonusSpeed:
     def alive(self):
         return not self.caught and self.rect.y < HEIGHT
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, WHITE)
-        painter.text(f"speed",
-                     center=self.bounding_box.center,
-                     color=BLACK,
-                     fontsize=20)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f"speed",
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
 
     def update(self, dt):
         self.rect.y += GRAVITY * 4 * dt
@@ -1277,13 +1116,15 @@ class BonusSpeed:
         self.caught = True
 ```
 
+### Connecting it all up
+
 Update the `check_for_collisions()` function by adding code to the end of it that both checks for
 collisions with the bonuses and decides if a new bonus should be dropped or not. Only one bonus is
 allowed to drop at any time and there is a 1 in 10 change of a bonus being granted. Your
 `check_for_collisions()` function should now look like the following.
 
 ```python
-def check_for_collisions():
+def check_for_collisions(dt):
     global score, blocks
 
     blocks_to_destroy = [block for block in blocks if ball.collide(block.bounding_box)]
@@ -1294,8 +1135,9 @@ def check_for_collisions():
             blocks.remove(block)
             if block.bounce:
                 ball.bounce()
-
+    
     global bonuses
+
     for bonus in bonuses:
         if bonus.alive and bonus.bounding_box.colliderect(paddle.bounding_box):
             bonus.catch()
@@ -1313,79 +1155,24 @@ def check_for_collisions():
             bonuses.append(BonusSpeed(bounding_box))
 ```
 
-Modify the `update()` function to update the bonuses and remove any that have been caught
-or dropped. The `update()` function should look like the code below.
+All that remains now is to update and draw the bonuses.
 
 ```python
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-
-    if not playing and keyboard.space:
-        start_game()
-
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-    check_for_collisions()
-    check_for_new_level()
-
-    global particles
-    for particle in particles:
-        particle.update(dt)
-
-    particles = [particle for particle in particles if particle.alive]
-
+def update_bonuses(dt):
     global bonuses
+
     for bonus in bonuses:
         bonus.update(dt)
 
     bonuses = [bonus for bonus in bonuses if bonus.alive]
-```
 
-Finally, update the `draw()` function so that it draws the bonuses. The `draw()`
-function should now look like the code below.
+update_funcs.append(update_bonuses)
 
-```python
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
-    if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
-
-    for block in blocks:
-        block.draw(screen.draw)
-
-    if game_over:
-        screen.draw.text("GAME OVER",
-                         center=(WIDTH / 2, HEIGHT * 5 / 8),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-
-    for particle in particles:
-        particle.draw(screen.draw)
-
+def draw_bonuses(draw):
     for bonus in bonuses:
-        bonus.draw(screen.draw)
+        bonus.draw(draw)
+
+draw_funcs.append(draw_bonuses)
 ```
 
 Run your game and make sure it works; it should look like the screen shot below.

@@ -18,13 +18,74 @@ clock: Clock
 
 BACKGROUND_COLOUR = (5, 20, 0)
 
+draw_funcs = []
+
+
+def draw():
+    screen.fill(BACKGROUND_COLOUR)
+    for draw_func in draw_funcs:
+        draw_func(screen.draw)
+
+
+update_funcs = []
+
+
+def update(dt):
+    for update_func in update_funcs:
+        update_func(dt)
+
+
 HEADER_HEIGHT = 40
 FOOTER_HEIGHT = 20
 MARGIN_WIDTH = 20
 
 SCORE_COLOUR = (0, 255, 0)
+
+score = 0
+
+
+def draw_score(draw):
+    draw.text(f"{score}",
+              center=(WIDTH / 2, HEADER_HEIGHT / 2),
+              color=SCORE_COLOUR,
+              fontsize=36)
+
+
+draw_funcs.append(draw_score)
+
+LEVEL_COLOUR = (0, 255, 0)
+
+level = 1
+
+
+def draw_level(draw):
+    draw.text(f"Level: {level}",
+              right=(WIDTH - MARGIN_WIDTH),
+              centery=HEADER_HEIGHT / 2,
+              color=LEVEL_COLOUR,
+              fontsize=36)
+
+
+draw_funcs.append(draw_level)
+
 BORDER_COLOUR = (200, 0, 0)
 BORDER_WIDTH = 3
+
+
+def draw_border(draw):
+    left = MARGIN_WIDTH
+    top = HEADER_HEIGHT
+    width = WIDTH - (2 * MARGIN_WIDTH)
+    height = HEIGHT - HEADER_HEIGHT - FOOTER_HEIGHT
+    draw.filled_rect(Rect(left, top, width, height), BORDER_COLOUR)
+
+    left += BORDER_WIDTH
+    top += BORDER_WIDTH
+    width -= (2 * BORDER_WIDTH)
+    draw.filled_rect(Rect(left, top, width, height), BACKGROUND_COLOUR)
+
+
+draw_funcs.append(draw_border)
 
 LIVES_COLOUR = (200, 200, 0)
 LIVES_RADIUS = 8
@@ -32,80 +93,18 @@ LIVES_SPACING = 5
 
 STARTING_LIVES = 3
 
-score = 0
-level = 1
 lives = STARTING_LIVES
 
 
-def draw_score():
-    screen.draw.text(f"{score}",
-                     center=(WIDTH / 2, HEADER_HEIGHT / 2),
-                     color=SCORE_COLOUR,
-                     fontsize=36)
-
-
-def draw_level():
-    screen.draw.text(f"Level: {level}",
-                     right=(WIDTH - MARGIN_WIDTH),
-                     centery=HEADER_HEIGHT / 2,
-                     color=SCORE_COLOUR,
-                     fontsize=36)
-
-
-def draw_border():
-    left = MARGIN_WIDTH
-    top = HEADER_HEIGHT
-    width = WIDTH - (2 * MARGIN_WIDTH)
-    height = HEIGHT - HEADER_HEIGHT - FOOTER_HEIGHT
-    screen.draw.filled_rect(Rect(left, top, width, height), BORDER_COLOUR)
-
-    left += BORDER_WIDTH
-    top += BORDER_WIDTH
-    width -= (2 * BORDER_WIDTH)
-    screen.draw.filled_rect(Rect(left, top, width, height), BACKGROUND_COLOUR)
-
-
-def draw_lives():
+def draw_lives(draw):
     for i in range(lives):
         x = MARGIN_WIDTH + LIVES_RADIUS + (i * (
             (2 * LIVES_RADIUS) + LIVES_SPACING))
         y = HEADER_HEIGHT / 2
-        screen.draw.filled_circle((x, y), LIVES_RADIUS, LIVES_COLOUR)
+        draw.filled_circle((x, y), LIVES_RADIUS, LIVES_COLOUR)
 
 
-def draw():
-    screen.fill(BACKGROUND_COLOUR)
-
-    draw_score()
-    draw_level()
-    draw_border()
-    draw_lives()
-
-    paddle.draw(screen.draw)
-    ball.draw(screen.draw)
-
-    if serving:
-        screen.draw.text(f"Level {level}",
-                         center=(WIDTH / 2, HEIGHT / 2),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-        screen.draw.text("Press space to serve",
-                         center=(WIDTH / 2, HEIGHT * 3 / 4),
-                         color=SCORE_COLOUR,
-                         fontsize=36)
-
-    for block in blocks:
-        block.draw(screen.draw)
-
-    if game_over:
-        screen.draw.text("GAME OVER",
-                         center=(WIDTH / 2, HEIGHT * 5 / 8),
-                         color=SCORE_COLOUR,
-                         fontsize=72)
-
-    for particle in particles:
-        particle.draw(screen.draw)
-
+draw_funcs.append(draw_lives)
 
 PADDLE_COLOUR = (200, 0, 0)
 PADDLE_WIDTH = 80
@@ -142,8 +141,8 @@ class Paddle:
         self.x = pos[0]
         self.y = pos[1]
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, self.colour)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
 
     def update(self, dt):
         if keyboard.left:
@@ -159,6 +158,9 @@ class Paddle:
 
 
 paddle = Paddle((WIDTH / 2, HEIGHT - FOOTER_HEIGHT))
+
+draw_funcs.append(paddle.draw)
+update_funcs.append(paddle.update)
 
 BALL_RADIUS = 6
 BALL_COLOUR = (200, 200, 0)
@@ -182,6 +184,7 @@ class Ball:
 
     @property
     def bounding_box(self):
+        # Returns the bounding box of the ball
         x = self.x - self.radius
         y = self.y - self.radius
         width = 2 * self.radius
@@ -197,8 +200,8 @@ class Ball:
         self.x = pos[0]
         self.y = pos[1]
 
-    def draw(self, painter):
-        painter.filled_circle(self.position, self.radius, self.colour)
+    def draw(self, draw):
+        draw.filled_circle(self.position, self.radius, self.colour)
 
     def update(self, dt):
         # Move the ball and keep it in bounds.
@@ -243,57 +246,57 @@ class Ball:
 
 ball = Ball(paddle.position)
 
-
-def update(dt):
-    paddle.update(dt)
-    ball.update(dt)
-
-    if not playing and keyboard.space:
-        start_game()
-
-    if serving:
-        serve_ball()
-
-    if ball.vy > 0 and ball.collide(paddle.bounding_box):
-        ball.bounce()
-
-    check_for_dropping_the_ball()
-    check_for_collisions()
-    check_for_new_level()
-
-    global particles
-    for particle in particles:
-        particle.update(dt)
-
-    particles = [particle for particle in particles if particle.alive]
-
+draw_funcs.append(ball.draw)
+update_funcs.append(ball.update)
 
 playing = False
 serving = True
 game_over = False
 
 
-def start_game():
+def start_game(dt):
     global score, level, lives, playing, serving, game_over
-    score = 0
-    level = 1
-    lives = STARTING_LIVES
-    playing = True
-    serving = True
-    game_over = False
-    setup_blocks()
+
+    if not playing and keyboard.space:
+        score = 0
+        level = 1
+        lives = STARTING_LIVES
+        playing = True
+        serving = True
+        game_over = False
+        setup_blocks()
 
 
-def serve_ball():
+def serve_ball(dt):
     global serving, ball
 
-    # If we are serving, keep the ball with the paddle.
-    ball.position = paddle.position
+    if serving:
+        # If we are serving, keep the ball with the paddle.
+        ball.position = paddle.position
 
-    # If space is pressed, serve the ball
-    if keyboard.space:
-        serving = False
-        ball.serve()
+        # If space is pressed, serve the ball
+        if keyboard.space:
+            serving = False
+            ball.serve()
+
+
+update_funcs.append(start_game)
+update_funcs.append(serve_ball)
+
+
+def draw_serving(draw):
+    if serving:
+        draw.text(f"Level {level}",
+                  center=(WIDTH / 2, HEIGHT / 2),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+        draw.text("Press space to serve",
+                  center=(WIDTH / 2, HEIGHT * 3 / 4),
+                  color=SCORE_COLOUR,
+                  fontsize=36)
+
+
+draw_funcs.append(draw_serving)
 
 
 class Block:
@@ -311,8 +314,8 @@ class Block:
     def bounce(self):
         return randint(0, 4) == 0
 
-    def draw(self, painter):
-        painter.filled_rect(self.bounding_box, self.colour)
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
 
 
 BLOCK_GAP = 5
@@ -370,20 +373,19 @@ setup_block_rects()
 setup_blocks()
 
 
-def check_for_dropping_the_ball():
-    global lives, playing, serving, game_over
-
-    if ball.y > (paddle.y + paddle.height + ball.radius):
-        ball.stop()
-        serving = True
-        lives -= 1
-        if lives <= 0:
-            game_over = True
-            playing = False
+def draw_blocks(draw):
+    for block in blocks:
+        block.draw(draw)
 
 
-def check_for_collisions():
+draw_funcs.append(draw_blocks)
+
+
+def check_for_collisions(dt):
     global score, blocks
+
+    if ball.vy > 0 and ball.collide(paddle.bounding_box):
+        ball.bounce()
 
     blocks_to_destroy = [
         block for block in blocks if ball.collide(block.bounding_box)
@@ -400,7 +402,25 @@ def check_for_collisions():
                 ParticleExplosion(block.rect.center, 4, block.colour))
 
 
-def check_for_new_level():
+update_funcs.append(check_for_collisions)
+
+
+def check_for_dropping_the_ball(dt):
+    global lives, playing, serving, game_over
+
+    if ball.y > (paddle.y + paddle.height + ball.radius):
+        ball.stop()
+        serving = True
+        lives -= 1
+        if lives <= 0:
+            game_over = True
+            playing = False
+
+
+update_funcs.append(check_for_dropping_the_ball)
+
+
+def check_for_new_level(dt):
     global level, lives, playing, serving, blocks
 
     if playing and len(blocks) == 0:
@@ -409,6 +429,19 @@ def check_for_new_level():
         serving = True
         setup_blocks()
 
+
+update_funcs.append(check_for_new_level)
+
+
+def draw_game_over(draw):
+    if game_over:
+        draw.text("GAME OVER",
+                  center=(WIDTH / 2, HEIGHT * 5 / 8),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+
+
+draw_funcs.append(draw_game_over)
 
 GRAVITY = 60
 
@@ -442,8 +475,8 @@ class ParticleScore:
     def alive(self):
         return self.left > 0
 
-    def draw(self, painter):
-        painter.text(f"{self.value}",
+    def draw(self, draw):
+        draw.text(f"{self.value}",
                      center=self.position,
                      color=SCORE_COLOUR,
                      fontsize=24)
@@ -478,9 +511,9 @@ class ParticleExplosion:
     def alive(self):
         return self.left > 0
 
-    def draw(self, painter):
+    def draw(self, draw):
         for particle in self.particles:
-            painter.filled_circle((particle[0], particle[1]), 1, self.colour)
+            draw.filled_circle((particle[0], particle[1]), 1, self.colour)
 
     def update(self, dt):
         self.left -= dt
@@ -490,5 +523,23 @@ class ParticleExplosion:
                            particle[3] + (GRAVITY * dt))
                           for particle in self.particles]
 
+
+def update_particles(dt):
+    global particles
+    for particle in particles:
+        particle.update(dt)
+
+    particles = [particle for particle in particles if particle.alive]
+
+
+update_funcs.append(update_particles)
+
+
+def draw_particles(draw):
+    for particle in particles:
+        particle.draw(draw)
+
+
+draw_funcs.append(draw_particles)
 
 pgzrun.go()
