@@ -3,8 +3,8 @@
 To avoid having to setup a local Python development environment, a good way to
 get started with Python is to use an online IDE. These can be used from pretty
 much any device including Windows PCs, Macs, Linux, Raspberry Pi, Android tablets
-or iPads. At my Code Club I use [replit](https://replit.com/) which has a free tier.
-See the [replit](replit.md) guide to get started.
+or iPads. At my Code Club I use [Replit](https://replit.com/) which has a free tier.
+See the [Replit](replit.md) guide to get started.
 
 [MakeCode Arcade](https://arcade.makecode.com/) also allows you to write your games
 in Python.
@@ -222,7 +222,7 @@ available [here](https://electronstudio.github.io/pygame-zero-book/README.html).
 I have written the following Pygame materials which are designed to be followed after
 working through the Code Club Python materials. The reader should have a moderate grasp
 of Python. All of these materials have been designed to work with the online programming
-IDE [replit](https://replit.com/).
+IDE [Replit](https://replit.com/).
 
 ### Module 1 - Building foundations
 
@@ -230,7 +230,9 @@ IDE [replit](https://replit.com/).
 
 2 - [Smash](python/pygame/smash.md) (Breakout), beta
 
-2a - Classes and inheritance, coming
+2a - [List comprehensions](python/pygame/list_comprehensions.md)
+
+2b - [Classes and inheritance](python/pygame/classes_and_inheritance.md), coming
 
 3 - Memory (Simon Says), coming
 

@@ -6,6 +6,7 @@ The following are a collection of my favourite tools/sites:
 
 * [Code Club](https://codeclub.org).
 * [CoderDojo](https://coderdojo.com).
+* [MultiWingSpan](http://multiwingspan.co.uk/) contains lots of coding examples.
   
 ## Retail
 
@@ -31,7 +32,7 @@ The following are a collection of my favourite tools/sites:
 
 ## Online IDEs and Editors
 
-* [replit](https://replit.com/) who provide a full web based IDE for Python and many other languages.
+* [Replit](https://replit.com/) who provide a full web based IDE for Python and many other languages.
 
 ## Online art tools and assets
 

@@ -7,7 +7,7 @@ TODO: Game summary
 
 ## Step 0: Create the project in Replit
 
-Navigate to [replit](https://replit.com/) and login.
+Navigate to [Replit](https://replit.com/) and login.
 
 Create a new project using the Pygame template and give it the title "Invaders" as
 illustrated by the screenshot below.

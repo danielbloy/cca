@@ -1,6 +1,6 @@
 # Replit
 
-In my Code Clubs, I use [replit](https://replit.com/) for the intermediate and more advanced
+In my Code Clubs, I use [Replit](https://replit.com/) for the intermediate and more advanced
 programming provides as it provides a full web based IDE for Python and many other languages;
 it allso offers a free tier.
 

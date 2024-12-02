@@ -25,7 +25,7 @@ These instructions are suitable for you if you are comfortable with basic Python
 
 ## Step 0: Create the project in Replit
 
-Navigate to [replit](https://replit.com/) and login.
+Navigate to [Replit](https://replit.com/) and login.
 
 Create a new project using the Pygame template and give it the title "Smash" as
 illustrated by the screenshot below.
@@ -625,10 +625,10 @@ The completed code for this step is available [here](../../img/python/pygame/sma
 In this step, we will get the ball to destroy the blocks. We will write a new function
 called `check_for_collisions()` that will do the checking for us as well as updating
 the players score. Inside this new function a list called `blocks_to_destroy` is created.
-That list is created using a very powerful Python technique called a [list comprehension](https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions). Python list comprehensions
+That list is created using a very powerful Python technique called a [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions). Python list comprehensions
 are efficient ways to create new lists. The list comprehension in `check_for_collisions()`
 creates a new list containing the blocks whose `bounding_box` collides with the balls
-`bounding_box`.
+`bounding_box`. For a further explanation of list comprehensions see [here](./list_comprehensions.md).
 
 To add a little twist to the game, we don't want the ball to just fly through all of the
 blocks some blocks until it hits the back wall. We therefore bounce the ball if the
@@ -814,14 +814,14 @@ class ParticleScore:
         self.y += self.vy * dt
 ```
 
-### Explosion partcile effect
+### Explosion particle effect
 
 The second particle effect that is to be added is `PartcleExplosion`. Whereas `ParticleScore`
 displayed a single number, `ParticleExplosion` will display lots of pixels (configured by the
 `PARTICLE_EXPLOSION_PARTICLES` variable). `ParticleExplosion` is a little more complicated
 than `ParticleScore` due to having multiple pixels; though you have seen all coding techniques
-used here in previous steps. Of particular note is the use of a [list comprehension](https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions)
- in the `update()` method.
+used here in previous steps. Of particular note is the use of a [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+ in the `update()` method. For a further explanation of list comprehensions see [here](./list_comprehensions.md).
 
 Place the following code below `ParticleScore`.
 
