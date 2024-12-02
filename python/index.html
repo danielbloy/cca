@@ -1,0 +1,1094 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/python/">
+      
+      
+        <link rel="prev" href="../blocks/">
+      
+      
+        <link rel="next" href="../replit/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>Python - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-club-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Club Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Club Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#al-sweigart-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Al Sweigart Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Al Sweigart Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-games-with-pygame-zero-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Games with Pygame Zero &amp; Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coding Games with Pygame Zero & Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-games-with-pygame-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Games with Pygame Zero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="More Games with Pygame Zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1-building-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1 - Building foundations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2-expanding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2 - Expanding techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tranche-3-pushing-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tranche 3 - Pushing boundaries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makecode-arcade-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      MakeCode Arcade Python
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-club-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Club Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Club Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#al-sweigart-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Al Sweigart Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Al Sweigart Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 6
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-games-with-pygame-zero-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Games with Pygame Zero &amp; Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coding Games with Pygame Zero & Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-games-with-pygame-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Games with Pygame Zero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="More Games with Pygame Zero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1-building-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1 - Building foundations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2-expanding-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2 - Expanding techniques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tranche-3-pushing-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tranche 3 - Pushing boundaries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makecode-arcade-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      MakeCode Arcade Python
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="python">Python</h1>
+<p>To avoid having to setup a local Python development environment, a good way to
+get started with Python is to use an online IDE. These can be used from pretty
+much any device including Windows PCs, Macs, Linux, Raspberry Pi, Android tablets
+or iPads. At my Code Club I use <a href="https://replit.com/">Replit</a> which has a free tier.
+See the <a href="../replit/">Replit</a> guide to get started.</p>
+<p><a href="https://arcade.makecode.com/">MakeCode Arcade</a> also allows you to write your games
+in Python.</p>
+<h2 id="books">Books</h2>
+<p>There are a huge range of resources out there for Learning Python and it can be daunting
+for beginners to identify which are worth their investment in time or money. I recommend
+the following resources:</p>
+<p><a href="https://www.amazon.co.uk/Python-easy-steps-2nd-covers/dp/1840788127">Python in easy steps</a> is a concise and low cost overview of the language and the book
+I use with my learners during Python sessions. The Python challenges I have written contain 
+references to the relevant sections in this book.</p>
+<p>The following books are all written by Al Sweigart and available free on his website https://inventwithpython.com.
+Print versions are available direct from the publisher or Amazon for a fee. There are a range of books covering
+several topics and 4 that I recommend for Python are:</p>
+<p><a href="https://inventwithpython.com/invent4thed/">Invent Your Own Computer Games with Python</a></p>
+<p><a href="https://inventwithpython.com/pythongently/">Python Programming Exercises, Gently Explained</a></p>
+<p><a href="https://inventwithpython.com/pygame/">Making Games with Python &amp; Pygame</a></p>
+<p><a href="https://inventwithpython.com/bigbookpython/">The Big Book of Small Python Projects</a></p>
+<h2 id="code-club-python">Code Club Python</h2>
+<h3 id="module-1">Module 1</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/about-me">About Me</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/rock-paper-scissors">Rock, Paper, Scissors</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/turtle-race">Turtle race</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/team-chooser">Team Chooser</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/colourful-creations">Colourful Creations</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/secret-messages">Secret Messages</a></p>
+<h3 id="module-2">Module 2</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/modern-art">Modern Art</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/popular-pets">Popular pets</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/rpg">RPG</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/where-is-the-space-station">Where is the Space Station</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/robo-trumps">Robo-Trumps</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/codecraft">CodeCraft</a></p>
+<h2 id="al-sweigart-python">Al Sweigart Python</h2>
+<p>These projects are a curated list of projects and exercises from the 4 Al Sweigart books listed at the top
+of this page. The materials are excellent and have been generously made freely available online. If you find
+them useful and use them, please consider supporting Als generosity by purchasing his books or donating
+on his website <a href="https://inventwithpython.com/#donate">here</a>. Each of the modules below contains some exercises,
+projects and games. It is recommended that you have already completed Code Club Python before starting these.</p>
+<h3 id="module-1_1">Module 1</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project15.html">#15 Deep Cave</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project3.html">#3 Bitmap Message</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project2.html">#2 Birthday Paradox</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise2/">#2 Temperature Conversion</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise3/">#3 Odd &amp; Even</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/invent4thed/chapter10.html">Tic-Tac-Toe</a>, Invent Your Own Computer Games with Python, Al Sweigart</p>
+<h3 id="module-2_1">Module 2</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project10.html">#10 Cho-Han</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project7.html">#7 Caesar Hacker</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project5.html">#5 Bouncing DVD Logo</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise4/">#4 Area &amp; Volume</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise5/">#5 Fizz Buzz</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/invent4thed/chapter13.html">Sonar Treasure Hunt</a>, Invent Your Own Computer Games with Python, Al Sweigart</p>
+<h3 id="module-3">Module 3</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project8.html">#8 Calendar Maker</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project9.html">#9 Carrot in a Box</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project13.html">#13 Conways Game of Life</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise9/">#9 Chess Square Colour</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise10/">#10 Find and Replace</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/invent4thed/chapter15.html">The Reversegam Game</a>, Invent Your Own Computer Games with Python, Al Sweigart</p>
+<h3 id="module-4">Module 4</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project12.html">#12 Collatz Sequence</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project1.html">#1 Bagels</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project17.html">#17 Dice Math</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise11/">#11 Hours, Minutes, Seconds</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise12/">#12 Smallest and Biggest</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/pygame/chapter3.html">Memory Puzzle</a>, Making Games with Python &amp; Pygame, Al Sweigart</p>
+<h3 id="module-5">Module 5</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project14.html">#14 Countdown</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project11.html">#11 Clickbait</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project4.html">#4 Blackjack</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise14/">#14 Average</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise17/">#17 Dice Roll</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/pygame/chapter6.html">Wormy</a>, Making Games with Python &amp; Pygame, Al Sweigart</p>
+<h3 id="module-6">Module 6</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project16.html">#16 Diamonds</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project18.html">#18 Dice Roller</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project22.html">#22 Ducklings</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise18/">#18 Buy 8 Get 1 Free</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise19/">#19 Password Generator</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/pygame/chapter5.html">Simulate</a>, Making Games with Python &amp; Pygame, Al Sweigart</p>
+<h3 id="module-7">Module 7</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project19.html">#19 Digital Clock</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project21.html">#21 DNA Visualisation</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project27.html">#27 Fish Tank</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise25/">#25 Multiplication Table</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise27/">#27 Rectangle Drawing</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/pygame/chapter7.html">Tetromino</a>, Making Games with Python &amp; Pygame, Al Sweigart</p>
+<h3 id="module-8">Module 8</h3>
+<p>1 - Project: <a href="https://inventwithpython.com/bigbookpython/project20.html">#20 Digital Stream</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>2 - Project: <a href="https://inventwithpython.com/bigbookpython/project23.html">#23 Etching Drawer</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>3 - Project: <a href="https://inventwithpython.com/bigbookpython/project28.html">#28 Flooder</a>, The Big Book of Small Python Projects, Al Sweigart</p>
+<p>4 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise23/">#23 99 Bottles of Beer</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>5 - Exercise: <a href="http://inventwithpython.com/pythongently/exercise38/">#38 Random Shuffle</a>, Python Programming Exercises, Gently Explained, Al Sweigart</p>
+<p>6 - Game: <a href="https://inventwithpython.com/pygame/chapter9.html">Star Pusher</a>, Making Games with Python &amp; Pygame, Al Sweigart</p>
+<h2 id="challenges">Challenges</h2>
+<p>The following materials are designed for self-directed learning once comfortable with writing Python
+scripts. I recommend only starting the challenges once you have completed Modules 1 and 2 above. Each
+of the challenges contain references to the book <a href="https://www.amazon.co.uk/Python-easy-steps-2nd-covers/dp/1840788127">Python in easy steps</a> and I recommend purchasing a copy (though it is not essential).</p>
+<p>1 - <a href="challenges/guess_the_number/">Guess the number</a></p>
+<p>2 - <a href="challenges/higher_or_lower/">Higher or lower</a></p>
+<h2 id="coding-games-with-pygame-zero-python">Coding Games with Pygame Zero &amp; Python</h2>
+<p>The following materials are provided freely online by Richard Smith and take the reader
+from the fundamentals of Python to writing games using Pygame Zero. The website is
+available <a href="https://electronstudio.github.io/pygame-zero-book/README.html">here</a>.</p>
+<h3 id="fundamentals">Fundamentals</h3>
+<p>4 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/graphics.html">Drawing graphics</a></p>
+<p>5 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/simple_games.html">Arcade games</a></p>
+<p>6 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/more_graphics.html">Improving your games</a></p>
+<p>7 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/more_games.html">More advanced games</a></p>
+<h3 id="tutorials">Tutorials</h3>
+<p>8 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/chase.html">Tutorial: Chase game</a></p>
+<p>9 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/maze.html">Tutorial: Maze game</a></p>
+<p>10 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/shooter.html">Tutorial: Shooting game</a></p>
+<p>11 - <a href="https://electronstudio.github.io/pygame-zero-book/chapters/race.html">Tutorial: Race game</a></p>
+<h2 id="more-games-with-pygame-zero">More Games with Pygame Zero</h2>
+<p>I have written the following Pygame materials which are designed to be followed after
+working through the Code Club Python materials. The reader should have a moderate grasp
+of Python. All of these materials have been designed to work with the online programming
+IDE <a href="https://replit.com/">Replit</a>.</p>
+<h3 id="module-1-building-foundations">Module 1 - Building foundations</h3>
+<p>1 - <a href="pygame/muncher/">Muncher</a> (Pac-Man), beta</p>
+<p>2 - <a href="pygame/smash/">Smash</a> (Breakout), beta</p>
+<p>2a - <a href="pygame/list_comprehensions/">List comprehensions</a></p>
+<p>2b - <a href="pygame/classes_and_inheritance/">Classes and inheritance</a>, coming</p>
+<p>3 - Memory (Simon Says), coming</p>
+<p>4 - <a href="pygame/pairs/">Pairs</a>, coming</p>
+<p>5 - <a href="pygame/bugs/">Bugs</a> (Whac-A-Mole), coming</p>
+<p>5b - Improving collision detection, coming</p>
+<p>6 - <a href="pygame/aliens/">Aliens</a> (Galaxian), coming</p>
+<h3 id="module-2-expanding-techniques">Module 2 - Expanding techniques</h3>
+<p>1 - Paint, coming</p>
+<p>2 - Stack (Tetris), coming</p>
+<p>3 - Rocks (Missile Command), coming</p>
+<p>4 - Fireworks, coming</p>
+<p>5 - Jumper (Mario Bros), coming</p>
+<p>6 - Toad (Frogger), coming</p>
+<h3 id="tranche-3-pushing-boundaries">Tranche 3 - Pushing boundaries</h3>
+<p>1 - OXO, coming</p>
+<p>2 - Race (Outrun), coming</p>
+<p>3 - Sandwiches (Burger Time), coming</p>
+<p>4 - <a href="pygame/invaders/">Invaders</a> (Space Invaders), coming</p>
+<p>5 - Collision (Geometry Wars/Asteroids), coming</p>
+<p>6 - Concrete (Cement Factory), coming</p>
+<h2 id="makecode-arcade-python">MakeCode Arcade Python</h2>
+<p><a href="https://arcade.makecode.com/">MakeCode Arcade</a> also allows you to write your games
+in Python (though it is more limited than Replit and not as mature as the MakeCode
+Arcade TypeScript tooling). The materials that I initially produced highlighted some
+issues with the early access Python tooling so we stopped using it. In time, I'm sure
+the tooling will mature enough for us to use it again. The materials are marked as
+alpha, beta or final based on the quality/stage of development of the material. The
+alpha materials will be first stage PDFs, beta are updated web based materials but not
+neccessarily battle tested in the Coding Club yet so may contain errors and final will
+be the tested materials.</p>
+<p>1 - <a href="../img/arcade/python/1-oxo-python.pdf">OXO</a>, alpha</p>
+<p>2 - <a href="../img/arcade/python/2-invaders-python.pdf">Invaders</a>, alpha</p>
+<p>3 - <a href="../img/arcade/python/3-smash-python.pdf">Smash</a>, alpha</p>
+<p>4 - Frog, coming</p>
+<p>5 - Muncher, coming</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

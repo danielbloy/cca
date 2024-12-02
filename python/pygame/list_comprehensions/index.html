@@ -1,0 +1,651 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/python/pygame/list_comprehensions/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>List comprehensions - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#list-comprehensions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              List comprehensions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check_for_collisions-in-step-6-destroying-the-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_for_collisions() in Step 6: Destroying the blocks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-new-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      A new example
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A new example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#particleexplosionupdate-in-step-9-add-particle-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParticleExplosion.update() in Step 9: Add particle effects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ParticleExplosion.update() in Step 9: Add particle effects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="list-comprehensions">List comprehensions</h1>
+<p>This short sub-section provides additional information on list comprehensions as they are
+used commonly in Python code due to their conciseness. For a complete description of list
+comprehensions, see the official Python documentation <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">here</a> which describes list comprehensions as:</p>
+<blockquote>
+<p>List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.</p>
+</blockquote>
+<p>In <a href="../smash/">Smash</a>, <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehension</a>
+were introduced in the following places:</p>
+<ul>
+<li><code>check_for_collisions()</code> in Step 6: Destroying the blocks</li>
+<li><code>ParticleExplosion.update()</code> in Step 9: Add particle effects, Explosion particle effect</li>
+</ul>
+<p>We will now look at each of those list comprehensions, breaking them down into more traditional
+loops so you can see more clearly how they work.</p>
+<h2 id="check_for_collisions-in-step-6-destroying-the-blocks"><code>check_for_collisions()</code> in Step 6: Destroying the blocks</h2>
+<p>The following excerpt shows the section of code with the list comprehension in
+<code>check_for_collisions()</code>.</p>
+<pre><code class="language-python">blocks_to_destroy = [block for block in blocks if ball.collide(block.bounding_box)]
+</code></pre>
+<p>This type of list comprehension is very common. You will see these regularly in Python code.
+What this code is doing is looping over every <code>block</code> in the <code>blocks</code> list. Each block is
+checked for whether it collides with the <code>ball</code>. If it does, it is added to a new list. The
+new list is is then assigned to the <code>blocks_to_destroy</code> variable.</p>
+<p>The above single line list comprehension is equivalent to the following 4 lines of code:</p>
+<pre><code class="language-python">blocks_to_destroy = []
+
+for block in blocks:
+
+    if ball.collide(block.bounding_box)
+
+        blocks_to_destroy.append(block)
+</code></pre>
+<p>Can you see how each of the first 3 lines of code maps to the list comprehension?</p>
+<h2 id="a-new-example">A new example</h2>
+<p>We will now work through a new example that you can run in Replit to demonstrate the
+functionality of a list comprehension and experiment with it. We will first start with
+the code using a plain ld loop and then turn it into a list comprehension. The example
+we will be using is to select all numbers that are negative from a list of 10 numbers.</p>
+<p>Type in the following code and run it.</p>
+<pre><code class="language-python">
+numbers = [1, -1, 30, -400, -5, 13, 17, -27, 0, 1000]
+
+negative_numbers = []
+
+for number in numbers:
+
+    if number &lt; 0:
+
+        negative_numbers.append(number)
+
+print(negative_numbers)
+</code></pre>
+<p>You should see the following output:</p>
+<pre><code class="language-python">[-1, -400, -5, -27]
+</code></pre>
+<p>Using the same pattern as before, the list comprehension can be build from the parts of
+the loop code. The entire section of code above can be condensed into:</p>
+<pre><code class="language-python">numbers = [1, -1, 30, -400, -5, 13, 17, -27, 0, 1000]
+
+negative_numbers = [number for number in numbers if number &lt; 0]
+
+print(negative_numbers)
+</code></pre>
+<h3 id="experiments">Experiments</h3>
+<p>Change the code so that it only selects positive numbers.</p>
+<p>Change the code so that it only selects numbers greater than 100.</p>
+<p>Change the code so that is only selects numbers whose magnitude is greater than 20. To get the
+magnitude you can use the built in function <code>abs()</code>. For information see the following resources:</p>
+<ul>
+<li><a href="https://www.w3schools.com/python/ref_func_abs.asp">Python abs() function reference</a></li>
+<li><a href="https://realpython.com/python-absolute-value/">How to Find an Absolute Value in Python</a></li>
+</ul>
+<h2 id="particleexplosionupdate-in-step-9-add-particle-effects"><code>ParticleExplosion.update()</code> in Step 9: Add particle effects</h2>
+<p>The following except shows the section of code that creates the <code>particles</code> list in the
+<code>__init__()</code> method as well as the list comprehension in the <code>update()</code> method of the
+<code>ParticleExplosion</code> class.</p>
+<pre><code class="language-python">GRAVITY = 60
+
+class ParticleExplosion:
+    def __init__(self, pos, lifetime, colour):
+        self.particles = [(pos[0], pos[1], randint(-90, 90), randint(-90, 90)) for _ in range(30)]
+
+    def update(self, dt):
+        self.particles = [(particle[0] + (particle[2] * dt),
+                           particle[1] + (particle[3] * dt), particle[2],
+                           particle[3] + (GRAVITY * dt))
+                          for particle in self.particles]
+</code></pre>
+<p>This <em>looks</em> more complicated than the first example but it really isn't. We can remove
+some of the code to make an more easily testable piece of code as follows (note, this
+code reduces the number of particles from 30 to 5):</p>
+<pre><code class="language-python">from random import randint
+
+GRAVITY = 60
+x = 10
+y = 20
+pos = (x, y)
+particles = [(pos[0], pos[1], randint(-90, 90), randint(-90, 90)) for _ in range(5)]
+print(particles)
+
+dt = 1
+particles = [(particle[0] + (particle[2] * dt),
+              particle[1] + (particle[3] * dt), particle[2],
+              particle[3] + (GRAVITY * dt))
+             for particle in particles]
+print(particles)
+</code></pre>
+<p>Run the above code in Replit and you will get output similar to this below:</p>
+<pre><code class="language-python">[(10, 20, 32, -66), (10, 20, -69, -74), (10, 20, -85, 56), (10, 20, -90, -68), (10, 20, -78, -39)]
+[(42, -46, 32, -6), (-59, -54, -69, -14), (-75, 76, -85, 116), (-80, -48, -90, -8), (-68, -19, -78, 21)]
+</code></pre>
+<p>This is the list comprehension:</p>
+<pre><code class="language-python">particles = [(particle[0] + (particle[2] * dt),
+              particle[1] + (particle[3] * dt), particle[2],
+              particle[3] + (GRAVITY * dt))
+             for particle in particles]
+</code></pre>
+<p>Now lets break this down to a standard loop as we did before:</p>
+<pre><code class="language-python">new_particles = []
+for particle in particles:
+    x, y, vx, vy = particle
+    new_x = x + vx * dt
+    new_y = y + vy * dt
+    new_vy = vy + GRAVITY * dt
+    new_particles.append((new_x, new_y, vx, new_vy))
+
+particles = new_particles
+print(particles)
+</code></pre>
+<p>Because the above code uses intermediate variables, each of the items in the <code>particle</code> tuple
+is given a name of <code>x</code>, <code>y</code>, <code>vx</code> or <code>vy</code> which represents the <code>x</code> and <code>y</code> co-ordinate of the
+particle, the horizontal speed of the particle (<code>vx</code>) and the vertical speed of the particle
+(<code>vy</code>).</p>
+<p>What this code demonstrates that may not have been obvious in the first example above is the
+limitation that you should not mutate the contents of a list when looping over them. This is
+why the modified particles are first added to the <code>new_particles</code> list and then at the end of
+the code the <code>new_particles</code> list is assigned to <code>particles</code>. List comprehensions do not have
+this limitation.</p>
+<p>For more information on tuples, see:</p>
+<ul>
+<li><a href="https://www.w3schools.com/python/python_tuples.asp">Python Tuples reference</a></li>
+<li><a href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences">Tuples and Sequences</a></li>
+</ul>
+<h3 id="experiments_1">Experiments</h3>
+<p>Replace the following line of code:</p>
+<p><code>new_particles.append((new_x, new_y, vx, new_vy))</code></p>
+<p>With:</p>
+<p><code>particles.append((new_x, new_y, vx, new_vy))</code></p>
+<p>And remove the <code>particles = new_particles</code> line of code.</p>
+<p>Run your program. What happens?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

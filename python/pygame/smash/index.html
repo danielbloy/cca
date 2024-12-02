@@ -1,0 +1,1843 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/python/pygame/smash/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>Smash - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#smash" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Smash
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-0-create-the-project-in-replit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 0: Create the project in Replit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-setup-score-level-border-and-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Setup score, level, border and lives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Setup score, level, border and lives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-the-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add the score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add the level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-border" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add the border
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add the lives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-look-of-the-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the look of the game
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-paddle-and-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Paddle and movement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Paddle and movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-look-and-speed-of-the-paddle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the look and speed of the paddle
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-adding-the-ball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Adding the ball
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Adding the ball">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-look-and-speed-of-the-ball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the look and speed of the ball
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-serving-the-ball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Serving the ball
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Serving the ball">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-look-of-the-level-and-serving-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the look of the level and serving text
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-adding-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Adding blocks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Adding blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-number-and-look-of-the-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the number and look of the blocks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-destroying-the-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Destroying the blocks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-dropping-the-ball" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Dropping the ball
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-levels-and-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Levels and lives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Levels and lives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-look-and-position-of-the-game-over-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the look and position of the GAME OVER text
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-add-particle-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 9: Add particle effects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Add particle effects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#score-particle-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Score particle effect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explosion-particle-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explosion particle effect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooking-the-particle-effects-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hooking the particle effects in
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-particles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the particles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-add-your-own-particle-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Add your own particle effects
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-dropping-bonuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 10: Dropping bonuses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 10: Dropping bonuses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extra-lives-bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra lives bonus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#larger-paddle-bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Larger paddle bonus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slower-ball-bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slower ball bonus
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-it-all-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting it all up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-how-often-bonuses-are-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing how often bonuses are dropped
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-adding-sound-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 11: Adding sound effects
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-12-background-music" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 12: Background music
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-13-different-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 13: Different levels
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-finished-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appendix A: Finished code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="smash">Smash</h1>
+<p>These instructions will take you through the steps of creating a game that uses the
+1976 game <a href="https://en.wikipedia.org/wiki/Breakout_(video_game)">Breakout</a> as its inspiration.</p>
+<p>You will control a paddle along the bottom of the screen to bounce balls at the grid
+of blocks across the top of the screen. Each time you clear all of the blocks, you
+will be given another life and advance a level to do it all again.</p>
+<p>The ball passes through some blocks and bounces on others. When destroyed, Some blocks
+drop a bonus that will be either more lives, a bigger paddle or slow the ball down.</p>
+<p>How many levels can you complete?</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game.png" /></p>
+<h2 id="learning-points">Learning points</h2>
+<p>These instructions will take you through the process of creating a game which does not
+use Actors for sprites. Instead, the game is implemented using drawing primitives such
+as rectangles, circles and individual pixels. Python Classes are used to implement the
+game objects with these primitives, showing the flexibility that is on offer.</p>
+<p>These instructions are suitable for you if you are comfortable with basic Python coding.</p>
+<h2 id="step-0-create-the-project-in-replit">Step 0: Create the project in Replit</h2>
+<p>Navigate to <a href="https://replit.com/">Replit</a> and login.</p>
+<p>Create a new project using the Pygame template and give it the title "Smash" as
+illustrated by the screenshot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/create-project.png" /></p>
+<p>In the <code>main.py</code> file, replace the code provided with the code below and run the program
+to make sure it can download the packages and runs. You should be presented with a greenish
+black screen. You can change the colour of the background by modifying the value of the
+<code>BACKGROUND_COLOUR</code> variable. Colours are specified with 3 values that represent the red,
+green and blue components of the colour. Each component value can be between 0 and 255.</p>
+<p>The screen area of the game can be adjusted by changing the values of the <code>WIDTH</code> and
+<code>HEIGHT</code> variables. After clearing the screen, the <code>draw()</code> function loops over the list
+<code>draw_funcs</code>. In later steps we will be adding functions to this list to draw the elements
+on the screen. The advantage of this technique is that the <code>draw()</code> function will not need
+to modified in those later steps. We do a similar technique for the <code>update()</code> function.</p>
+<p>Experiment to find the colours and screen size that you like the most.</p>
+<pre><code class="language-python">import os
+import random
+from copy import copy
+from random import randint
+
+import pgzrun
+from pgzero.clock import Clock
+from pgzero.keyboard import Keyboard
+from pgzero.rect import Rect
+from pgzero.screen import Screen
+
+WIDTH = 600
+HEIGHT = 640
+
+screen: Screen
+keyboard: Keyboard
+clock: Clock
+
+BACKGROUND_COLOUR = (5, 20, 0)
+
+draw_funcs = []
+
+def draw():
+    screen.fill(BACKGROUND_COLOUR)
+    for draw_func in draw_funcs:
+        draw_func(screen.draw)
+
+update_funcs = []
+
+def update(dt):
+    for update_func in update_funcs:
+        update_func(dt)
+
+pgzrun.go()
+</code></pre>
+<h2 id="step-1-setup-score-level-border-and-lives">Step 1: Setup score, level, border and lives</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_1.py">here</a>.</p>
+<p>Now we are going to draw the score, level, border and lives on the screen. We
+will create functions to draw each of the separate elements. Each section of
+code can be added and tested individually. Place the following code before the
+call to <code>pgzrun.go()</code>. Run your game after you have added each section and you
+should see each section as it gets added.</p>
+<h3 id="add-the-score">Add the score</h3>
+<pre><code class="language-python">HEADER_HEIGHT = 40
+FOOTER_HEIGHT = 20
+MARGIN_WIDTH = 20
+
+SCORE_COLOUR = (0, 255, 0)
+
+score = 0
+
+def draw_score(draw):
+    draw.text(f&quot;{score}&quot;,
+              center=(WIDTH / 2, HEADER_HEIGHT / 2),
+              color=SCORE_COLOUR,
+              fontsize=36)
+
+draw_funcs.append(draw_score)
+</code></pre>
+<h3 id="add-the-level">Add the level</h3>
+<pre><code class="language-python">LEVEL_COLOUR = (0, 255, 0)
+
+level = 1
+
+def draw_level(draw):
+    draw.text(f&quot;Level: {level}&quot;,
+              right=(WIDTH - MARGIN_WIDTH),
+              centery=HEADER_HEIGHT / 2,
+              color=LEVEL_COLOUR,
+              fontsize=36)
+
+draw_funcs.append(draw_level)
+</code></pre>
+<h3 id="add-the-border">Add the border</h3>
+<pre><code class="language-python">BORDER_COLOUR = (200, 0, 0)
+BORDER_WIDTH = 3
+
+def draw_border(draw):
+    left = MARGIN_WIDTH
+    top = HEADER_HEIGHT
+    width = WIDTH - (2 * MARGIN_WIDTH)
+    height = HEIGHT - HEADER_HEIGHT - FOOTER_HEIGHT
+    draw.filled_rect(Rect(left, top, width, height), BORDER_COLOUR)
+
+    left += BORDER_WIDTH
+    top += BORDER_WIDTH
+    width -= (2 * BORDER_WIDTH)
+    draw.filled_rect(Rect(left, top, width, height), BACKGROUND_COLOUR)
+
+draw_funcs.append(draw_border)
+</code></pre>
+<h3 id="add-the-lives">Add the lives</h3>
+<pre><code class="language-python">LIVES_COLOUR = (200, 200, 0)
+LIVES_RADIUS = 8
+LIVES_SPACING = 5
+
+STARTING_LIVES = 3
+
+lives = STARTING_LIVES
+
+def draw_lives(draw):
+    for i in range(lives):
+        x = MARGIN_WIDTH + LIVES_RADIUS + (i * (
+            (2 * LIVES_RADIUS) + LIVES_SPACING))
+        y = HEADER_HEIGHT / 2
+        draw.filled_circle((x, y), LIVES_RADIUS, LIVES_COLOUR)
+
+draw_funcs.append(draw_lives)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_1.png" /></p>
+<h3 id="experiment-changing-the-look-of-the-game">Experiment: Changing the look of the game</h3>
+<p>The <em>look</em> of the game is controlled by the 10 variables that are in UPPERCASE at
+the start of the code you have just added. The names of the variables should be
+reasonably self explanatory. Experiment with different values for some of the
+variables and see how it changes the screen. Inspect the code to work out how
+the code achieves the effects.</p>
+<p>Some good values to experiment with:</p>
+<ul>
+<li><code>HEADER_HEIGHT</code>: 20, 40, 100, 200</li>
+<li><code>FOOTER_HEIGHT</code>: 10, 20, 40, 100</li>
+<li><code>MARGIN_WIDTH</code>: 10, 20, 40, 100</li>
+<li><code>BORDER_WIDTH</code>: 1, 3, 6, 20, 40</li>
+<li><code>LIVES_RADIUS</code>: 1, 3, 8, 12, 20, 50</li>
+<li><code>LIVES_SPACING</code>: -3, 0, 5, 10, 20</li>
+</ul>
+<p>Experiment with changing the colours to find some you like. As with the background, colours
+are specified with 3 values that represent the red, green and blue components of the colour.
+Each component value can be between 0 and 255.</p>
+<h2 id="step-2-paddle-and-movement">Step 2: Paddle and movement</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_2.py">here</a>.</p>
+<p>In this step, the paddle which can be moved across the bottom of the screen using the
+left and right arrow keys will be added. A <em>Class</em> called <code>Paddle</code> will be created to
+control how the paddle is draw and controlled. The following <em>methods</em> of the <code>Paddle</code>
+<em>Class</em> are worthy of a little more explanation.</p>
+<ul>
+<li><code>bounding_box()</code> - This returns a <code>Rect</code> instance that represents the space occupied by the
+  paddle. This is used later for collision detection.</li>
+<li><code>draw()</code> - This <em>draws</em> the paddle on the supplied <code>SurfacePainter</code> object.</li>
+<li><code>update()</code> - This is called to update the position of the paddle. As well as moving the
+  paddle in response to keypresses, it keeps the paddle in bounds.</li>
+</ul>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">PADDLE_COLOUR = (200, 0, 0)
+PADDLE_WIDTH = 80
+PADDLE_HEIGHT = 6
+PADDLE_SPEED = 400
+
+class Paddle:
+    def __init__(self, pos):
+        self.position = pos
+        self.width = PADDLE_WIDTH
+        self.height = PADDLE_HEIGHT
+        self.colour = PADDLE_COLOUR
+
+        # This is the speed the paddle can go left and right in pixels per second
+        self.vx = PADDLE_SPEED
+
+        # These are the bounds that the paddles box must stay within
+        self.min_x = MARGIN_WIDTH + (PADDLE_WIDTH / 2)
+        self.max_x = WIDTH - MARGIN_WIDTH - (PADDLE_WIDTH / 2)
+
+    @property
+    def bounding_box(self):
+        half_width = int(self.width / 2)
+        return Rect((self.x - half_width, self.y), (self.width, self.height))
+
+    @property
+    def position(self):
+        return self.x, self.y
+
+    @position.setter
+    def position(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
+
+    def update(self, dt):
+        if keyboard.left:
+            self.x -= self.vx * dt
+        if keyboard.right:
+            self.x += self.vx * dt
+
+        # Now keep it in bounds
+        if self.x &lt; self.min_x:
+            self.x = self.min_x
+        elif self.x &gt; self.max_x:
+            self.x = self.max_x
+
+
+paddle = Paddle((WIDTH / 2, HEIGHT - FOOTER_HEIGHT))
+</code></pre>
+<p>If you run your game now, the paddle will not be displayed and will not respond to
+keypresses. This is because the paddle has not yet been hooked into the main game
+loops to call the paddles <code>update()</code> and <code>draw()</code> <em>methods</em>. Add the following
+<code>update()</code> function.</p>
+<pre><code class="language-python">draw_funcs.append(paddle.draw)
+update_funcs.append(paddle.update)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below. Pressing the
+left and right keys will move the paddle left and right.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_2.png" /></p>
+<h3 id="experiment-changing-the-look-and-speed-of-the-paddle">Experiment: Changing the look and speed of the paddle</h3>
+<p>Just as the earlier sections allow the look and feel of the game to be changed by modifying
+values of the UPPERCASE variables, the paddle can be changed too. Experiment with different
+values for the following variables:</p>
+<ul>
+<li><code>PADDLE_COLOUR</code>: This will be a (red, green, blue) triplet.</li>
+<li><code>PADDLE_WIDTH</code>: 10, 20, 40, 80, 160, 500</li>
+<li><code>PADDLE_HEIGHT</code>: 1, 3, 6, 10, 20, 50</li>
+<li><code>PADDLE_SPEED</code>: 0, 100, 200, 400, 1000</li>
+</ul>
+<h2 id="step-3-adding-the-ball">Step 3: Adding the ball</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_3.py">here</a>.</p>
+<p>In this step, the ball will be added. Once served, the ball will move itself as well as keep
+itself within the screen bounds. A <em>Class</em> called <code>Ball</code> will be created to control how the
+ball behaves. Just like the <code>Paddle</code> <em>Class</em>, <code>Ball</code> will have <code>bounding_box()</code>, <code>draw()</code> and
+<code>update()</code> <em>methods</em>. <code>Ball</code> also has <em>methods</em> to detect for collisions with itself and for
+bouncing.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">BALL_RADIUS = 6
+BALL_COLOUR = (200, 200, 0)
+BALL_SPEED_Y = 500
+BALL_SPIN_X_MIN = 100
+BALL_SPIN_X_MAX = 200
+
+class Ball:
+
+    def __init__(self, pos):
+        self.position = pos
+        self.vx = 0
+        self.vy = 0
+        self.radius = BALL_RADIUS
+        self.colour = BALL_COLOUR
+        self.min_x = MARGIN_WIDTH + BORDER_WIDTH + BALL_RADIUS
+        self.max_x = WIDTH - MARGIN_WIDTH - BORDER_WIDTH - BALL_RADIUS
+        self.min_y = HEADER_HEIGHT + BORDER_WIDTH + BALL_RADIUS
+        self.max_y = HEIGHT
+
+    @property
+    def bounding_box(self):
+        # Returns the bounding box of the ball
+        x = self.x - self.radius
+        y = self.y - self.radius
+        width = 2 * self.radius
+        height = 2 * self.radius
+        return Rect(x, y, width, height)
+
+    @property
+    def position(self):
+        return self.x, self.y
+
+    @position.setter
+    def position(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+
+    def draw(self, draw):
+        draw.filled_circle(self.position, self.radius, self.colour)
+
+    def update(self, dt):
+        # Move the ball and keep it in bounds.
+        self.x += (self.vx * dt)
+        self.y += (self.vy * dt)
+
+        if self.x &lt; self.min_x:
+            self.x = self.min_x
+            self.vx *= -1
+        elif self.x &gt; self.max_x:
+            self.x = self.max_x
+            self.vx *= -1
+
+        if self.y &lt; self.min_y:
+            self.y = self.min_y
+            self.vy *= -1
+        elif self.y &gt; self.max_y:
+            self.y = self.max_y
+            self.vy *= -1
+
+    def stop(self):
+        self.vx = 0
+        self.vy = 0
+
+    def serve(self):
+        self.hit(-BALL_SPEED_Y)
+
+    def bounce(self):
+        self.hit(self.vy * -1)
+
+    def hit(self, vertical_speed):
+        self.vy = vertical_speed
+        spin = random.randint(BALL_SPIN_X_MIN, BALL_SPIN_X_MAX)
+        if keyboard.left:
+            self.vx -= spin
+        else:
+            self.vx += spin
+
+    def collide(self, rect) -&gt; bool:
+        return self.bounding_box.colliderect(rect)
+
+
+ball = Ball(paddle.position)
+
+draw_funcs.append(ball.draw)
+update_funcs.append(ball.update)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p>Does the ball move when you move the paddle? Why do you think this might be?</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_3.png" /></p>
+<h3 id="experiment-changing-the-look-and-speed-of-the-ball">Experiment: Changing the look and speed of the ball</h3>
+<p>Just as the earlier sections allow the look and feel of the game to be changed by
+modifying values of the UPPERCASE variables, the ball can be changed too. Experiment
+with different values for the following variables:</p>
+<ul>
+<li><code>BALL_RADIUS</code>: 1, 3, 6, 10, 20, 50</li>
+<li><code>BALL_COLOUR</code>: This will be a (red, green, blue) triplet.</li>
+</ul>
+<h2 id="step-4-serving-the-ball">Step 4: Serving the ball</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_4.py">here</a>.</p>
+<p>In this step, we will add the code to serve the ball. This will also include the code
+which keeps the ball with the paddle before serving.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">playing = False
+serving = True
+game_over = False
+
+def start_game(dt):
+    global score, level, lives, playing, serving, game_over
+
+    if not playing and keyboard.space:
+        score = 0
+        level = 1
+        lives = STARTING_LIVES
+        playing = True
+        serving = True
+        game_over = False
+        setup_blocks()
+
+
+def serve_ball(dt):
+    global serving, ball
+
+    if serving:
+        # If we are serving, keep the ball with the paddle.
+        ball.position = paddle.position
+
+        # If space is pressed, serve the ball
+        if keyboard.space:
+            serving = False
+            ball.serve()
+
+update_funcs.append(start_game)
+update_funcs.append(serve_ball)
+</code></pre>
+<p>Run your game and move the paddle. The ball should move with it. The final step is
+to add the serving <code>draw()</code> code as follows.</p>
+<pre><code class="language-python">def draw_serving(draw):
+    if serving:
+        draw.text(f&quot;Level {level}&quot;,
+                  center=(WIDTH / 2, HEIGHT / 2),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+        draw.text(&quot;Press space to serve&quot;,
+                  center=(WIDTH / 2, HEIGHT * 3 / 4),
+                  color=SCORE_COLOUR,
+                  fontsize=36)
+
+draw_funcs.append(draw_serving)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p>Does the ball stay with the paddle when you move it left and right?</p>
+<p>What happens when you press space to serve the ball?</p>
+<p>You will get an error that starts: <code>Traceback (most recent call last):</code></p>
+<p>And finishes: <code>NameError: name 'setup_blocks' is not defined</code></p>
+<p>This is because there are currently no blocks setup in the game. This is what we
+will do in the next step.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_4.png" /></p>
+<h3 id="experiment-changing-the-look-of-the-level-and-serving-text">Experiment: Changing the look of the level and serving text</h3>
+<p>The <code>draw()</code> function is where the text is drawn on the screen. The text is drawn in
+the same colour as the score. Experiment with changing the colour and size of the two
+pieces of text to find something you like.</p>
+<p>You can also experiment with changing the position of the text.</p>
+<h2 id="step-5-adding-blocks">Step 5: Adding blocks</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_5.py">here</a>.</p>
+<p>In this step we will place the blocks on the screen. As we have done with both the paddle and ball
+we will create a new <em>Class</em> called 'Block' to represent an individual block. With the <code>Paddle</code> and
+<code>Ball</code> classes, there was only ever a single instance of each in the game. With <code>Block</code> it will be
+different as there will be many instances of block. The <code>Block</code> class is a small simple class that
+just displays itself in a static position. One unique property of a block is that it has a one in
+five change chance of the <code>Bounce()</code> function returning true. We will make use of this in a later
+step.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-Python">class Block:
+
+    def __init__(self, rect, colour, value):
+        self.rect = rect
+        self.colour = colour
+        self.value = value
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def bounce(self):
+        return randint(0, 4) == 0
+
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, self.colour)
+</code></pre>
+<p>Because we will always create the blocks in the same positions, we can calculate
+those positions once at the start of the game and then reuse them. These positions
+will be stored in the list variable <code>block_rects</code> and calculated in the function
+<code>setup_block_rects()</code>. The blocks themselves will be stored in a list variable
+called <code>blocks</code> and those blocks will be created in the function <code>setup_blocks()</code>
+which will use the values we calculated in <code>block_rects</code>.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">BLOCK_GAP = 5
+BLOCK_COLUMNS = 10
+BLOCK_HEIGHT = 14
+BLOCK_COLOURS = [
+    (34, 67, 83),
+    (34, 67, 83),
+    (64, 67, 83),
+    (94, 67, 83),
+    (124, 67, 83),
+    (154, 67, 83),
+    (184, 67, 83),
+    (214, 67, 83),
+    (244, 67, 83),
+    (244, 67, 83),
+]
+BLOCK_AREA_WIDTH = WIDTH - (2 * MARGIN_WIDTH) - (2 * BORDER_WIDTH) - BLOCK_GAP
+BLOCK_AREA_LEFT = MARGIN_WIDTH + BORDER_WIDTH + BLOCK_GAP
+BLOCK_AREA_TOP = HEADER_HEIGHT + BORDER_WIDTH + BLOCK_GAP
+BLOCK_AND_GAP_WIDTH = BLOCK_AREA_WIDTH / BLOCK_COLUMNS
+BLOCK_WIDTH = BLOCK_AND_GAP_WIDTH - BLOCK_GAP
+BLOCK_AND_GAP_HEIGHT = BLOCK_HEIGHT + BLOCK_GAP
+
+block_rects = []
+
+def setup_block_rects():
+    global block_rects
+
+    for x in range(BLOCK_COLUMNS):
+        block_rects.append([])
+        for y in range(len(BLOCK_COLOURS)):
+            left = BLOCK_AREA_LEFT + (BLOCK_AND_GAP_WIDTH * x)
+            top = BLOCK_AREA_TOP + (BLOCK_AND_GAP_HEIGHT * y)
+            rect = Rect(left, top, BLOCK_WIDTH, BLOCK_HEIGHT)
+            block_rects[x].append(rect)
+
+blocks = []
+
+def setup_blocks():
+    global blocks
+    blocks = []
+
+    for x in range(len(block_rects)):
+        for y in range(len(block_rects[x])):
+            rect = block_rects[x][y]
+            colour = BLOCK_COLOURS[y]
+            blocks.append(Block(rect, colour, 10 - y))
+
+setup_block_rects()
+setup_blocks()
+
+def draw_blocks(draw):
+    for block in blocks:
+        block.draw(draw)
+
+draw_funcs.append(draw_blocks)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p>Serve the ball, what happens when the ball hits a block? Why do you think this might be?</p>
+<p>What happens if the ball misses the paddle? Why do you think that might be?</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_5.png" /></p>
+<h3 id="experiment-changing-the-number-and-look-of-the-blocks">Experiment: Changing the number and look of the blocks</h3>
+<p>Just as the earlier sections allow the look and feel of the game to be changed by
+modifying values of the UPPERCASE variables, the number and size of the blocks can
+be changed too. Experiment with different values for the following variables:</p>
+<ul>
+<li><code>BLOCK_GAP</code>: 0, 1, 3, 5, 10, 20</li>
+<li><code>BLOCK_COLUMNS</code>: 1, 2, 4, 10, 20, 100</li>
+<li><code>BLOCK_HEIGHT</code>: 1, 2, 5, 10, 14, 30</li>
+<li><code>BLOCK_COLOURS</code>: : This are all (red, green, blue) triplets.</li>
+</ul>
+<p>Also, now the ball moves, experiment with changing the following variables:</p>
+<ul>
+<li><code>BALL_SPEED_Y</code>: 100, 300, 1000, 3000</li>
+<li><code>BALL_SPIN_X_MIN</code>: 0, 50, 100, 200</li>
+<li><code>BALL_SPIN_X_MAX</code>: 100, 200, 500, 1000</li>
+</ul>
+<h2 id="step-6-destroying-the-blocks">Step 6: Destroying the blocks</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_6.py">here</a>.</p>
+<p>In this step, we will get the ball to destroy the blocks. We will write a new function
+called <code>check_for_collisions()</code> that will do the checking for us as well as updating
+the players score. Inside this new function a list called <code>blocks_to_destroy</code> is created.
+That list is created using a very powerful Python technique called a <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehension</a>. Python list comprehensions
+are efficient ways to create new lists. The list comprehension in <code>check_for_collisions()</code>
+creates a new list containing the blocks whose <code>bounding_box</code> collides with the balls
+<code>bounding_box</code>. For a further explanation of list comprehensions see <a href="../list_comprehensions/">here</a>.</p>
+<p>To add a little twist to the game, we don't want the ball to just fly through all of the
+blocks some blocks until it hits the back wall. We therefore bounce the ball if the
+block indicates it should bounce.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">def check_for_collisions(dt):
+    global score, blocks
+
+    if ball.vy &gt; 0 and ball.collide(paddle.bounding_box):
+        ball.bounce()
+
+    blocks_to_destroy = [block for block in blocks if ball.collide(block.bounding_box)]
+    if blocks_to_destroy:
+        for block in blocks_to_destroy:
+            score += block.value
+            blocks.remove(block)
+            if block.bounce:
+                ball.bounce()
+
+update_funcs.append(check_for_collisions)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_6.png" /></p>
+<h2 id="step-7-dropping-the-ball">Step 7: Dropping the ball</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_7.py">here</a>.</p>
+<p>In the previous step, the ball happily bounces around the screen for ever. The behaviour
+we want is for the ball the bounce along the bottom only if it makes contact with the
+paddle. If the ball does not make contact with the paddle, it should be considered <em>dropped</em>
+and the player loses a life.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">def check_for_dropping_the_ball(dt):
+    global lives, playing, serving, game_over
+
+    if ball.y &gt; (paddle.y + paddle.height + ball.radius):
+        ball.stop()
+        serving = True
+        lives -= 1
+        if lives &lt;= 0:
+            game_over = True
+            playing = False
+
+update_funcs.append(check_for_dropping_the_ball)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p>What happens when you lose all of your lives?</p>
+<p>To make it easier to clear the blocks, change the number of columns to 2 and
+comment out some of the colours in the <code>BLOCK_COLOURS</code> variable. What happens
+when you clear all of the blocks? Why do you think that is?</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_7.png" /></p>
+<h2 id="step-8-levels-and-lives">Step 8: Levels and lives</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_8.py">here</a>.</p>
+<p>In this step, we will be checking for when the player has cleared all of the blocks
+and so a new level needs to be started. We will award the player an extra life for
+each level they clear. We will also add in a "GAME OVER" message.</p>
+<p>Place the following new function before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">def check_for_new_level(dt):
+    global level, lives, playing, serving, blocks
+
+    if playing and len(blocks) == 0:
+        level += 1
+        lives += 1
+        serving = True
+        setup_blocks()
+
+update_funcs.append(check_for_new_level)
+</code></pre>
+<p>Finally, add the code to draw the "GAME OVER" text.</p>
+<pre><code class="language-python">def draw_game_over(draw):
+    if game_over:
+        draw.text(&quot;GAME OVER&quot;,
+                  center=(WIDTH / 2, HEIGHT * 5 / 8),
+                  color=SCORE_COLOUR,
+                  fontsize=72)
+
+draw_funcs.append(draw_game_over)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_8.png" /></p>
+<h3 id="experiment-changing-the-look-and-position-of-the-game-over-text">Experiment: Changing the look and position of the GAME OVER text</h3>
+<p>Experiment with the position, colour and size of the GAME OVER text to find
+something you like the look of.</p>
+<h2 id="step-9-add-particle-effects">Step 9: Add particle effects</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_9.py">here</a>.</p>
+<p>In this step, we will be adding some particle effects when the blocks gets destroyed. Each particle
+effect will only last for a few seconds and is designed to add visual interest to the game. all the
+particle effects will have gravity applied to them which will make them tend towards the bottom of
+the screen over time. Two particle effects will be added:</p>
+<ul>
+<li><code>ParticleScore</code>: This will be a single particle containing the score value of the block destroyed.
+  It will slowly fall towards the ground.</li>
+<li><code>ParticleExplosion</code>:  This will generate a preset number of dots in the colour of the block that
+  are spread in random directions from the centre of the block before slowly falling towards the ground.</li>
+</ul>
+<p>As well as the usual <code>update()</code> and <code>draw()</code> methods, all particle effects need an <code>alive</code> property
+which will return <code>True</code> is the particle effect is still running or <code>False</code> is the particle effect
+has completed. This property will be used by the game engine to remove completed particle effects.</p>
+<h3 id="score-particle-effect">Score particle effect</h3>
+<p>The first particle effect we will add is <code>ParticleScore</code>. We will also add the <code>GRAVITY</code> and
+<code>particles</code> variables. The <code>GRAVITY</code> variable represent the gravity which applies to the particles
+(in pixels per second). The <code>particles</code> list variable holds all particles effects currently
+operating. The <code>ParticleScore</code> <em>Class</em> will draw just a single number. The direction that the
+effect will <em>take</em> is chosen randomly (from a defined range) when an instance of <code>ParticleScore</code>
+if created.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">GRAVITY = 60
+
+particles = []
+
+PARTICLE_SCORE_MIN_VX = -60
+PARTICLE_SCORE_MAX_VX = 60
+PARTICLE_SCORE_MIN_VY = -30
+PARTICLE_SCORE_MAX_VY = 60
+
+
+class ParticleScore:
+
+    def __init__(self, pos, lifetime, value):
+        self.position = pos
+        self.left = lifetime
+        self.value = value
+        self.vx = randint(PARTICLE_SCORE_MIN_VX, PARTICLE_SCORE_MAX_VX)
+        self.vy = randint(PARTICLE_SCORE_MIN_VY, PARTICLE_SCORE_MAX_VY)
+
+    @property
+    def position(self):
+        return self.x, self.y
+
+    @position.setter
+    def position(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+
+    @property
+    def alive(self):
+        return self.left &gt; 0
+
+    def draw(self, draw):
+        draw.text(f&quot;{self.value}&quot;,
+                     center=self.position,
+                     color=SCORE_COLOUR,
+                     fontsize=24)
+
+    def update(self, dt):
+        self.left -= dt
+        self.vy += (GRAVITY * dt)
+        self.x += self.vx * dt
+        self.y += self.vy * dt
+</code></pre>
+<h3 id="explosion-particle-effect">Explosion particle effect</h3>
+<p>The second particle effect that is to be added is <code>PartcleExplosion</code>. Whereas <code>ParticleScore</code>
+displayed a single number, <code>ParticleExplosion</code> will display lots of pixels (configured by the
+<code>PARTICLE_EXPLOSION_PARTICLES</code> variable). <code>ParticleExplosion</code> is a little more complicated
+than <code>ParticleScore</code> due to having multiple pixels; though you have seen all coding techniques
+used here in previous steps. Of particular note is the use of a <a href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">list comprehension</a>
+ in the <code>update()</code> method. For a further explanation of list comprehensions see <a href="../list_comprehensions/">here</a>.</p>
+<p>Place the following code below <code>ParticleScore</code>.</p>
+<pre><code class="language-python">PARTICLE_EXPLOSION_MIN_VX = -90
+PARTICLE_EXPLOSION_MAX_VX = 90
+PARTICLE_EXPLOSION_MIN_VY = -90
+PARTICLE_EXPLOSION_MAX_VY = 90
+PARTICLE_EXPLOSION_PARTICLES = 30
+
+
+class ParticleExplosion:
+
+    def __init__(self, pos, lifetime, colour):
+        self.left = lifetime
+        self.colour = colour
+        self.particles = [(pos[0], pos[1],
+                           randint(PARTICLE_EXPLOSION_MIN_VX,
+                                   PARTICLE_EXPLOSION_MAX_VX),
+                           randint(PARTICLE_EXPLOSION_MIN_VY,
+                                   PARTICLE_EXPLOSION_MAX_VY))
+                          for _ in range(PARTICLE_EXPLOSION_PARTICLES)]
+
+    @property
+    def alive(self):
+        return self.left &gt; 0
+
+    def draw(self, draw):
+        for particle in self.particles:
+            draw.filled_circle((particle[0], particle[1]), 1, self.colour)
+
+    def update(self, dt):
+        self.left -= dt
+
+        self.particles = [(particle[0] + (particle[2] * dt),
+                           particle[1] + (particle[3] * dt), particle[2],
+                           particle[3] + (GRAVITY * dt))
+                          for particle in self.particles]
+</code></pre>
+<h3 id="hooking-the-particle-effects-in">Hooking the particle effects in</h3>
+<p>For the particle effects to be added to the game engine, a small change needs to be made to the
+<code>check_for_collisions()</code> method to add the effects when a block is destroyed. The two lines of
+code that need to be added are given below. The values 2 and 4 represent the lifetime (think
+duration) that each partcile effect will last for.</p>
+<pre><code class="language-python">particles.append(ParticleScore(block.rect.center, 2, block.value))
+particles.append(ParticleExplosion(block.rect.center, 4, block.colour))
+</code></pre>
+<p>Add those two lines of code to the <code>check_for_collisions()</code> function. The function
+<code>check_for_collisions()</code> should now look like this:</p>
+<pre><code class="language-python">def check_for_collisions(dt):
+    global score, blocks
+
+    blocks_to_destroy = [
+        block for block in blocks if ball.collide(block.bounding_box)
+    ]
+    if blocks_to_destroy:
+        for block in blocks_to_destroy:
+            score += block.value
+            blocks.remove(block)
+            if block.bounce:
+                ball.bounce()
+
+            particles.append(ParticleScore(block.rect.center, 2, block.value))
+            particles.append(ParticleExplosion(block.rect.center, 4, block.colour))                
+</code></pre>
+<p>All that remains now is to update and draw the particles. Place the following code
+before the call to <code>pgzrun.go()</code>. </p>
+<pre><code class="language-python">def update_particles(dt):
+    global particles
+    for particle in particles:
+        particle.update(dt)
+
+    particles = [particle for particle in particles if particle.alive]
+
+update_funcs.append(update_particles)
+
+def draw_particles(draw):
+    for particle in particles:
+        particle.draw(draw)
+
+draw_funcs.append(draw_particles)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_9.png" /></p>
+<h3 id="experiment-changing-the-particles">Experiment: Changing the particles</h3>
+<p>Experiment with changing the lifetimes of the particles. Unlike previous settings, the
+lifetimes are not set through UPPERCASE variables. The lifetimes of the particles are
+set in the <code>check_for_collisions()</code> function. See if you can find the values. Try values
+from 1 through to 10 to see what effect it has.</p>
+<p>There are other aspects of the PARTICLES that can be changed by modifying values of
+UPPERCASE variables. The <code>GRAVITY</code> variable affects both particle effects but the other
+variables affect only one of them. Experiment with different values for the following variables:</p>
+<ul>
+<li>
+<p><code>GRAVITY</code>: 0, 10, 30, 60, 100, 200</p>
+</li>
+<li>
+<p><code>PARTICLE_SCORE_MIN_VX</code>: -200, -100, -60, 0, 60</p>
+</li>
+<li><code>PARTICLE_SCORE_MAX_VX</code>: -30, 0, 30, 60, 100, 200, 1000</li>
+<li><code>PARTICLE_SCORE_MIN_VY</code>: -200, -100, -60, -30, 0, 60</li>
+<li>
+<p><code>PARTICLE_SCORE_MAX_VY</code>: -30, 0, 30, 60, 100, 200, 1000</p>
+</li>
+<li>
+<p><code>PARTICLE_EXPLOSION_MIN_VX</code>: -200, -90, -60, 0, 60</p>
+</li>
+<li><code>PARTICLE_EXPLOSION_MAX_VX</code>: -30, 0, 30, 60, 90, 200, 1000</li>
+<li><code>PARTICLE_EXPLOSION_MIN_VY</code>: -200, -90, -60, -30, 0, 60</li>
+<li><code>PARTICLE_EXPLOSION_MAX_VY</code>: -30, 0, 30, 60, 90, 200, 1000</li>
+<li><code>PARTICLE_EXPLOSION_PARTICLES</code>: 1, 5, 30, 100, 1000</li>
+</ul>
+<h3 id="extension-add-your-own-particle-effects">Extension: Add your own particle effects</h3>
+<p>Try adding your own particle effect. Using the <code>ParticleScore</code> as your template, design
+a particle effect that writes a randomly selected word from a list. The following code
+snippet is one way to randomly select a word from a list:</p>
+<pre><code class="language-python">word = random.choice([&quot;boom&quot;, &quot;bang&quot;, &quot;crash&quot;, &quot;wallop&quot;])
+</code></pre>
+<h2 id="step-10-dropping-bonuses">Step 10: Dropping bonuses</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_10.py">here</a>.</p>
+<p>In this step, we will be adding bonuses that randomly get dropped when a block is destroyed. The
+steps to add bonuses to the game are very similar to those that were used to add particles. The
+primary difference between bonuses and particles is the bonuses float to the bottom of the screen
+where they can be collected by the paddle. If the bonuses are <em>dropped</em> then they are lost. There
+particle effects will be added:</p>
+<ul>
+<li><code>BonusLives</code>: If collected, the player will be awarded between 1 and 3 extra lives</li>
+<li><code>BonusPaddle</code>: If collected, the paddle will double in size for a short period.</li>
+<li><code>BonusSpeed</code>: If collected, the vertical speed of the ball will be reduced for a short period.</li>
+</ul>
+<p>As well as the usual <code>update()</code> and <code>draw()</code> methods, all bonuses need an <code>alive</code> property
+which will return <code>True</code> is the bonus has not been caught and is still on the screen or <code>False</code>
+otherwise. This property will be used by the game engine to remove caught or dropped bonuses.</p>
+<p>In addition, each bonus needs a <code>catch()</code> method which is called when the paddle makes contact
+with the bonus. The <code>catch()</code> method allows the bonus to perform the appropriate action such as
+give the player more lives, make the paddle bigger or slow the ball down.</p>
+<h3 id="extra-lives-bonus">Extra lives bonus</h3>
+<p>The first bonus effect is <code>BonusLives</code>. When created it will randomly choose how many lives to
+award the player if caught.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python">BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+BONUS_WIDTH = 60
+BONUS_HEIGHT = 40
+
+bonuses = []
+
+
+class BonusLives:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+        self.lives = randint(1, 3)
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y &lt; HEIGHT
+
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f&quot;lives x{self.lives}&quot;,
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        global lives
+        lives += self.lives
+        self.caught = True
+</code></pre>
+<h3 id="larger-paddle-bonus">Larger paddle bonus</h3>
+<p>The second bonus effect is <code>BonusPaddle</code>. This will make the paddle twice as wide
+as usual for a short period of time. The duration the paddle is bigger is randomly
+selected between 5 and 10 seconds in the <code>catch()</code> method.</p>
+<p>Place the following code below <code>BonusLives</code>.</p>
+<pre><code class="language-python">def reset_paddle():
+    paddle.width = PADDLE_WIDTH
+
+
+class BonusPaddle:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y &lt; HEIGHT
+
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f&quot;paddle&quot;,
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        paddle.width = PADDLE_WIDTH * 2
+        clock.schedule_unique(reset_paddle, randint(5, 10))
+        self.caught = True
+</code></pre>
+<h3 id="slower-ball-bonus">Slower ball bonus</h3>
+<p>The third bonus effect is <code>BonusSpeed</code>. This will make the balls vertical speed slower
+for a short period of time. The duration the ball is slowwer is randomly selected between
+10 and 20 seconds in the <code>catch()</code> method.</p>
+<p>Place the following code below <code>BonusPaddle</code>.</p>
+<pre><code class="language-python">def reset_ball():
+    if ball.vy &gt; 0:
+        ball.vy = BALL_SPEED_Y
+    else:
+        ball.vy = -BALL_SPEED_Y
+
+
+class BonusSpeed:
+
+    def __init__(self, rect):
+        self.rect = copy(rect)
+        self.caught = False
+
+    @property
+    def bounding_box(self):
+        return self.rect
+
+    @property
+    def alive(self):
+        return not self.caught and self.rect.y &lt; HEIGHT
+
+    def draw(self, draw):
+        draw.filled_rect(self.bounding_box, WHITE)
+        draw.text(f&quot;speed&quot;,
+                  center=self.bounding_box.center,
+                  color=BLACK,
+                  fontsize=20)
+
+    def update(self, dt):
+        self.rect.y += GRAVITY * 4 * dt
+
+    def catch(self):
+        if ball.vy &gt; 0:
+            ball.vy = BALL_SPEED_Y / 4
+        else:
+            ball.vy = -BALL_SPEED_Y / 4
+
+        clock.schedule_unique(reset_ball, randint(10, 20))
+        self.caught = True
+</code></pre>
+<h3 id="connecting-it-all-up">Connecting it all up</h3>
+<p>Update the <code>check_for_collisions()</code> function by adding code to the end of it that both checks for
+collisions with the bonuses and decides if a new bonus should be dropped or not. Only one bonus is
+allowed to drop at any time and there is a 1 in 10 change of a bonus being granted. Your
+<code>check_for_collisions()</code> function should now look like the following.</p>
+<pre><code class="language-python">def check_for_collisions(dt):
+    global score, blocks
+
+    blocks_to_destroy = [block for block in blocks if ball.collide(block.bounding_box)]
+    if blocks_to_destroy:
+        for block in blocks_to_destroy:
+            score += block.value
+            block.destroy()
+            blocks.remove(block)
+            if block.bounce:
+                ball.bounce()
+
+    global bonuses
+
+    for bonus in bonuses:
+        if bonus.alive and bonus.bounding_box.colliderect(paddle.bounding_box):
+            bonus.catch()
+
+    if len(blocks_to_destroy) &gt; 0 and len(bonuses) == 0 and randint(0, 9) == 0:
+
+        bounding_box = copy(blocks_to_destroy[0].bounding_box)
+
+        choice = randint(0, 2)
+        if choice == 0:
+            bonuses.append(BonusLives(bounding_box))
+        elif choice == 1:
+            bonuses.append(BonusPaddle(bounding_box))
+        else:
+            bonuses.append(BonusSpeed(bounding_box))
+</code></pre>
+<p>All that remains now is to update and draw the bonuses.</p>
+<pre><code class="language-python">def update_bonuses(dt):
+    global bonuses
+
+    for bonus in bonuses:
+        bonus.update(dt)
+
+    bonuses = [bonus for bonus in bonuses if bonus.alive]
+
+update_funcs.append(update_bonuses)
+
+def draw_bonuses(draw):
+    for bonus in bonuses:
+        bonus.draw(draw)
+
+draw_funcs.append(draw_bonuses)
+</code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/smash/game_step_10.png" /></p>
+<h3 id="experiment-changing-how-often-bonuses-are-dropped">Experiment: Changing how often bonuses are dropped</h3>
+<p>Increase the number on bonuses that can be dropped at any one time from 1 to 2.</p>
+<p>Increase how often bonuses get dropped from 1 in 10 to 1 in 5.</p>
+<p>Change the minimum and maximum number of lives that can be awarded by <code>BonusLives</code>.
+Set the minimum to 3 and maximum to 6.</p>
+<p>Change the duration that the <code>BonusPaddle</code> and <code>BonusBall</code> bonuses last.</p>
+<h2 id="step-11-adding-sound-effects">Step 11: Adding sound effects</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_11.py">here</a>.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python"></code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../img/python/pygame/smash/game_step_11.png" /></p>
+<h2 id="step-12-background-music">Step 12: Background music</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_12.py">here</a>.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python"></code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../img/python/pygame/smash/game_step_12.png" /></p>
+<h2 id="step-13-different-levels">Step 13: Different levels</h2>
+<p>The completed code for this step is available <a href="../../../img/python/pygame/smash/main_step_13.py">here</a>.</p>
+<p>Place the following code before the call to <code>pgzrun.go()</code>.</p>
+<pre><code class="language-python"></code></pre>
+<p>Run your game and make sure it works; it should look like the screen shot below.</p>
+<p><img alt="screen shot" src="../../img/python/pygame/smash/game_step_13.png" /></p>
+<h2 id="appendix-a-finished-code">Appendix A: Finished code</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

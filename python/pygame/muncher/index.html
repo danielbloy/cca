@@ -1,0 +1,2101 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/python/pygame/muncher/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>Muncher - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#muncher" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Muncher
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blocks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning points
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-0-create-the-project-in-replit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 0: Create the project in Replit
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-introducing-muncher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Introducing Muncher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Introducing Muncher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-speed-of-muncher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the speed of Muncher
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-keeping-actors-within-the-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Keeping Actors within the screen
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Keeping Actors within the screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the bounds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explanation-why-is-muncher-faster-when-moving-diagonally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation: Why is Muncher faster when moving diagonally?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-animating-actors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Animating Actors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Animating Actors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-more-complex-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: More complex animations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-animation-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Animation speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-drawing-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Drawing lives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-introducing-the-ghosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Introducing the ghosts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Introducing the ghosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-more-complex-ghost-animations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: More complex ghost animations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-moving-the-ghosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Moving the ghosts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Moving the ghosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-ghosts-speed-and-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the ghosts speed and direction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-keeping-the-ghosts-in-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Keeping the ghosts in bounds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Keeping the ghosts in bounds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-adding-more-ghosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Adding more ghosts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-bouncing-the-ghosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Bouncing the ghosts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-9-muncher-and-ghost-collisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 9: Muncher and ghost collisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 9: Muncher and ghost collisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanation-why-is-a-collision-detected-between-muncher-and-the-ghosts-when-they-dont-touch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation: Why is a collision detected between Muncher and the ghosts when they don't touch?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-10-walls-to-negotiate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 10: Walls to negotiate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 10: Walls to negotiate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-adding-more-walls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Adding more walls
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-11-colliding-with-walls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 11: Colliding with walls
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-12-pellets-to-eat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 12: Pellets to eat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-13-eating-the-pellets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 13: Eating the pellets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-14-eating-all-of-the-pellets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 14: Eating all of the pellets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-15-ghosts-with-personality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 15: Ghosts with personality
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 15: Ghosts with personality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-create-your-own-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Create your own AI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-15-bonus-fruit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 15: Bonus fruit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 15: Bonus fruit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-more-fruits-please" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: More fruits please
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-17-showing-and-hiding-the-fruit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 17: Showing and hiding the fruit
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 17: Showing and hiding the fruit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-how-often-the-fruits-are-visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing how often the fruits are visible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-18-eating-the-fruits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 18: Eating the fruits
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 18: Eating the fruits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-fruits-in-different-places" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Fruits in different places
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-19-getting-additional-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 19: Getting additional lives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 19: Getting additional lives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-way-extra-lives-are-awarded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the way extra lives are awarded
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-20-power-pellets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 20: Power pellets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 20: Power pellets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experiment-changing-the-number-of-power-pellets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment: Changing the number of power pellets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-21-power-mode-and-frightened-ghosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 21: Power mode and frightened ghosts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 21: Power mode and frightened ghosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-frightened-ghosts-should-run-away" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Frightened ghosts should run away
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-22-adding-sounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 22: Adding sounds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 22: Adding sounds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-add-a-special-sound-when-a-power-pellet-is-eaten" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Add a special sound when a power pellet is eaten
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-frightened-ghosts-sound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension: Frightened ghosts sound
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-a-finished-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Appendix A: Finished code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="muncher">Muncher</h1>
+<p>These instructions will take you through the steps of creating a game that uses the
+1980 game <a href="https://en.wikipedia.org/wiki/Pac-Man">Pac-Man</a> as its inspiration. In
+this version, the ghosts are not constrained by walls so can float through them.</p>
+<p>You will control Muncher, moving him around the screen to collect all the pellets
+whilst avoiding being caught by the ghosts.</p>
+<p>Eat a power pellet to super charge Muncher and allow him to eat the ghosts.</p>
+<p>When fruit appears, munch them for a big bonus.</p>
+<p>Get a new life for each 10,000 points scored.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/muncher/game.png" /></p>
+<h2 id="learning-points">Learning points</h2>
+<p>These instructions will take you through the process of creating a game which uses
+the fundamental PyGame Zero classes with fundamental Python code concepts including:</p>
+<ul>
+<li>variables</li>
+<li>lists</li>
+<li>functions</li>
+<li>if/else conditions</li>
+<li>loops</li>
+</ul>
+<p>Some techniques are introduced that demonstrate introspection of Python objects as
+well as how to <em>attach</em> additional functionality to existing Actors.</p>
+<p>These instructions are suitable for you if you are comfortable with basic Python coding.</p>
+<h2 id="step-0-create-the-project-in-replit">Step 0: Create the project in Replit</h2>
+<p>Navigate to <a href="https://replit.com/">Replit</a> and login.</p>
+<p>Create a new project using the Pygame template and give it the title "Muncher" as
+illustrated by the screenshot below.</p>
+<p><img alt="screen shot" src="../../../img/python/pygame/muncher/create-project.png" /></p>
+<p>In the <code>main.py</code> file, replace the code provided with the code below and run the
+program to make sure it can download the packages and runs. You should be presented
+with a black screen with a red zero for the score at the top of the screen.</p>
+<pre><code class="language-python">import time
+import pgzrun
+import types
+
+WIDTH = 640
+HEIGHT = 700
+
+score = 0
+lives = 3
+paused = False
+
+def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+pgzrun.go()
+</code></pre>
+<h2 id="step-1-introducing-muncher">Step 1: Introducing Muncher</h2>
+<p>Our protagonist is called Muncher and is a yellow round ball that likes to eat little yellow
+pellets. Muncher will be comtrolled by the player and can be moved around the screen using the
+cursor keys. Muncher will be 32 x 32 pixels in size and will be animated. Therefore you will
+need at least 2 images for Muncher. You can create your own images using a paint program that
+supports transparency (all the images provided here were created using <a href="https://www.pixilart.com/draw">PixilArt</a>) or you can use my images that are provided below.</p>
+<p>The two images should be called <code>muncher.png</code> and <code>muncher2.png</code>. Create a <code>images</code> folder in
+your project and place your files in there as illustrated in the screenshot below.</p>
+<ul>
+<li><code>muncher.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/muncher.png" /></li>
+<li><code>muncher2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/muncher2.png" /></li>
+</ul>
+<p><img alt="screen shot" src="../../../img/python/pygame/muncher/create-images-folder.png" /></p>
+<p>Then add the following code before the <code>draw()</code> function:</p>
+<pre><code class="language-python">MUNCHER_START_X = WIDTH / 2
+MUNCHER_START_Y = (HEIGHT / 4) * 3
+muncher = Actor('muncher', (MUNCHER_START_X, MUNCHER_START_Y))
+muncher.images = ['muncher', 'muncher2']
+muncher.vx = 150
+muncher.vy = 150
+</code></pre>
+<p>Then change the <code>draw()</code> function to read as follows to ensure Muncher gets
+drawn each frame:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    muncher.draw()
+</code></pre>
+<p>To add movement for Muncher, add an <code>update()</code> function after the <code>draw()</code> function. The
+<code>update()</code> function will move Muncher up, down, left or right at the correct speed (using
+Munchers horixontal and vertical velocity properties in pixels per second multiplied by the
+proportion of seconds that have passed since the last update):</p>
+<pre><code class="language-python">def update(dt):
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+</code></pre>
+<p>Try out your game. You should be able to move Muncher around the screen.</p>
+<h3 id="experiment-changing-the-speed-of-muncher">Experiment: Changing the speed of Muncher</h3>
+<p>The speed of Muncher is controlled by the <code>vx</code> and <code>vy</code> properties that represent the horizontal
+and vertical speed that Muncher can move in pixels per second. These are currently set to <code>150</code>
+each in your code. Try experimenting with different values to see what effect this has. Example
+values to try are:</p>
+<ul>
+<li>300</li>
+<li>50</li>
+<li>0</li>
+<li>-150</li>
+</ul>
+<h2 id="step-2-keeping-actors-within-the-screen">Step 2: Keeping Actors within the screen</h2>
+<p>What happens when Muncher gets close to the edges of the screen? Does he stop or keep going so
+he goes outside the bounds of the screen?</p>
+<p>During the game, we want Muncher to stay within the play area. We are therefore going to need to
+to set some boundaries that we want to keep all Actors (ghosts and Muncher) within. This boundary
+will be set to a border of 50 pixels. We will add a <code>keep_in_bounds()</code> method to the <code>Actor</code>
+class which we can call in each <code>update()</code> call. Add the following code above your <code>draw()</code>
+function:</p>
+<pre><code class="language-python">BOUNDS_X1 = 50
+BOUNDS_Y1 = 50
+BOUNDS_X2 = WIDTH - BOUNDS_X1
+BOUNDS_Y2 = HEIGHT - BOUNDS_Y1
+
+def keep_in_bounds(actor):
+    if actor.x &lt; BOUNDS_X1:
+        actor.x = BOUNDS_X1
+    elif actor.x &gt; BOUNDS_X2:
+        actor.x = BOUNDS_X2
+
+    if actor.y &lt; BOUNDS_Y1:
+        actor.y = BOUNDS_Y1
+    elif actor.y &gt; BOUNDS_Y2:
+        actor.y = BOUNDS_Y2
+
+
+Actor.keep_in_bounds = keep_in_bounds
+</code></pre>
+<p>Then add <code>muncher.keep_in_bounds()</code> to the end of your <code>update()</code> function so it reads as follows:</p>
+<pre><code class="language-python">def update(dt):
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+</code></pre>
+<p>Try out your game. You should be able to move Muncher around the screen but cannot go outside the bounds.</p>
+<h3 id="experiment-changing-the-bounds">Experiment: Changing the bounds</h3>
+<p>The variables <code>BOUNDS_X1</code> and <code>BOUNDS_Y1</code> set the width of the border around the screen.
+Try using diffent values and see how it changes the playing area. Example values to try are:</p>
+<ul>
+<li>0</li>
+<li>250</li>
+<li>-50</li>
+</ul>
+<h3 id="explanation-why-is-muncher-faster-when-moving-diagonally">Explanation: Why is Muncher faster when moving diagonally?</h3>
+<p>Muncher has two properties that are used to determine his velocity: <code>vx</code> and <code>vy</code>. These represent the
+horizontal and vertical velocity that Muncher moves. If moving just left or right, the <em>speed</em> of
+Muncher is the value of the <code>vx</code> parameter, in this case 150 pixels per second. If moving just up or
+down, the <em>speed</em> of Muncher is the value of the <code>vx</code> parameter, again 150 pixels per second. However,
+if Muncher moves diagonally, he Moves 150 pixels left or right AND 150 pixels up or down. This is
+a right angled triangle and pythagoras theorem can be used to determine the distance actually moved
+which is about 212 pixels. A move consistent movement speed could be implemented by testing whether
+Muncher is moving diagonally or not but that would complicate the move calculation code. Besides,
+having a slightly faster diagonal move speed adds an additional strategy to the game and is a fun
+side effect.</p>
+<h2 id="step-3-animating-actors">Step 3: Animating Actors</h2>
+<p>We want all of our Actors to be animated. At present, as Muncher runs around the screen he looks a
+little boring. In the code that creates the Muncher <code>Actor</code>, we set an <code>images</code> property that
+contained the two images that we are going to use to animate Muncher.</p>
+<p>Above your <code>draw()</code> function, add the following code which adds an <code>animate()</code> method to the <code>Actor</code>
+class. This method first checks for the presence of some properties on the <code>Actor</code> instance and if
+not present, provides some default values.</p>
+<pre><code class="language-python">def animate(actor):
+    if not hasattr(actor, &quot;images&quot;):
+        return
+    if not hasattr(actor, &quot;fps&quot;):
+        actor.fps = 5
+    if not hasattr(actor, &quot;next_frame&quot;):
+        actor.next_frame = time.time_ns()
+    if not hasattr(actor, &quot;frame&quot;):
+        actor.frame = 0
+
+    now = time.time_ns()
+
+    if now &gt; actor.next_frame:
+        actor.frame = (actor.frame + 1) % len(actor.images)
+        actor.image = actor.images[actor.frame]
+        while actor.next_frame &lt; now:
+            actor.next_frame += (1_000_000_000 / actor.fps)
+
+
+Actor.animate = animate
+</code></pre>
+<p>Modify your <code>draw()</code> function to call the <code>animate()</code> method of Muncher. Your new <code>draw()</code>
+function will look like this:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    muncher.animate()
+    muncher.draw()
+</code></pre>
+<h3 id="extension-more-complex-animations">Extension: More complex animations</h3>
+<p>If you want to make more elaborate or complex animations, you can add more images to
+the <code>images</code> property of an Actor. For example, if you have an animation that spans
+4 frames, you can change the <code>images</code> property of Muncher to read as follows:</p>
+<pre><code class="language-python">muncher.images = ['muncher', 'muncher2', 'muncher3', 'muncher4']
+</code></pre>
+<h3 id="experiment-animation-speed">Experiment: Animation speed</h3>
+<p>You can also adjust the speed with which Muncher is animated by providing a value
+for the <code>fps</code> property on Muncher. By default, this will be set to 5 fps (Frames
+Per Second). Try experimenting with different values by adding the following code
+immediately after you set the <code>vx</code> and <code>vy</code> properties of Muncher:</p>
+<pre><code class="language-python">muncher.fps = 15
+</code></pre>
+<p>Try experimenting with different values. Examples to try are:</p>
+<ul>
+<li>1</li>
+<li>2</li>
+<li>15</li>
+</ul>
+<h2 id="step-4-drawing-lives">Step 4: Drawing lives</h2>
+<p>In this game, Muncher will start with 3 lives. We should add an indicator to the top of
+the screen to indicate how many lives Muncher has. Modify your <code>draw()</code> function so that
+it looks as follows:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+</code></pre>
+<h2 id="step-5-introducing-the-ghosts">Step 5: Introducing the ghosts</h2>
+<p>Muncher is antagonised by four ghosts, Blue, Orange, Red and Pink. Each of the ghosts will
+be animated so will require at least 2 images. Just like Muncher, all of the ghost images
+should be 32 x 32 pixels in size. You can create your own images using a paint program that
+supports transparency (all the images provided here were created using <a href="https://www.pixilart.com/draw">PixilArt</a>) or you can use my images that are provided below.</p>
+<p>The images for each ghost should be placed in the <code>images</code> folder you already created and be called:</p>
+<ul>
+<li><code>ghost-blue.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-blue.png" /></li>
+<li><code>ghost-blue2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-blue2.png" /></li>
+<li><code>ghost-orange.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-orange.png" /></li>
+<li><code>ghost-orange2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-orange2.png" /></li>
+<li><code>ghost-red.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-red.png" /></li>
+<li><code>ghost-red2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-red2.png" /></li>
+<li><code>ghost-pink.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-pink.png" /></li>
+<li><code>ghost-pink2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-pink2.png" /></li>
+</ul>
+<p>Add the following code before the <code>draw()</code> function which will create the ghosts
+and give each one an individual speed and direction to start with but all will have
+the same starting position:</p>
+<pre><code class="language-python">GHOST_START_X = WIDTH / 2
+GHOST_START_Y = (HEIGHT / 3)
+GHOST_START = (GHOST_START_X, GHOST_START_Y)
+
+blue = Actor('ghost-blue', GHOST_START)
+blue.images = ['ghost-blue', 'ghost-blue2']
+blue.vx = -160
+blue.vy = -160
+
+orange = Actor('ghost-orange', GHOST_START)
+orange.images = ['ghost-orange', 'ghost-orange2']
+orange.vx = 260
+orange.vy = 60
+
+red = Actor('ghost-red', GHOST_START)
+red.images = ['ghost-red', 'ghost-red2']
+red.vx = 40
+red.vy = 280
+
+pink = Actor('ghost-pink', GHOST_START)
+pink.images = ['ghost-pink', 'ghost-pink2']
+pink.vx = 60
+pink.vy = 60
+
+ghosts = [blue, orange, red, pink]
+</code></pre>
+<p>Then change the <code>draw()</code> function to read as follows to ensure the ghosts all get
+animated and drawn each frame:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+
+    for ghost in ghosts:
+        ghost.animate()
+        ghost.draw()
+</code></pre>
+<p>Run your program and see what happens? do the ghosts move? Why do you think this is?</p>
+<h3 id="extension-more-complex-ghost-animations">Extension: More complex ghost animations</h3>
+<p>Just as you can for Muncher, you can make more elaborate or complex animations for the
+ghosts through using more animation frames by changing the <code>images</code> property of an Actor.
+For example, if you have an animation that spans 5 frames that you want to use for the
+blue ghost, you can change the <code>images</code> property of blue to read as follows:</p>
+<pre><code class="language-python">blue.images = ['ghost-blue', 'ghost-blue2', 'ghost-blue3', 'ghost-blue4', 'ghost-blue5']
+</code></pre>
+<h2 id="step-6-moving-the-ghosts">Step 6: Moving the ghosts</h2>
+<p>It looks like there is only a single ghost on the screen because they are all on top
+of each other and there is no code that does movement for the ghosts yet. The technique
+used for moving the ghosts is exactly the same as that for Muncher. We modify the ghosts
+position by its <code>vx</code> and <code>vy</code> properties based on the elaspsed time since the ghost
+was last moved.</p>
+<p>Add the following code above your <code>draw()</code> function:</p>
+<pre><code class="language-python">def ghost_move(ghost, dt):
+    ghost.x += ghost.vx * dt
+    ghost.y += ghost.vy * dt
+
+
+for ghost in ghosts:
+    ghost.move = types.MethodType(ghost_move, ghost)
+</code></pre>
+<p>Then modify the <code>update</code> function so that it calls the <code>move()</code> method for each of the
+ghosts in turn.</p>
+<pre><code class="language-python">def update(dt):
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+</code></pre>
+<p>Run your program and see what happens. Do the ghosts stay in the play area like Muncher does?
+Why do you think this is? Can you fix it?</p>
+<h3 id="experiment-changing-the-ghosts-speed-and-direction">Experiment: Changing the ghosts speed and direction</h3>
+<p>Just as it is for Muncher, the speed of the ghosts is controlled by the <code>vx</code> and <code>vy</code> properties
+that represent the horizontal and vertical speed each ghost can move in pixels per second.
+Each ghost has a different set of values for the <code>vx</code> and <code>vy</code> properties. Experiment with changing
+the values to see what effect it has.</p>
+<h2 id="step-7-keeping-the-ghosts-in-bounds">Step 7: Keeping the ghosts in bounds</h2>
+<p>The reason the ghosts all fly off the screen is because we do not perform the check to keep them
+within the play area bounds like we do for Muncher. The code in the <code>update()</code> function is missing
+a call to <code>ghost.keep_in_bounds()</code>.</p>
+<p>Modify your <code>update()</code> function so that is is as follows:</p>
+<pre><code class="language-python">def update(dt):
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+</code></pre>
+<p>What happens why you run your game now? Why do you think this is? How do you think you could
+go about fixing it?</p>
+<h3 id="experiment-adding-more-ghosts">Experiment: Adding more ghosts</h3>
+<p>The game uses an Python list to store all of the ghosts in the game. This means that we do
+not need to do the movement and bounds checking for each ghost individually by their
+variables names <code>pink</code>, <code>blue</code>, <code>orange</code> and <code>red</code> but can instead iterate over all of the
+ghosts in a list and perform those operations. This is done in the <code>for ghost in ghosts:</code>
+statement in the <code>update()</code> function. The advantage of this method is that we can add more
+ghosts to the <code>ghosts</code> lists and they will automatically appear and move on the screen.</p>
+<p>Try it. Create another ghost called <code>blue2</code> (which will use the same images as <code>blue</code>) and
+add it to the <code>ghosts</code> lists. Run your game and check that it gets displayed and moves:</p>
+<pre><code class="language-python">blue2 = Actor('ghost-blue', GHOST_START)
+blue2.images = ['ghost-blue', 'ghost-blue2']
+blue2.vx = -10
+blue2.vy = -60
+
+ghosts = [blue, orange, red, pink, blue2]
+</code></pre>
+<p>Create some more ghosts called <code>yellow</code>, <code>mango</code>, <code>barry</code> and <code>dingo</code>. Create some super cool
+images and animations for them.</p>
+<h2 id="step-8-bouncing-the-ghosts">Step 8: Bouncing the ghosts</h2>
+<p>When the game runs, the ghosts all wizz away and stay within the play area but they eventually
+all end up stuck in one of the corners. This is because the ghosts never change their direction.
+What we want to do is make the ghosts bounce at the edges of the play area.</p>
+<p>Change the <code>ghost_move()</code> function so that it is as follows:</p>
+<pre><code class="language-python">def ghost_move(ghost, dt):
+    ghost.x += ghost.vx * dt
+    ghost.y += ghost.vy * dt
+
+    if ghost.x &gt;= BOUNDS_X2:
+        ghost.x = BOUNDS_X2
+        ghost.vx *= -1
+    elif ghost.x &lt;= BOUNDS_X1:
+        ghost.x = BOUNDS_X1
+        ghost.vx *= -1
+
+    if ghost.y &gt;= BOUNDS_Y2:
+        ghost.y = BOUNDS_Y2
+        ghost.vy *= -1
+    elif ghost.y &lt;= BOUNDS_Y1:
+        ghost.y = BOUNDS_Y1
+        ghost.vy *= -1
+</code></pre>
+<p>Run your game and you should now see your ghosts bouncing furiously around the screen.</p>
+<h2 id="step-9-muncher-and-ghost-collisions">Step 9: Muncher and ghost collisions</h2>
+<p>At present, when a ghost collides with Muncher, nothing happens. What we want is for the
+collision to result in Muncher losing a life. Once a life is lost, we want a short pause,
+then all of the actors to return to their starting positions, another short pause and
+then the game to start again. The pauses will be controlled by chaining some function
+calls using the Pygame <code>clock</code> class. When all lives are lost, the game will <code>exit()</code>.</p>
+<p>Add the following two functions before your <code>draw()</code> function:</p>
+<pre><code class="language-python">def unpause():
+    global paused
+    paused = False
+
+
+def reset_actors():
+    for ghost in ghosts:
+        ghost.x = GHOST_START_X
+        ghost.y = GHOST_START_Y
+
+    muncher.x = MUNCHER_START_X
+    muncher.y = MUNCHER_START_Y
+
+    if lives &lt;= 0:
+        exit()
+
+    clock.schedule(unpause, 2)
+</code></pre>
+<p>The <code>update()</code> function needs two modifications done to it. The first modification is to
+do nothing when the game is <code>paused</code>. This is achieved with the following code at the start
+of the <code>update()</code> method:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+</code></pre>
+<p>The second change is to check to see if any of the ghosts have collided with Muncher. This
+is achieved by adding the following code to the end of the <code>update()</code> function.</p>
+<pre><code class="language-python">        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                lives -= 1
+                paused = True
+                clock.schedule(reset_actors, 2)
+</code></pre>
+<p>You entire <code>update()</code> function should now look as follows:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+</code></pre>
+<h3 id="explanation-why-is-a-collision-detected-between-muncher-and-the-ghosts-when-they-dont-touch">Explanation: Why is a collision detected between Muncher and the ghosts when they don't touch?</h3>
+<p>The collision detection algorithm that is used in this game is a relatively simple one.
+The code is checking whether the images of the <code>Actors</code> overlap each other. Those images
+are square 32 x 32 pixels but the image of Muncher does not use the entire square because
+Muncher is a circle. This means there are "blank" areas that surround Muncher in each corner.
+Our collision detection algorithm does not distinguish between the coloured in parts of the
+image and the blank areas, considering them all as Muncher. Therefore, it a ghost overlaps
+with one of these blank areas, it still registers as a collision. Later projects will look
+at implementing more advanced collision detection algorithms that offer higher fidelity.</p>
+<h2 id="step-10-walls-to-negotiate">Step 10: Walls to negotiate</h2>
+<p>The play area needs some walls to make it more difficult for Muncher to avoid the ghosts.
+Two different images will be required for the walls. One is 128 x 32 pixels (representing
+a horizontal wall) and the other is 32 x 128 pixels (representing a vertical wall). You
+can create your own images using a paint program that supports transparency (all the images
+provided here were created using <a href="https://www.pixilart.com/draw">PixilArt</a>) or you can use my images that are provided below.</p>
+<p>The two images should be called <code>wall.png</code> and <code>wall2.png</code> and placed in the <code>images</code> folder.</p>
+<ul>
+<li><code>wall.png</code> should be 128 x 32 pixels <img alt="screen shot" src="../../../img/python/pygame/muncher/wall.png" /></li>
+<li><code>wall2.png</code> should be 32 x 128 pixels <img alt="screen shot" src="../../../img/python/pygame/muncher/wall2.png" /></li>
+</ul>
+<p>All wall elements will be created as <code>Actors</code>. Add the following code before your <code>draw()</code>
+function:</p>
+<pre><code class="language-python">walls = [
+    Actor('wall', (WIDTH / 4, HEIGHT / 2)),
+    Actor('wall', ((WIDTH / 4) * 3, HEIGHT / 2)),
+    Actor('wall', (WIDTH / 2, HEIGHT / 5)),
+    Actor('wall', (WIDTH / 2, (HEIGHT / 5) * 4)),
+    Actor('wall2', (WIDTH / 5, HEIGHT / 3)),
+    Actor('wall2', ((WIDTH / 5) * 4, HEIGHT / 3)),
+    Actor('wall2', (WIDTH / 5, (HEIGHT / 3) * 2)),
+    Actor('wall2', ((WIDTH / 5) * 4, (HEIGHT / 3) * 2)),
+]
+</code></pre>
+<p>The <code>draw()</code> function needs to be updated to draw the walls. Add the additional code
+to the end of your <code>draw()</code> function which should now look as follows:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+
+    for ghost in ghosts:
+        ghost.animate()
+        ghost.draw()
+
+    for wall in walls:
+        wall.draw()
+</code></pre>
+<p>Run your game. What happens when Muncher collides with a wall? Why do you think this is?</p>
+<h3 id="extension-adding-more-walls">Extension: Adding more walls</h3>
+<p>Try extending your game to add more wall elements to the play area. Experiment with new
+images of different sizes to create interesting mazes and shapes. Just make sure to add
+all of your new wall elements to the <code>wall</code> list so that they will be displayed.</p>
+<h2 id="step-11-colliding-with-walls">Step 11: Colliding with walls</h2>
+<p>We want the ghosts to be able to go through the walls, they are ghosts after all. However,
+we do not want Muncher to be able to go through the walls. We therefore need to check for
+collisions between Muncher and wall elements. The collision detection algorithm that we
+will be using is a relatively simple one that checks for overlaps of the edges of Muncher
+and the walls but is effective enough for this type of game.</p>
+<p>Add the following new collision detection function before your <code>draw()</code> function:</p>
+<pre><code class="language-python">def check_for_wall_collisions(actor):
+    for wall in walls:
+        if wall.colliderect(actor):
+            # Try each of the edges of the wall
+            if actor.top &lt; wall.top and actor.bottom &gt; wall.top:
+                actor.bottom = wall.top
+
+            if actor.bottom &gt; wall.bottom and actor.top &lt; wall.bottom:
+                actor.top = wall.bottom
+
+            if actor.left &lt; wall.left and actor.right &gt; wall.left:
+                actor.right = wall.left
+
+            if actor.right &gt; wall.right and actor.left &lt; wall.right:
+                actor.left = wall.right
+</code></pre>
+<p>Then modify the <code>update()</code> function to check for collisions with muncher by adding the
+following statement to the end of <code>update()</code>: <code>check_for_wall_collisions(muncher)</code>. Your
+<code>update()</code> function should now look as follows:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+
+    check_for_wall_collisions(muncher)
+</code></pre>
+<p>Run your game and check that Muncher cannot now pass through walls but the ghosts can.</p>
+<h2 id="step-12-pellets-to-eat">Step 12: Pellets to eat</h2>
+<p>The pellets that Muncher likes to eat are small 8 x 8 pixel dots that are spread across
+the play area but not where there are walls. Either create your own image or use mine
+below, ensuring you copy it into the <code>images</code> folder.</p>
+<ul>
+<li><code>pellet.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/pellet.png" /></li>
+</ul>
+<p>Add the following pellet creation function before your <code>draw()</code> function:</p>
+<pre><code class="language-python">def create_pellets():
+    global pellets
+    pellets = []
+    for y in range(12):
+        for x in range(12):
+            pos = (50 + (50 * x), 100 + (50 * y))
+            collide = False
+            for wall in walls:
+                if wall.collidepoint(pos):
+                    collide = True
+
+            if not collide:
+                pellets.append(Actor('pellet', pos))
+
+pellets = []
+create_pellets()
+</code></pre>
+<p>The <code>draw()</code> function needs to be updated to draw the pellets. Add the additional code
+to the end of your <code>draw()</code> function which should now look as follows:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+
+    for ghost in ghosts:
+        ghost.animate()
+        ghost.draw()
+
+    for wall in walls:
+        wall.draw()
+
+    for pellet in pellets:
+        pellet.draw()        
+</code></pre>
+<p>Run your game and try to eat the pellets? What happens? Why do you think this is?</p>
+<h2 id="step-13-eating-the-pellets">Step 13: Eating the pellets</h2>
+<p>Muncher cannot eat the pellets because we have not done the collision detection code
+for it yet. Add the new code to the end of the <code>update()</code> function to perform the
+collision detection and allow all of the pellets to be eaten.</p>
+<p>New code:</p>
+<pre><code class="language-python">    global score, pellets
+    before = len(pellets)
+    pellets = [pellet for pellet in pellets if not pellet.colliderect(muncher)]
+    after = len(pellets)
+    score += (before - after) * 100
+</code></pre>
+<p>Your <code>update()</code> function should now be as follows:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+
+    check_for_wall_collisions(muncher)
+
+    global score, pellets
+    before = len(pellets)
+    pellets = [pellet for pellet in pellets if not pellet.colliderect(muncher)]
+    after = len(pellets)
+    score += (before - after) * 100
+</code></pre>
+<p>What happens when you eat all of the pellets? How do you think you should fix this?</p>
+<h2 id="step-14-eating-all-of-the-pellets">Step 14: Eating all of the pellets</h2>
+<p>When Muncher eats all of the pellets the game should start another level. Instead it
+just carries on. This is because we do not check that all pellets have been eaten.
+Add the new code to the end of the <code>update()</code> function to perform the check on how many
+pellets are left and start a new level if all have been eaten.</p>
+<p>New code:</p>
+<pre><code class="language-python">    if len(pellets) &lt;= 0:
+        paused = True
+        create_pellets()
+        reset_actors()
+</code></pre>
+<p>Your <code>update()</code> function should now be as follows:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+
+    check_for_wall_collisions(muncher)
+
+    global score, pellets
+    before = len(pellets)
+    pellets = [pellet for pellet in pellets if not pellet.colliderect(muncher)]
+    after = len(pellets)
+    score += (before - after) * 100
+
+    if len(pellets) &lt;= 0:
+        paused = True
+        create_pellets()
+        reset_actors()
+</code></pre>
+<h2 id="step-15-ghosts-with-personality">Step 15: Ghosts with personality</h2>
+<p>Currently, the ghosts race around the screen in a fixed way which can make the
+game just a little bit predictable and easy. We are now going to program one of
+ghosts ghosts with some additional intelligence to make them chase after
+Muncher, rather than just race around the screen randomly.</p>
+<p>At the top of the file, add:</p>
+<pre><code class="language-python">import types
+</code></pre>
+<p>Now we will add in the specific code for the more advanced movement for the blue
+ghost. This code should be added above your <code>draw()</code> function. This will make blue
+ghost move directly towards Muncher. This gives a simple chase type behaviour to
+the blue ghost, rather than just bouncing around the screen.</p>
+<pre><code class="language-python">def chase(ghost, dt):
+    if ghost.vx &lt; 0:
+        ghost.vx *= -1
+
+    if ghost.vy &lt; 0:
+        ghost.vy *= -1
+
+    if ghost.x &lt; muncher.x:
+        ghost.x += ghost.vx * dt
+    else:
+        ghost.x -= ghost.vx * dt
+
+    if ghost.y &lt; muncher.y:
+        ghost.y += ghost.vy * dt
+    else:
+        ghost.y -= ghost.vy * dt
+
+blue.move = types.MethodType(chase, blue)
+</code></pre>
+<p>Run your game to make sure the ghost exhibits the new behaviour. Does the blue ghost
+now catch you really fast and is impossible to evade? Why do you think this is? Try
+changing the values that <code>blue.vx</code> and <code>blue.vy</code> are initialised to? What are good
+values?</p>
+<h3 id="extension-create-your-own-ai">Extension: Create your own AI</h3>
+<p>Try to give some of your ghosts unique movement behaviours; some ghosts can keep using the
+default <code>ghost_move()</code> function. You can add the <code>chase()</code> move behaviour to other slower
+moving ghosts too.</p>
+<p>Create your own special move function for that can be attached to some of your ghosts. If
+you are stuck for ideas as to what to write as your algorithm, try this:</p>
+<ul>
+<li>Pick random <code>vx</code> and <code>vy</code> values for -40 to 40.</li>
+<li>Pick move in that direction for a random amount of time, ensuring to bounce off walls.</li>
+<li>Repeat</li>
+</ul>
+<h2 id="step-15-bonus-fruit">Step 15: Bonus fruit</h2>
+<p>A diet of just chomping on pellets can get a little boring so Muncher like to also
+eat fruit when it is available. In our game, we want to occasionally make fruit
+available on the screen so that Muncher can get a big bonus for eating it. Only
+one fruit will be available at a time.</p>
+<p>We are going to start with three different types of fruit, each with a 32 x 32 pixel
+image. The three images should be placed in the <code>images</code> folder you already created
+and be called:</p>
+<ul>
+<li><code>apple.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/apple.png" /></li>
+<li><code>lemon.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/lemon.png" /></li>
+<li><code>strawberry.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/strawberry.png" /></li>
+</ul>
+<p>Then add the following code before the <code>draw()</code> function which creates a list that
+contains an  <code>Actor</code> for each of the possible fruits we will display:</p>
+<pre><code class="language-python">fruits = [
+    Actor('apple', (WIDTH / 2, HEIGHT / 2)),
+    Actor('lemon', (WIDTH / 2, HEIGHT / 2)),
+    Actor('strawberry', (WIDTH / 2, HEIGHT / 2)),
+]
+
+fruit = None
+</code></pre>
+<p>The <code>fruit</code> variable which is currently set to the special value <code>None</code> is used to
+indicate which fruit we are currently displaying. When <code>fruit</code> is <code>None</code> it means
+that no fruit is to be displayed. When <code>fruit</code> is an <code>Actor</code> then it is to be
+displayed. Change the <code>draw()</code> function to read as follows to ensure <code>fruit</code> gets
+drawn each frame when it is a value other than <code>None</code>:</p>
+<pre><code class="language-python">def draw():
+    screen.clear()
+    screen.draw.text(f&quot;{score}&quot;, (WIDTH / 2, 15), color=&quot;red&quot;, fontsize=24)
+
+    for i in range(lives):
+        screen.blit('muncher', (5 + (37 * i), 5))
+
+    muncher.animate()
+    muncher.draw()
+
+    for ghost in ghosts:
+        ghost.animate()
+        ghost.draw()
+
+    for wall in walls:
+        wall.draw()
+
+    for pellet in pellets:
+        pellet.draw()
+
+    if fruit is not None:
+        fruit.draw()
+</code></pre>
+<p>Now run your game to check it out. Does the fruit get displayed? Why do you think this is?</p>
+<h3 id="extension-more-fruits-please">Extension: More fruits please</h3>
+<p>Having 3 different fruits adds some variety but Muncher likes a whole lot of different types
+of fruit. Use your artistic talent to create more fruits. Don't forget to add them to the
+<code>fruits</code> list. Some examples of fruits to draw are:</p>
+<ul>
+<li>Banana</li>
+<li>Pineapple</li>
+<li>Cherries</li>
+<li>Kiwi</li>
+<li>Peach</li>
+<li>Grapes</li>
+</ul>
+<h2 id="step-17-showing-and-hiding-the-fruit">Step 17: Showing and hiding the fruit</h2>
+<p>Presently, when the game is running, the fruits do not appear. This is because there is no
+code that currently changes the <code>fruit</code> variable from the value <code>None</code>. What we want is for
+a fruit to appear every five second and be displayed for 3 seconds. This should make it
+challenging for Muncher to get the fruit whilst also avoiding the ghosts. To achieve this we
+are going to use the <code>clock.schedule()</code> method that we used earlier. The method
+<code>clock.schedule()</code> is used to schedule a function to be called a number of seconds in the
+future. We will schedule a call pick a random fruit from the list to show and then schedule
+another different call to hide that fruit.</p>
+<p>Add the following code before the <code>draw()</code> function:</p>
+<pre><code class="language-python">def show_fruit():
+    import random
+    global fruit
+    fruit = fruits[random.randint(0, len(fruits) - 1)]
+    clock.schedule(hide_fruit, 3)
+
+
+def hide_fruit():
+    global fruit
+    fruit = None
+    clock.schedule(show_fruit, 5)
+
+
+clock.schedule(show_fruit, 5)
+</code></pre>
+<p>Run your program. Now your fruits will show and hide. What happens when Muncher touches the fruit?
+Why do you think that is?</p>
+<h3 id="experiment-changing-how-often-the-fruits-are-visible">Experiment: Changing how often the fruits are visible</h3>
+<p>Try adjusting the specified number of seconds that the three calls to <code>clock.schedule()</code> to see how
+this affects the game. The three values represent:</p>
+<ul>
+<li>The time to wait for the first fruit being shown.</li>
+<li>The time that each fruit is displayed for.</li>
+<li>The time between each fruit being displayed.</li>
+</ul>
+<p>Which value is which? Select some values that you feel are best for your game.</p>
+<h2 id="step-18-eating-the-fruits">Step 18: Eating the fruits</h2>
+<p>At present, when Muncher overlaps with the fruit, nothing happens. This is because we
+have not added the collision detection code like has been done for the pellets, ghosts
+and walls.</p>
+<p>Modify the <code>update</code> function so that it checks for the collision between Muncher and the
+fruit and awards points based on the index of the fruit in the list. The first item will
+be worth 1,000 points, the second item 2,000, the third item 3,000 points and so on.</p>
+<pre><code class="language-python">    global fruit
+    if fruit is not None:
+        if fruit.colliderect(muncher):
+            index = fruits.index(fruit) + 1
+            score += (1000 * index)
+            fruit = None
+</code></pre>
+<p>Run your game and try it out.</p>
+<h3 id="experiment-fruits-in-different-places">Experiment: Fruits in different places</h3>
+<p>All of the fruits currently appear in the same location no the screen. Why do you think this is?
+Try changing your code so that different fruits appear in different locations.</p>
+<h2 id="step-19-getting-additional-lives">Step 19: Getting additional lives</h2>
+<p>An additional life should be awarded for each 10,000 points the player scores.</p>
+<p>Add the following code above your <code>draw()</code> function:</p>
+<pre><code class="language-python">next_life = 10000
+</code></pre>
+<p>Modify the <code>update</code> function by adding the code below that checks to see when the next
+life should be awarded.</p>
+<pre><code class="language-python">    global next_life
+    if score &gt;= next_life:
+        lives += 1
+        next_life += 10000
+</code></pre>
+<h3 id="experiment-changing-the-way-extra-lives-are-awarded">Experiment: Changing the way extra lives are awarded</h3>
+<p>The code currently awards a new life every 10,000 points. Try changing it so that a
+life is awarded after the first 1,000 points and then every 2,000 points thereafter.</p>
+<p>What happens when you get lots and lots of lives?</p>
+<p>Try modifying the code so that you award lives in the following pattern:</p>
+<ul>
+<li>1st new life awarded after 10,000 points (10,000)</li>
+<li>2nd new life awarded after 30,000 points (10,000 + 20,000)</li>
+<li>3rd new life awarded after 60,000 points (10,000 + 20,000 + 30,000)</li>
+<li>4th new life awarded after 100,000 points (10,000 + 20,000 + 30,000 + 40,000)</li>
+<li>... and so on ...</li>
+</ul>
+<h2 id="step-20-power-pellets">Step 20: Power pellets</h2>
+<p>Each time Muncher eats a power pellet, it supercharges Muncher and allows him to eat
+the ghosts for a few seconds. The power pellet is a larger 16 x 16 pixel pellet. You
+can create your own using whatever colour you like, or use mine.</p>
+<p>The image for the power pellet should be placed in the <code>images</code> folder you already
+created and be called:</p>
+<ul>
+<li><code>power-pellet.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/power-pellet.png" /></li>
+</ul>
+<p>We will use the same pattern for creating the power pellets, drawing them and
+performing collision detection as has been used for the smaller pellets. You should
+be familiar with these patterns by now.</p>
+<p>Add the following code before the <code>create_pellets()</code> function which will create the
+list to hold the power pellets and add a property to Muncher to indicate how long he
+has left (in seconds) in power mode:</p>
+<pre><code class="language-python">power_pellets = []
+muncher.power = 0
+</code></pre>
+<p>Add the following code to the <code>create_pellets()</code> function which will create the power
+pellets for each new level:</p>
+<pre><code class="language-python">    global power_pellets
+    power_pellets = [
+        Actor('power-pellet', (WIDTH / 5, HEIGHT / 6)),
+        Actor('power-pellet', ((WIDTH / 5) * 4, HEIGHT / 6)),
+    ]
+</code></pre>
+<p>Add the following code to the <code>draw()</code> function to display the power pellets
+each frame:</p>
+<pre><code class="language-python">    for pellet in power_pellets:
+        pellet.draw()
+</code></pre>
+<p>Add the following code to the <code>update()</code> function. This code first decreases how much
+time Muncher has left in power mode and then detects for collision between Muncher and
+the power pellets, granting Muncher a 500 point bonus and more time in power mode if
+one or more power pellets were eaten:</p>
+<pre><code class="language-python">    muncher.power -= dt
+    if muncher.power &lt; 0:
+        muncher.power = 0
+
+    global power_pellets
+    before = len(power_pellets)
+    power_pellets = [pellet for pellet in power_pellets if not pellet.colliderect(muncher)]
+    after = len(power_pellets)
+    score += (before - after) * 500
+    if after &lt; before:
+        muncher.power = 5
+</code></pre>
+<h3 id="experiment-changing-the-number-of-power-pellets">Experiment: Changing the number of power pellets</h3>
+<p>Currently the game has two power pellets. Why not add some more power pellets to the
+game. You could go for four with one in each corner or perhaps place then extra ones
+in random positions. Experiment with different placings to get something you like.</p>
+<h2 id="step-21-power-mode-and-frightened-ghosts">Step 21: Power mode and frightened ghosts</h2>
+<p>When you run your game, there is no indication that Muncher is in power mode. In fact
+even in power mode, Muncher will still lose a life if he touches the ghosts. We need
+to do the following things:</p>
+<ol>
+<li>Make the ghosts change their look so it is clear that power mode is activated</li>
+<li>Stop Muncher losing a life when colliding with a ghost in power mode.</li>
+<li>Award Muncher 500 bonus points when colliding with a ghost in power mode and
+move the ghost back to its starting position.</li>
+</ol>
+<p>Either draw your own 32 x 32 pixel scared ghost images using your favourite paint
+program or use my images below. The two scared ghost images should be placed in
+the <code>images</code> folder you already created and be called:</p>
+<ul>
+<li><code>ghost-scared.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-scared.png" /></li>
+<li><code>ghost-scared2.png</code> <img alt="screen shot" src="../../../img/python/pygame/muncher/ghost-scared2.png" /></li>
+</ul>
+<p>Add the following code before the <code>draw()</code> function which will create a list for
+the scared ghost images:</p>
+<pre><code class="language-python">scared_images = ['ghost-scared', 'ghost-scared2']
+</code></pre>
+<p>Add the following code to the end of your <code>update()</code> function. This will swap the
+images used for each ghost <code>Actor</code> based on whether Muncher is in power mode or note:</p>
+<pre><code class="language-python">    global scared_images
+    if muncher.power &gt; 0:
+        for ghost in ghosts:
+            if ghost.images != scared_images:
+                ghost.original_images = ghost.images
+                ghost.images = scared_images
+                ghost.frame = 0
+    else:
+        for ghost in ghosts:
+            if ghost.images == scared_images:
+                ghost.images = ghost.original_images
+                ghost.frame = 0
+</code></pre>
+<p>If you run your program now you will find the ghosts change their look when you eat a
+power pellet. The only item remaining is to modify the collision detection code.</p>
+<p>In your <code>update()</code> function, locate the code that checks the collision between Muncher
+and the ghosts. It will look like this:</p>
+<pre><code class="language-python">    for ghost in ghosts:
+        if ghost.colliderect(muncher):
+            lives -= 1
+            paused = True
+            clock.schedule(reset_actors, 2)
+</code></pre>
+<p>Change it to this which will stop this collision detection happening if Muncher is
+in power mode:</p>
+<pre><code class="language-python">    if muncher.power &lt;= 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                lives -= 1
+                paused = True
+                clock.schedule(reset_actors, 2)
+</code></pre>
+<p>Now to add the code that allows Muncher to each the ghosts. Add this code to the end
+of your <code>update()</code> function:</p>
+<pre><code class="language-python">    if muncher.power &gt; 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                score += 500
+                ghost.pos = GHOST_START
+</code></pre>
+<h3 id="extension-frightened-ghosts-should-run-away">Extension: Frightened ghosts should run away</h3>
+<p>Presently, when Muncher has eaten a power pellet, the ghosts do not change their behaviour.
+The ghosts moving randomly continue to do so and the ghosts chasing also continue to do so.
+Change your chase code so that you rather than chase towards Muncher a chasing ghost runs
+away when Muncher is in power mode.</p>
+<h2 id="step-22-adding-sounds">Step 22: Adding sounds</h2>
+<p>You game is fun, but it is lacking something. Sound! You can create your own sound
+effects or use some free online resources. All of the sound effects listed here came
+from <a href="https://mixkit.co/free-sound-effects/game/">MixKit</a>. Other sites are available
+such as <a href="https://pixabay.com/sound-effects/search/game/">pixabay</a>.</p>
+<p>Create a <code>sounds</code> folder in your project to place your sound files. You will need
+6 sounds:</p>
+<ul>
+<li><a href="../../../img/python/pygame/muncher/eat_ghost.wav">eat_ghost.wav</a></li>
+<li><a href="../../../img/python/pygame/muncher/eat_fruit.wav">eat_fruit.wav</a></li>
+<li><a href="../../../img/python/pygame/muncher/eat_pellet.wav">eat_pellet.wav</a></li>
+<li><a href="../../../img/python/pygame/muncher/lose_life.wav">lose_life.wav</a></li>
+<li><a href="../../../img/python/pygame/muncher/new_level.wav">new_level.wav</a></li>
+<li><a href="../../../img/python/pygame/muncher/new_life.wav">new_life.wav</a></li>
+</ul>
+<p>Playing a sound is super easy using the <code>sounds</code> object. To play the <code>lose_life.wav</code>
+sound, just use this code.</p>
+<pre><code class="language-python">sounds.lose_life.play()
+</code></pre>
+<p>All of the sounds need adding to the <code>update()</code> function which should now look
+like this:</p>
+<pre><code class="language-python">def update(dt):
+    global lives, paused
+
+    if paused:
+        return
+
+    if keyboard.left:
+        muncher.x -= muncher.vx * dt
+    if keyboard.right:
+        muncher.x += muncher.vx * dt
+    if keyboard.up:
+        muncher.y -= muncher.vy * dt
+    if keyboard.down:
+        muncher.y += muncher.vy * dt
+
+    muncher.keep_in_bounds()
+
+    for ghost in ghosts:
+        ghost.move(dt)
+        ghost.keep_in_bounds()
+
+    if muncher.power &lt;= 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                lives -= 1
+                sounds.lose_life.play()
+                paused = True
+                clock.schedule(reset_actors, 2)
+
+    check_for_wall_collisions(muncher)
+
+    global score, pellets
+    before = len(pellets)
+    pellets = [pellet for pellet in pellets if not pellet.colliderect(muncher)]
+    after = len(pellets)
+    score += (before - after) * 100
+    if after &lt; before:
+        sounds.eat_pellet.play()
+
+    if len(pellets) &lt;= 0:
+        paused = True
+        sounds.new_level.play()
+        create_pellets()
+        reset_actors()
+
+    global fruit
+    if fruit is not None:
+        if fruit.colliderect(muncher):
+            sounds.eat_fruit.play()
+            index = fruits.index(fruit) + 1
+            score += (1000 * index)
+            fruit = None
+
+    global next_life
+    if score &gt;= next_life:
+        sounds.new_life.play()
+        lives += 1
+        next_life += 10000
+
+    muncher.power -= dt
+    if muncher.power &lt; 0:
+        muncher.power = 0
+
+    global power_pellets
+    before = len(power_pellets)
+    power_pellets = [pellet for pellet in power_pellets if not pellet.colliderect(muncher)]
+    after = len(power_pellets)
+    score += (before - after) * 500
+    if after &lt; before:
+        muncher.power = 5
+
+    global scared_images
+    if muncher.power &gt; 0:
+        for ghost in ghosts:
+            if ghost.images != scared_images:
+                ghost.original_images = ghost.images
+                ghost.images = scared_images
+                ghost.frame = 0
+    else:
+        for ghost in ghosts:
+            if ghost.images == scared_images:
+                ghost.images = ghost.original_images
+                ghost.frame = 0
+
+    if muncher.power &gt; 0:
+        for ghost in ghosts:
+            if ghost.colliderect(muncher):
+                sounds.eat_ghost.play()
+                score += 500
+                ghost.pos = GHOST_START
+</code></pre>
+<h3 id="extension-add-a-special-sound-when-a-power-pellet-is-eaten">Extension: Add a special sound when a power pellet is eaten</h3>
+<p>There is currently no special sound played when a power pellet is eaten. Create or
+choose a sound, add it to your <code>sounds</code> directory, then add the code to play the
+sound when a power pellet is eaten.</p>
+<h3 id="extension-frightened-ghosts-sound">Extension: Frightened ghosts sound</h3>
+<p>Extend your game to play a background melody when the ghosts are frightened.</p>
+<h2 id="appendix-a-finished-code">Appendix A: Finished code</h2>
+<p>Here is a version of the finished code with some of the extensions completed:
+<a href="../../../img/python/pygame/muncher/main.py">main.py</a></p>
+<p>You can see the completed game on <a href="https://replit.com/@danielbloy/Muncher?v=1">Replit</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

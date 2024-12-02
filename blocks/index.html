@@ -1,0 +1,767 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advice, guides and materials for running code clubs.">
+      
+      
+        <meta name="author" content="Daniel Bloy">
+      
+      
+        <link rel="canonical" href="http://codeclubadventures.com/blocks/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../python/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>Blocks - Code Club Adventures</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#blocks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Code Club Adventures" class="md-header__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Code Club Adventures
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Blocks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Code Club Adventures" class="md-nav__button md-logo" aria-label="Code Club Adventures" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Code Club Adventures
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Blocks
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scratch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scratch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1 (link)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2 (link)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-3-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3 (link)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makecode-arcade" class="md-nav__link">
+    <span class="md-ellipsis">
+      MakeCode Arcade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MakeCode Arcade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-basic-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 - Basic Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-advanced-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 - Advanced Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-self-directed-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 3 - Self Directed Learning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#published-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Published works
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Published works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invasion-of-the-alien-ducks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invasion of the Alien Ducks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../replit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Replit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scratch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scratch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-1-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 1 (link)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-2-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 2 (link)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-3-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module 3 (link)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makecode-arcade" class="md-nav__link">
+    <span class="md-ellipsis">
+      MakeCode Arcade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MakeCode Arcade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-1-basic-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 1 - Basic Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-2-advanced-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 2 - Advanced Blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-3-self-directed-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stage 3 - Self Directed Learning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#published-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Published works
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Published works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#invasion-of-the-alien-ducks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invasion of the Alien Ducks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="blocks">Blocks</h1>
+<p>Beginners should start their coding journey with <a href="https://scratch.mit.edu/">Scratch</a> and then
+progress on to <a href="https://arcade.makecode.com/">MakeCode Arcade</a>.</p>
+<h2 id="scratch">Scratch</h2>
+<p>The scratch sessions in my Code Club are built around the materials provided by <a href="https://codeclub.org">Code Club</a>. I recommend working through the activities in order. Depending on experience, each
+activity will take between 45 and 90 minutes.</p>
+<h3 id="module-1-link">Module 1 (<a href="https://projects.raspberrypi.org/en/pathways/scratch-module-1">link</a>)</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/rock-band">Rock band</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/lost-in-space">Lost in space</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/ghostbusters">Ghostbusters</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/chatbot">Chatbot</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/paint-box">Paint box</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/boat-race">Boat race</a></p>
+<h3 id="module-2-link">Module 2 (<a href="https://projects.raspberrypi.org/en/pathways/scratch-module-2">link</a>)</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/memory">Memory</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/dodgeball">Dodgeball</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/brain-game">Brain game</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/catch-the-dots">Catch the dots</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/clone-wars">Clone wars</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/create-your-own-world">Create your own world</a></p>
+<h3 id="module-3-link">Module 3 (<a href="https://projects.raspberrypi.org/en/pathways/scratch-module-3">link</a>)</h3>
+<p>1 - <a href="https://projects.raspberrypi.org/en/projects/cats">CATS!</a></p>
+<p>2 - <a href="https://projects.raspberrypi.org/en/projects/flower-generator">Flower generator</a></p>
+<p>3 - <a href="https://projects.raspberrypi.org/en/projects/guess-the-flag">Guess the flag</a></p>
+<p>4 - <a href="https://projects.raspberrypi.org/en/projects/lineup">Line up</a></p>
+<p>5 - <a href="https://projects.raspberrypi.org/en/projects/flappy-parrot">Flappy parrot</a></p>
+<p>6 - <a href="https://projects.raspberrypi.org/en/projects/binary-hero">Binary hero</a></p>
+<h2 id="makecode-arcade">MakeCode Arcade</h2>
+<p>All of the following <a href="https://arcade.makecode.com/">MakeCode Arcade</a> materials are those
+that I have written (often hurriedly) for my own Code Club. Most of the materials need
+updating as the available blocks have changed but they should still be useful as the basis
+for a lesson. Most will take between 30 and 60 minutes to make. I will be reworking each of
+these as well as adding new materials over the coming months. The materials are marked
+as alpha, beta or final based on the quality/stage of development of the material. The
+alpha materials will be first stage PDFs, beta are updated web based materials but not
+neccessarily battle tested in the Coding Club yet so may contain errors and final will be
+the tested materials.</p>
+<h3 id="stage-1-basic-blocks">Stage 1 - Basic Blocks</h3>
+<p>1 - <a href="../img/arcade/blocks/stage-1/1-chase-blocks.pdf">Chase</a>, alpha</p>
+<p>2 - <a href="../img/arcade/blocks/stage-1/2-catch-blocks.pdf">Catch</a>, alpha</p>
+<p>3 - <a href="../img/arcade/blocks/stage-1/3-smash-blocks.pdf">Smash</a>, alpha</p>
+<p>4 - Jump, coming</p>
+<h3 id="stage-2-advanced-blocks">Stage 2 - Advanced Blocks</h3>
+<p>1 - <a href="../img/arcade/blocks/stage-2/1-blaster-blocks.pdf">Blaster</a>, alpha</p>
+<p>2 - <a href="../img/arcade/blocks/stage-2/2-worm-blocks.pdf">Worm</a>, alpha</p>
+<p>3 - <a href="../img/arcade/blocks/stage-2/3-burgerblast-blocks.pdf">Burger Blast</a>, alpha</p>
+<p>4 - <a href="../img/arcade/blocks/stage-2/4-invaders-blocks.pdf">Invaders</a>, alpha</p>
+<p>5 - Treasure, coming</p>
+<p>6 - <a href="../img/arcade/blocks/stage-2/6-memory-blocks.pdf">Memory</a>, alpha</p>
+<p>7 - Mouse, coming</p>
+<h3 id="stage-3-self-directed-learning">Stage 3 - Self Directed Learning</h3>
+<p>1 - <a href="../img/arcade/blocks/stage-3/ducks/ducks-blocks.pdf">Invasion of the Alien Ducks</a>, final (<a href="../errata/">errata</a>)</p>
+<h2 id="published-works">Published works</h2>
+<h3 id="invasion-of-the-alien-ducks">Invasion of the Alien Ducks</h3>
+<p><a href="../errata/">Errata for Invasion of the Alien Ducks</a>.</p>
+<p>This is the first material that I've produced which is suitable for wide distribution.
+It's a MakeCode Arcade Blocks worksheet and is suitable for anyone that has some
+experience of blocks programming.</p>
+<p>The PDF is available <a href="../img/arcade/blocks/stage-3/ducks/ducks-blocks.pdf">here</a> and is
+licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</p>
+<p>To view a copy of this license, visit <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">https://creativecommons.org/licenses/by-nc-sa/4.0/</a>.
+The materials are designed to be used in printed form. As this is over 40 pages long and
+image heavy, I have published it on <a href="https://www.amazon.co.uk/Invasion-Alien-Ducks-Adventures-MakeCode/dp/B0BZC3BTFD/">Amazon</a>
+where you can buy a printed copy for £4.50.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
